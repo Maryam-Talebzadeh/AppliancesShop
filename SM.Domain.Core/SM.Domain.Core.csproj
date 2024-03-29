@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="ProductCategoryAgg\AppServices\" />
-    <Folder Include="ProductCategoryAgg\Services\" />
   </ItemGroup>
 
   <ItemGroup>
