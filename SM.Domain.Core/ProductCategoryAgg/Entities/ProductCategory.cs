@@ -12,11 +12,13 @@ namespace SM.Domain.Core.ProductCategoryAgg.Entities
             MetaDescription = metaDescription;
             Slug = slug;
             KeyWords = keyWords;
+            PictureId = 1;
         }
 
         public string Name { get; private set; }
         public string Description { get; private set; }
         public DateTime CreationDate { get; private set; }
+        public int PictureId { get; private set; }
         public string MetaDescription { get; private set; }
         public string Slug { get; private set; }
         public string KeyWords { get; private set; }
