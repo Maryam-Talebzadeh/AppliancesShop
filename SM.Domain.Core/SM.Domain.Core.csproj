@@ -10,8 +10,11 @@
     <Folder Include="ProductCategoryAgg\AppServices\" />
     <Folder Include="ProductCategoryAgg\Data\" />
     <Folder Include="ProductCategoryAgg\DTOs\" />
-    <Folder Include="ProductCategoryAgg\Entities\" />
     <Folder Include="ProductCategoryAgg\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DomainFramework\DomainFramework.csproj" />
   </ItemGroup>
 
 </Project>
