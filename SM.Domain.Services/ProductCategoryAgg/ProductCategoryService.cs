@@ -1,4 +1,5 @@
-﻿using SM.Domain.Core.ProductCategoryAgg.DTOs;
+﻿using SM.Domain.Core.ProductCategoryAgg.Data;
+using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using SM.Domain.Core.ProductCategoryAgg.Services;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,12 @@ namespace SM.Domain.Services.ProductCategoryAgg
 {
     public class ProductCategoryService : IProductCategoryService
     {
+        private readonly IProductCategoryRepository _productCategoryRepository;
+
+        public ProductCategoryService(IProductCategoryRepository productCategoryRepository)
+        {
+            _productCategoryRepository = productCategoryRepository;
+        }
         public void Create(CreateProductCategoryDTO command)
         {
             throw new NotImplementedException();
