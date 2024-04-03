@@ -50,9 +50,9 @@ namespace SM.Domain.Services.ProductCategoryAgg
             return operation.Succedded();
         }
 
-        public ProductCategoryDetailDTO GetDetail(int id)
+        public ProductCategoryDetailDTO GetDetail(long id)
         {
-            throw new NotImplementedException();
+            return _productCategoryRepository.GetDetail(id);
         }
 
         public List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel)

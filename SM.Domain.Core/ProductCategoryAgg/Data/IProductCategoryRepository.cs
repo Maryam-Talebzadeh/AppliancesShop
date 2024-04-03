@@ -12,6 +12,7 @@ namespace SM.Domain.Core.ProductCategoryAgg.Data
         void Save();
         bool IsExist(Expression<Func<ProductCategoryDTO, bool>> expression);
         void Edit(EditProductCategoryDTO edit);
+        ProductCategoryDetailDTO GetDetail(long id);
 
     }
 }

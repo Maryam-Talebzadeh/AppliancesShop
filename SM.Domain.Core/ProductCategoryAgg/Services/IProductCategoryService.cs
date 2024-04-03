@@ -13,6 +13,6 @@ namespace SM.Domain.Core.ProductCategoryAgg.Services
         OperationResult Create(CreateProductCategoryDTO command);
         OperationResult Edit(EditProductCategoryDTO command);
         List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel);
-        ProductCategoryDetailDTO GetDetail(int id);
+        ProductCategoryDetailDTO GetDetail(long id);
     }
 }
