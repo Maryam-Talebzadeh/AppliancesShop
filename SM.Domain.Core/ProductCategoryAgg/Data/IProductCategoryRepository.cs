@@ -6,8 +6,9 @@ namespace SM.Domain.Core.ProductCategoryAgg.Data
 {
     public interface IProductCategoryRepository
     {
-        OperationResult Create(CreateProductCategoryDTO productCategory);
+        void Create(CreateProductCategoryDTO productCategory);
         ProductCategory GetBy(int id);
+        void Save();
 
     }
 }
