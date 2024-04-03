@@ -9,6 +9,7 @@ namespace SM.Domain.Core.ProductCategoryAgg.Data
         void Create(CreateProductCategoryDTO productCategory);
         ProductCategory GetBy(int id);
         void Save();
+        bool IsExist(string name);
 
     }
 }
