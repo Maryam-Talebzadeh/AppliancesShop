@@ -1,4 +1,5 @@
-﻿using SM.Domain.Core.ProductCategoryAgg.DTOs;
+﻿using ServiceFramework;
+using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace SM.Domain.Core.ProductCategoryAgg.Services
 {
     public interface IProductCategoryService
     {
-        void Create(CreateProductCategoryDTO command);
-        void Edit(EditProductCategoryDTO command);
+        OperationResult Create(CreateProductCategoryDTO command);
+        OperationResult Edit(EditProductCategoryDTO command);
         List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel);
         ProductCategoryDetailDTO GetDetail(int id);
     }

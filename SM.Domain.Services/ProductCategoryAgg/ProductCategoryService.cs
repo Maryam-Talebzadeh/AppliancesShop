@@ -1,4 +1,5 @@
-﻿using SM.Domain.Core.ProductCategoryAgg.Data;
+﻿using ServiceFramework;
+using SM.Domain.Core.ProductCategoryAgg.Data;
 using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using SM.Domain.Core.ProductCategoryAgg.Services;
 using System;
@@ -17,12 +18,12 @@ namespace SM.Domain.Services.ProductCategoryAgg
         {
             _productCategoryRepository = productCategoryRepository;
         }
-        public void Create(CreateProductCategoryDTO command)
+        public OperationResult Create(CreateProductCategoryDTO command)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(EditProductCategoryDTO command)
+        public OperationResult Edit(EditProductCategoryDTO command)
         {
             throw new NotImplementedException();
         }
