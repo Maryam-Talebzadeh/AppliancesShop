@@ -1,12 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SM.Domain.Core.ProductCategoryAgg.Data;
+using SM.Domain.Core.ProductCategoryAgg.DTOs;
+using SM.Domain.Core.ProductCategoryAgg.Entities;
+using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
+using System.Linq.Expressions;
 
 namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
 {
-    public class ProductCategoryRepository
+    public class ProductCategoryRepository : IProductCategoryRepository
     {
+        private readonly ShopContext _context;
+
+        public ProductCategoryRepository(ShopContext context)
+        {
+            _context = context;
+        }
+
+        public void Create(CreateProductCategoryDTO productCategory)
+        {
+            var newProductCategory = new ProductCategory(productCategory.Name, productCategory.Description, productCategory.MetaDescription, productCategory.Slug, productCategory.KeyWords);
+            _context.ProductCategories.Add(newProductCategory);
+        }
+
+        public void Edit(EditProductCategoryDTO edit)
+        {
+            var productCategory = Get(edit.Id);
+            productCategory.Edit(edit.Name, edit.Description, edit.MetaDescription, edit.Slug, edit.KeyWords);
+        }
+
+        public ProductCategoryDTO GetBy(long id)
+        {
+            return _context.ProductCategories.Where(pc => pc.Id == id).Select(pc =>
+            new ProductCategoryDTO
+            {
+                Id = pc.Id,
+                Name = pc.Name,
+                CreationDate = pc.CreationDate,
+                PictureId = pc.PictureId
+            }).Single();
+}
+        public ProductCategoryDetailDTO GetDetail(long id)
+        {
+            return _context.ProductCategories.Where(pc => pc.Id == id).Select(pc =>
+            new ProductCategoryDetailDTO
+            {
+                Id = pc.Id,
+                Name = pc.Name,
+                CreationDate = pc.CreationDate,
+                Description = pc.Description,
+                IsDeleted = pc.IsDeleted,
+                KeyWords = pc.KeyWords,
+                MetaDescription = pc.MetaDescription,
+                Slug = pc.Slug
+            }).Single();
+        }
+
+        public bool IsExist(Expression<Func<ProductCategory, bool>> expression)
+        {
+            return _context.ProductCategories.Any(expression);
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
+        public List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel)
+        {
+            var query = _context.ProductCategories.Select(pc => new ProductCategoryDTO()
+            {
+                Id = pc.Id,
+                Name = pc.Name,
+                CreationDate = pc.CreationDate,
+                PictureId = pc.PictureId
+            });
+
+            if(!string.IsNullOrWhiteSpace(searchModel.Name))
+                query = query.Where(pc => pc.Name == searchModel.Name);
+
+            return query.OrderByDescending(pc => pc.Id).ToList();
+        }
+
+        public ProductCategory Get(long id)
+        {
+            return _context.ProductCategories.SingleOrDefault(pc => pc.Id == id);
+        }
     }
 }

@@ -8,11 +8,18 @@ namespace SM.Domain.Core.ProductCategoryAgg.Entities
 {
     public class Picture
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public string Title { get; set; }
-        public string Alt { get; set; }
-        public long ProductCategoryId { get; set; }
-        public ProductCategory ProductCategory { get; set; }
+        public Picture(string name, string title, string alt)
+        {
+            Name = name;
+            Title = title;
+            Alt = alt;
+        }
+
+        public long Id { get; private set; }
+        public string Name { get; private set; }
+        public string Title { get; private set; }
+        public string Alt { get; private set; }
+        public long ProductCategoryId { get; private set; }
+        public ProductCategory ProductCategory { get; private set; }
     }
 }

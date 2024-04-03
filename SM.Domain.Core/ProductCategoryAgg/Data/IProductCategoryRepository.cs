@@ -10,7 +10,7 @@ namespace SM.Domain.Core.ProductCategoryAgg.Data
         void Create(CreateProductCategoryDTO productCategory);
         ProductCategoryDTO GetBy(long id);
         void Save();
-        bool IsExist(Expression<Func<ProductCategoryDTO, bool>> expression);
+        bool IsExist(Expression<Func<ProductCategory, bool>> expression);
         void Edit(EditProductCategoryDTO edit);
         ProductCategoryDetailDTO GetDetail(long id);
         List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel);
