@@ -22,6 +22,7 @@ namespace SM.Domain.Core.ProductCategoryAgg.Entities
         public string MetaDescription { get; private set; }
         public string Slug { get; private set; }
         public string KeyWords { get; private set; }
+        public Picture Picture { get; set; }
 
         public void Edit(string name, string description, string metaDescription, string slug, string keyWords)
         {

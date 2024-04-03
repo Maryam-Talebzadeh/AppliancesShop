@@ -13,5 +13,6 @@ namespace SM.Domain.Core.ProductCategoryAgg.Entities
         public string Title { get; set; }
         public string Alt { get; set; }
         public long ProductCategoryId { get; set; }
+        public ProductCategory ProductCategory { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace SM.Infrastructure.DB.SqlServer.EFCore.Configurations.ProductCategoryAg
 
             #region Relations
 
-
+            builder.HasOne(pc => pc.Picture).WithOne(p => p.ProductCategory).HasForeignKey<ProductCategory>(pc => pc.PictureId).HasForeignKey<Picture>(p => p.ProductCategoryId) ;
 
             #endregion
 
