@@ -20,7 +20,16 @@ namespace SM.Domain.Services.ProductCategoryAgg
         }
         public OperationResult Create(CreateProductCategoryDTO command)
         {
-            throw new NotImplementedException();
+            var operation = new OperationResult();
+
+            if (_productCategoryRepository.IsExist(command.Name))
+                return operation.Failed("نام وارد شده تکراری است.. لطفا یک نام دیگه امتحان کن.");
+
+            command.Slug = GenerateSlug.Slugify(command.Slug);
+            _productCategoryRepository.Create(command);
+            _productCategoryRepository.Save();
+
+            return operation.Succedded();
         }
 
         public OperationResult Edit(EditProductCategoryDTO command)
