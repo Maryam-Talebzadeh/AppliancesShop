@@ -22,7 +22,7 @@ namespace SM.Domain.Services.ProductCategoryAgg
         {
             var operation = new OperationResult();
 
-            if (_productCategoryRepository.IsExist(command.Name))
+            if (_productCategoryRepository.IsExist(pc => pc.Name == command.Name))
                 return operation.Failed("نام وارد شده تکراری است.. لطفا یک نام دیگه امتحان کن.");
 
             command.Slug = GenerateSlug.Slugify(command.Slug);
