@@ -34,7 +34,20 @@ namespace SM.Domain.Services.ProductCategoryAgg
 
         public OperationResult Edit(EditProductCategoryDTO command)
         {
-            throw new NotImplementedException();
+            var operation = new OperationResult();
+            var productCategory = _productCategoryRepository.GetBy(command.Id);
+
+            if (productCategory == null)
+                return operation.Failed("رکورد با اطلاعات درخواست شده یافت نشد. لطفا دوباره امتحان کن.");
+
+            if (_productCategoryRepository.IsExist(pc => pc.Name == command.Name && pc.Id != command.Id))
+                return operation.Failed("نام وارد شده تکراری است.. لطفا یک نام دیگه امتحان کن.");
+
+            command.Slug = GenerateSlug.Slugify(command.Slug);
+            _productCategoryRepository.Edit(command);
+            _productCategoryRepository.Save();
+
+            return operation.Succedded();
         }
 
         public ProductCategoryDetailDTO GetDetail(int id)

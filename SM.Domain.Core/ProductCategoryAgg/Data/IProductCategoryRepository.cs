@@ -8,9 +8,10 @@ namespace SM.Domain.Core.ProductCategoryAgg.Data
     public interface IProductCategoryRepository
     {
         void Create(CreateProductCategoryDTO productCategory);
-        ProductCategoryDTO GetBy(int id);
+        ProductCategoryDTO GetBy(long id);
         void Save();
         bool IsExist(Expression<Func<ProductCategoryDTO, bool>> expression);
+        void Edit(EditProductCategoryDTO edit);
 
     }
 }
