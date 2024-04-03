@@ -57,7 +57,7 @@ namespace SM.Domain.Services.ProductCategoryAgg
 
         public List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel)
         {
-            throw new NotImplementedException();
+            return _productCategoryRepository.Search(searchModel);
         }
     }
 }
