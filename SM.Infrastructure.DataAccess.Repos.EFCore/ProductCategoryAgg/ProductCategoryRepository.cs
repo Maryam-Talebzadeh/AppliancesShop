@@ -29,6 +29,17 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
             productCategory.Edit(edit.Name, edit.Description, edit.MetaDescription, edit.Slug, edit.KeyWords);
         }
 
+        public List<ProductCategoryDTO> GetAll()
+        {
+            return _context.ProductCategories.Select(pc => new ProductCategoryDTO()
+            {
+                Id = pc.Id,
+                Name = pc.Name,
+                CreationDate = pc.CreationDate,
+                PictureId = pc.PictureId
+            }).ToList();
+        }
+
         public ProductCategoryDTO GetBy(long id)
         {
             return _context.ProductCategories.Where(pc => pc.Id == id).Select(pc =>
