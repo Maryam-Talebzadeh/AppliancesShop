@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DomainFramework\DomainFramework.csproj" />
-    <ProjectReference Include="..\Services\ServiceFramework.csproj" />
   </ItemGroup>
 
 </Project>
