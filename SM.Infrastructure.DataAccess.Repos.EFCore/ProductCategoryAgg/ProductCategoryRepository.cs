@@ -4,14 +4,15 @@ using SM.Domain.Core.ProductCategoryAgg.Entities;
 using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 using System.Linq.Expressions;
 using Base_Framework.Domain.Core.Entities;
+using Base_Framework.Infrastructure.DataAccess;
 
 namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
 {
-    public class ProductCategoryRepository : IProductCategoryRepository
+    public class ProductCategoryRepository : BaseRepository_EFCore<long, ProductCategory> ,IProductCategoryRepository
     {
         private readonly ShopContext _context;
 
-        public ProductCategoryRepository(ShopContext context)
+        public ProductCategoryRepository(ShopContext context) : base(context)
         {
             _context = context;
         }
@@ -55,15 +56,6 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
             }).Single();
         }
 
-        public bool IsExist(Expression<Func<ProductCategory, bool>> expression)
-        {
-            return _context.ProductCategories.Any(expression);
-        }
-
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
 
         public List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel)
         {
@@ -81,7 +73,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
             return query.OrderByDescending(pc => pc.Id).ToList();
         }
 
-        public ProductCategory Get(long id)
+        private ProductCategory Get(long id)
         {
             return _context.ProductCategories.SingleOrDefault(pc => pc.Id == id);
         }
