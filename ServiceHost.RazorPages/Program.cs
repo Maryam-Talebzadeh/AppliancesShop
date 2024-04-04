@@ -1,7 +1,15 @@
+using SM.Infrastructure.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+#region CustomConfiguration
+
+SMBootstrapper.Configure(builder.Services, builder.Configuration.GetConnectionString("AppliancesConnectionString"));
+
+#endregion
 
 var app = builder.Build();
 
