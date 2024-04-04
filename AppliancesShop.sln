@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Infrastructure.DataAcces
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Infrastructure.DB.SqlServer.EFCore", "SM.Infrastructure.DB.SqlServer.EFCore\SM.Infrastructure.DB.SqlServer.EFCore.csproj", "{044E7531-8317-43FF-B577-37ED034B47E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SM.Infrastructure.Configuration", "SM.Infrastructure.Configuration\SM.Infrastructure.Configuration.csproj", "{0BFB648A-C812-4A0A-8140-6D34491D6B63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{044E7531-8317-43FF-B577-37ED034B47E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{044E7531-8317-43FF-B577-37ED034B47E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{044E7531-8317-43FF-B577-37ED034B47E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BFB648A-C812-4A0A-8140-6D34491D6B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BFB648A-C812-4A0A-8140-6D34491D6B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BFB648A-C812-4A0A-8140-6D34491D6B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BFB648A-C812-4A0A-8140-6D34491D6B63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{53229780-5086-44F9-8D4A-06A94B668470} = {54DF24B7-F9DD-40CF-97BF-F23A88C92142}
 		{BC8B4651-84D9-4E8A-A12E-A264C095D414} = {7B77305D-6746-4B8C-8C9F-7FE8656E8B07}
 		{044E7531-8317-43FF-B577-37ED034B47E6} = {53229780-5086-44F9-8D4A-06A94B668470}
+		{0BFB648A-C812-4A0A-8140-6D34491D6B63} = {54DF24B7-F9DD-40CF-97BF-F23A88C92142}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2E3B5803-84A7-47E6-A5E9-B1DCDF0A7C77}
