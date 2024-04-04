@@ -1,4 +1,4 @@
-﻿using DomainFramework.Core.Entities;
+﻿using Base_Framework.Domain.Core.Entities;
 
 namespace SM.Domain.Core.ProductCategoryAgg.Entities
 {

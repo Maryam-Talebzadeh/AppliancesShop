@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceFramework
+namespace Base_Framework.Domain.Services
 {
     public class OperationResult
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainFramework.Core.Entities
+namespace Base_Framework.Domain.Core.Entities
 {
     public class BaseEntity
     {

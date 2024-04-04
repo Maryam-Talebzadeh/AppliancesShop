@@ -1,5 +1,4 @@
-﻿using ServiceFramework;
-using SM.Domain.Core.ProductCategoryAgg.DTOs;
+﻿using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using SM.Domain.Core.ProductCategoryAgg.Entities;
 using System.Linq.Expressions;
 

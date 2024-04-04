@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoints", "EndPoints", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frameworks", "Frameworks", "{A5FAF853-11D9-4E49-BE6E-1BCC69DA570C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainFramework", "DomainFramework\DomainFramework.csproj", "{CFA38FC0-81E2-4409-89F5-C55A5A046C8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Base_Framework", "DomainFramework\Base_Framework.csproj", "{CFA38FC0-81E2-4409-89F5-C55A5A046C8F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Domain.Core", "SM.Domain.Core\SM.Domain.Core.csproj", "{63D86065-14DE-4E0B-BA34-4AEABC99414B}"
 EndProject

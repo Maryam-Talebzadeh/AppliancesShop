@@ -1,4 +1,4 @@
-﻿using ServiceFramework;
+﻿using Base_Framework.Domain.Services;
 using SM.Domain.Core.ProductCategoryAgg.Data;
 using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using SM.Domain.Core.ProductCategoryAgg.Services;

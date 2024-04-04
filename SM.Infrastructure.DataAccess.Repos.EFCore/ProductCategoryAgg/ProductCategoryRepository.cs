@@ -3,6 +3,7 @@ using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using SM.Domain.Core.ProductCategoryAgg.Entities;
 using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 using System.Linq.Expressions;
+using Base_Framework.Domain.Core.Entities;
 
 namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
 {

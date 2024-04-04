@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainFramework.Core.Contracts
+namespace Base_Framework.Domain.Core.Contracts
 {
     public interface IRepository<TKey, T> where T : class
     {
