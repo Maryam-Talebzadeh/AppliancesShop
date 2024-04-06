@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\AdminTheme\assets\modal-effect\js\classie.js" />
+    <None Include="wwwroot\AdminTheme\assets\modal-effect\js\modalEffects.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SM.Infrastructure.Configuration\SM.Infrastructure.Configuration.csproj" />
   </ItemGroup>
 
