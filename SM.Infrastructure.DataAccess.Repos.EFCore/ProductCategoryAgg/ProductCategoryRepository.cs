@@ -36,7 +36,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
                 Id = pc.Id,
                 Name = pc.Name,
                 CreationDate = pc.CreationDate,
-                PictureId = pc.PictureId
+                Picture = _context.Pictures.SingleOrDefault(p => p.Id == pc.PictureId).Name
             }).ToList();
         }
 
@@ -48,7 +48,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
                 Id = pc.Id,
                 Name = pc.Name,
                 CreationDate = pc.CreationDate,
-                PictureId = pc.PictureId
+                Picture = _context.Pictures.SingleOrDefault(p => p.Id == pc.PictureId).Name
             }).Single();
 }
         public ProductCategoryDetailDTO GetDetail(long id)
@@ -75,7 +75,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
                 Id = pc.Id,
                 Name = pc.Name,
                 CreationDate = pc.CreationDate,
-                PictureId = pc.PictureId
+                Picture = _context.Pictures.SingleOrDefault(p => p.Id == pc.PictureId).Name
             });
 
             if(!string.IsNullOrWhiteSpace(searchModel.Name))
