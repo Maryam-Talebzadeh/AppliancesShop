@@ -10,9 +10,9 @@ namespace SM.Domain.Core.ProductCategoryAgg.Services
 {
     public interface IProductCategoryService
     {
-        OperationResult Create(CreateProductCategoryDTO command);
+        OperationResult Create(CreateProductCategoryViewModel command);
         OperationResult Edit(EditProductCategoryDTO command);
-        List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel);
+        List<ProductCategoryViewModel> Search(SearchProductCategoryDTO searchModel);
         ProductCategoryDetailDTO GetDetail(long id);
     }
 }

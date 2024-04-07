@@ -31,13 +31,14 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
 
         public List<ProductCategoryDTO> GetAll()
         {
-            return _context.ProductCategories.Select(pc => new ProductCategoryDTO()
-            {
-                Id = pc.Id,
-                Name = pc.Name,
-                CreationDate = pc.CreationDate,
-                Picture = _context.Pictures.SingleOrDefault(p => p.Id == pc.PictureId).Name
-            }).ToList();
+            return _context.ProductCategories.Select(pc =>
+             new ProductCategoryDTO
+             {
+                 Id = pc.Id,
+                 Name = pc.Name,
+                 CreationDate = pc.CreationDate,
+                 PictureId = pc.PictureId
+             }).ToList();
         }
 
         public ProductCategoryDTO GetBy(long id)
@@ -48,7 +49,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
                 Id = pc.Id,
                 Name = pc.Name,
                 CreationDate = pc.CreationDate,
-                Picture = _context.Pictures.SingleOrDefault(p => p.Id == pc.PictureId).Name
+                PictureId = pc.PictureId
             }).Single();
 }
         public ProductCategoryDetailDTO GetDetail(long id)
@@ -70,13 +71,14 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
 
         public List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel)
         {
-            var query = _context.ProductCategories.Select(pc => new ProductCategoryDTO()
-            {
-                Id = pc.Id,
-                Name = pc.Name,
-                CreationDate = pc.CreationDate,
-                Picture = _context.Pictures.SingleOrDefault(p => p.Id == pc.PictureId).Name
-            });
+            var query = _context.ProductCategories.Select(pc =>
+             new ProductCategoryDTO
+             {
+                 Id = pc.Id,
+                 Name = pc.Name,
+                 CreationDate = pc.CreationDate,
+                 PictureId = pc.PictureId
+             });
 
             if(!string.IsNullOrWhiteSpace(searchModel.Name))
                 query = query.Where(pc => pc.Name == searchModel.Name);

@@ -18,7 +18,7 @@ namespace SM.Domain.Services.ProductCategoryAgg
         {
             _productCategoryRepository = productCategoryRepository;
         }
-        public OperationResult Create(CreateProductCategoryDTO command)
+        public OperationResult Create(CreateProductCategoryViewModel command)
         {
             var operation = new OperationResult();
 
@@ -26,7 +26,9 @@ namespace SM.Domain.Services.ProductCategoryAgg
                 return operation.Failed("نام وارد شده تکراری است.. لطفا یک نام دیگه امتحان کن.");
 
             command.Slug = GenerateSlug.Slugify(command.Slug);
-            _productCategoryRepository.Create(command);
+           
+            //TO DO : Create
+
             _productCategoryRepository.Save();
 
             return operation.Succedded();
@@ -55,7 +57,7 @@ namespace SM.Domain.Services.ProductCategoryAgg
             return _productCategoryRepository.GetDetail(id);
         }
 
-        public List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel)
+        public List<ProductCategoryViewModel> Search(SearchProductCategoryDTO searchModel)
         {
             return _productCategoryRepository.Search(searchModel);
         }

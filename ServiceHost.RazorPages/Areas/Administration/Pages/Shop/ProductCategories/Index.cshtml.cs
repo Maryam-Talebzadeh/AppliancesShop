@@ -8,7 +8,7 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductCategori
     public class IndexModel : PageModel
     {
         private readonly IProductCategoryAppService _productCategoryAppService;
-        public List<ProductCategoryDTO> ProductCategories;
+        public List<ProductCategoryViewModel> ProductCategories;
 
         public IndexModel(IProductCategoryAppService productCategoryAppService)
         {

@@ -8,7 +8,7 @@ namespace SM.Domain.Core.ProductCategoryAgg.Entities
 {
     public class Picture
     {
-        public Picture(string name, string title, string alt)
+        public Picture(string name , string title, string alt)
         {
             Name = name;
             Title = title;

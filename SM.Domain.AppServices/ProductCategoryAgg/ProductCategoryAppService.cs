@@ -33,7 +33,7 @@ namespace SM.Domain.AppServices.ProductCategoryAgg
             return _productCategoryService.GetDetail(id);
         }
 
-        public List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel)
+        public List<ProductCategoryViewModel> Search(SearchProductCategoryDTO searchModel)
         {
             return _productCategoryService.Search(searchModel);
         }
