@@ -17,6 +17,7 @@ namespace SM.Infrastructure.Configuration
             services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
             services.AddScoped<IProductCategoryService, ProductCategoryService>();
             services.AddScoped<IProductCategoryAppService, ProductCategoryAppService>();
+            services.AddScoped<IPictureRepository, PictureRepository>();
 
             #region DbContext
 
