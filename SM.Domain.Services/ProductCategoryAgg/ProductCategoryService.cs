@@ -2,21 +2,19 @@
 using SM.Domain.Core.ProductCategoryAgg.Data;
 using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using SM.Domain.Core.ProductCategoryAgg.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SM.Domain.Services.ProductCategoryAgg
 {
     public class ProductCategoryService : IProductCategoryService
     {
         private readonly IProductCategoryRepository _productCategoryRepository;
+        private readonly IPictureRepository _pictureRepository;
 
-        public ProductCategoryService(IProductCategoryRepository productCategoryRepository)
+
+        public ProductCategoryService(IProductCategoryRepository productCategoryRepository, IPictureRepository pictureRepository)
         {
             _productCategoryRepository = productCategoryRepository;
+            _pictureRepository = pictureRepository;
         }
         public OperationResult Create(CreateProductCategoryViewModel command)
         {
@@ -26,7 +24,7 @@ namespace SM.Domain.Services.ProductCategoryAgg
                 return operation.Failed("نام وارد شده تکراری است.. لطفا یک نام دیگه امتحان کن.");
 
             command.Slug = GenerateSlug.Slugify(command.Slug);
-           
+
             //TO DO : Create
 
             _productCategoryRepository.Save();
@@ -59,7 +57,16 @@ namespace SM.Domain.Services.ProductCategoryAgg
 
         public List<ProductCategoryViewModel> Search(SearchProductCategoryDTO searchModel)
         {
-            
+           return  _productCategoryRepository.Search(searchModel).Select(p =>
+            new ProductCategoryViewModel()
+
+            {
+                Id = p.Id,
+                Name = p.Name,
+                CreationDate = p.CreationDate,
+                ProductsCount = p.ProductsCount,
+                Picture = _pictureRepository.GetBy(p.PictureId).Name
+            }).ToList();
         }
     }
 }
