@@ -59,7 +59,7 @@ namespace SM.Domain.Services.ProductCategoryAgg
 
         public List<ProductCategoryViewModel> Search(SearchProductCategoryDTO searchModel)
         {
-            return _productCategoryRepository.Search(searchModel);
+            
         }
     }
 }
