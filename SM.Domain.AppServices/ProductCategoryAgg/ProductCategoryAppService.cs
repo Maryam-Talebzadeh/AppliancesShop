@@ -18,7 +18,7 @@ namespace SM.Domain.AppServices.ProductCategoryAgg
             _productCategoryService = productCategoryService;
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Create(CreateProductCategoryDTO command)
+        public global::Base_Framework.Domain.Services.OperationResult Create(CreateProductCategoryViewModel command)
         {
             return _productCategoryService.Create(command);
         }

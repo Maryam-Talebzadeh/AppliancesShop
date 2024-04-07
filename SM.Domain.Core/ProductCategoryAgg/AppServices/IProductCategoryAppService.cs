@@ -10,7 +10,7 @@ namespace SM.Domain.Core.ProductCategoryAgg.AppServices
 {
     public interface IProductCategoryAppService
     {
-        OperationResult Create(CreateProductCategoryDTO command);
+        OperationResult Create(CreateProductCategoryViewModel command);
         OperationResult Edit(EditProductCategoryDTO command);
         List<ProductCategoryViewModel> Search(SearchProductCategoryDTO searchModel);
         ProductCategoryDetailDTO GetDetail(long id);
