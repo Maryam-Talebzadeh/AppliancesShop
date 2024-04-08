@@ -27,3 +27,33 @@ function showModal() {
 function hideModal() {
     $("#MainModal").modal("hide");
 }
+
+function CallBackHandler(data, action, form) {
+    switch (action) {
+        case "Message":
+            alert(data.Message);
+            break;
+        case "Refresh":
+            if (data.isSuccedded) {
+                window.location.reload();
+            } else {
+                alert(data.message);
+            }
+            break;
+        case "RefereshList":
+            {
+                hideModal();
+                const refereshUrl = form.attr("data-refereshurl");
+                const refereshDiv = form.attr("data-refereshdiv");
+                get(refereshUrl, refereshDiv);
+            }
+            break;
+        case "setValue":
+            {
+                const element = form.data("element");
+                $(`#${element}`).html(data);
+            }
+            break;
+        default:
+    }
+}
