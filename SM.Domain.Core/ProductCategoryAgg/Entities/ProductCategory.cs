@@ -4,7 +4,7 @@ namespace SM.Domain.Core.ProductCategoryAgg.Entities
 {
     public class ProductCategory : BaseEntity
     {
-        public ProductCategory(string name, string description, string metaDescription, string slug, string keyWords)
+        public ProductCategory(string name, string description, string metaDescription, string slug, string keyWords, long pictureId)
         {
             Name = name;
             Description = description;
@@ -12,7 +12,7 @@ namespace SM.Domain.Core.ProductCategoryAgg.Entities
             MetaDescription = metaDescription;
             Slug = slug;
             KeyWords = keyWords;
-            PictureId = 1;
+            PictureId = pictureId;
         }
 
         public string Name { get; private set; }

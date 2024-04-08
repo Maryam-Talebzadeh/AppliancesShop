@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace SM.Domain.Core.ProductCategoryAgg.DTOs
 {
-    public class CreatePictureDTO
+    public class EditProductCategoryViewModel : CreateProductCategoryViewModel
     {
-        public string Name { get; set; }
-        public string Title { get; set; }
-        public string Alt { get; set; }
+        public long Id { get; set; }
     }
 }

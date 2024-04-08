@@ -25,8 +25,29 @@ namespace SM.Domain.Services.ProductCategoryAgg
 
             command.Slug = GenerateSlug.Slugify(command.Slug);
 
-            //TO DO : Create
+            //To Do : save image
 
+            var picture = new CreatePictureDTO()
+            {
+                Name = command.Name,
+                Title = command.PictureTitle,
+                Alt = command.PictureAlt
+
+            };
+
+            var picId = _pictureRepository.Create(picture);
+
+            var productCategory = new CreateProductCategoryDTO()
+            {
+                Name = command.Name,
+                Description = command.Description,
+                MetaDescription = command.MetaDescription,
+                KeyWords = command.Keywords,
+                Slug = command.Slug,
+                PictureId = picId
+            };
+
+            _productCategoryRepository.Create(productCategory);
             _productCategoryRepository.Save();
 
             return operation.Succedded();

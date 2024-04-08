@@ -19,7 +19,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
 
         public void Create(CreateProductCategoryDTO productCategory)
         {
-            var newProductCategory = new ProductCategory(productCategory.Name, productCategory.Description, productCategory.MetaDescription, productCategory.Slug, productCategory.KeyWords);
+            var newProductCategory = new ProductCategory(productCategory.Name, productCategory.Description, productCategory.MetaDescription, productCategory.Slug, productCategory.KeyWords, productCategory.PictureId);
             _context.ProductCategories.Add(newProductCategory);
         }
 
@@ -59,7 +59,6 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
             {
                 Id = pc.Id,
                 Name = pc.Name,
-                CreationDate = pc.CreationDate,
                 Description = pc.Description,
                 IsDeleted = pc.IsDeleted,
                 KeyWords = pc.KeyWords,

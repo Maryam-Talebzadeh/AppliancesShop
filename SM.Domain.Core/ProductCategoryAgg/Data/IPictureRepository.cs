@@ -6,7 +6,7 @@ namespace SM.Domain.Core.ProductCategoryAgg.Data
 {
     public interface IPictureRepository : IRepository<long, Picture>
     {
-        void Create(CreatePictureDTO create);
+        long Create(CreatePictureDTO create);
         PictureDTO GetBy(long id);
         List<PictureDTO> GetAll();
     }

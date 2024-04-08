@@ -15,10 +15,12 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
             _context = context;
         }
 
-        public void Create(CreatePictureDTO create)
+        public long Create(CreatePictureDTO create)
         {
             var picture = new Picture(create.Name, create.Title, create.Alt);
             _context.Pictures.Add(picture);
+            Save();
+            return picture.Id;
         }
 
         public List<PictureDTO> GetAll()

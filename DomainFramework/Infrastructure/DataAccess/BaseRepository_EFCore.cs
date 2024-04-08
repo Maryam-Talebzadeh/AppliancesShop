@@ -15,7 +15,7 @@ namespace Base_Framework.Infrastructure.DataAccess
 
         public BaseRepository_EFCore(DbContext context)
         {
-            _context = _context; 
+            _context = context; 
         }
 
         public bool IsExist(Expression<Func<T, bool>> expression)
