@@ -100,3 +100,30 @@ function CallBackHandler(data, action, form) {
         default:
     }
 }
+
+function makeSlug(source, dist) {
+    const value = $('#' + source).val();
+    $('#' + dist).val(convertToSlug(value));
+}
+
+var convertToSlug = function (str) {
+    var $slug = '';
+    const trimmed = $.trim(str);
+    $slug = trimmed.replace(/[^a-z0-9-آ-ی-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+    return $slug.toLowerCase();
+};
+
+function checkSlugDuplication(url, dist) {
+    const slug = $('#' + dist).val();
+    const id = convertToSlug(slug);
+    $.get({
+        url: url + '/' + id,
+        success: function (data) {
+            if (data) {
+                sendNotification('error', 'top right', "خطا", "اسلاگ نمی تواند تکراری باشد");
+            }
+        }
+    });
+}
+
+
