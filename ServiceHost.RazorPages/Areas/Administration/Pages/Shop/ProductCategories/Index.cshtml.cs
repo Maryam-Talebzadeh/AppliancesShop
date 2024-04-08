@@ -21,5 +21,16 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductCategori
         {
             ProductCategories = _productCategoryAppService.Search(search);
         }
+
+        public ActionResult OnGetCreate()
+        {
+            return Partial("./Create", new CreateProductCategoryViewModel());
+        }
+
+        public JsonResult OnPostCreate(CreateProductCategoryViewModel command)
+        {
+            var result = _productCategoryAppService.Create(command);
+            return new JsonResult(result);
+        }
     }
 }
