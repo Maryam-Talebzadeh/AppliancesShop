@@ -9,5 +9,6 @@ namespace SM.Domain.Core.ProductCategoryAgg.Data
         long Create(CreatePictureDTO create);
         PictureDTO GetBy(long id);
         List<PictureDTO> GetAll();
+        void Edit(PictureDTO picture);
     }
 }

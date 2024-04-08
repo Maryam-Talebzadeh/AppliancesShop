@@ -53,7 +53,7 @@ namespace SM.Domain.Services.ProductCategoryAgg
             return operation.Succedded();
         }
 
-        public OperationResult Edit(EditProductCategoryDTO command)
+        public OperationResult Edit(EditProductCategoryViewModel command)
         {
             var operation = new OperationResult();
             var productCategory = _productCategoryRepository.GetBy(command.Id);
@@ -65,7 +65,31 @@ namespace SM.Domain.Services.ProductCategoryAgg
                 return operation.Failed("نام وارد شده تکراری است.. لطفا یک نام دیگه امتحان کن.");
 
             command.Slug = GenerateSlug.Slugify(command.Slug);
-            _productCategoryRepository.Edit(command);
+
+            var picture = new PictureDTO()
+            {
+                Id = productCategory.PictureId,
+                Name = command.Name,
+                Title = command.PictureTitle,
+                Alt = command.PictureAlt
+
+            };
+
+            _pictureRepository.Edit(picture);
+            _pictureRepository.Save();
+
+            var productCategoryDTO = new EditProductCategoryDTO()
+            {
+                Id = command.Id,
+                Name = command.Name,
+                Description = command.Description,
+                MetaDescription = command.MetaDescription,
+                KeyWords = command.Keywords,
+                Slug = command.Slug,
+                PictureId = productCategory.PictureId
+            };
+
+            _productCategoryRepository.Edit(productCategoryDTO);
             _productCategoryRepository.Save();
 
             return operation.Succedded();

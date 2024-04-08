@@ -20,5 +20,12 @@ namespace SM.Domain.Core.ProductCategoryAgg.Entities
         public string Title { get; private set; }
         public string Alt { get; private set; }
         public ProductCategory ProductCategory { get; private set; }
+
+       public void Edit(string name, string title, string alt)
+        {
+            Name = name;
+            Title = title;
+            Alt = alt;
+        }
     }
 }
