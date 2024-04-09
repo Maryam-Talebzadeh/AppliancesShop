@@ -23,7 +23,7 @@ namespace SM.Domain.Services.ProductCategoryAgg
             var operation = new OperationResult();
 
             if (_productCategoryRepository.IsExist(pc => pc.Name == command.Name))
-                return operation.Failed("نام وارد شده تکراری است.. لطفا یک نام دیگه امتحان کن.");
+                return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
 
             command.Slug = GenerateSlug.Slugify(command.Slug);
@@ -72,10 +72,10 @@ namespace SM.Domain.Services.ProductCategoryAgg
             var productCategory = _productCategoryRepository.GetBy(command.Id);
 
             if (productCategory == null)
-                return operation.Failed("رکورد با اطلاعات درخواست شده یافت نشد. لطفا دوباره امتحان کن.");
+                return operation.Failed(ApplicationMessages.RecordNotFound);
 
             if (_productCategoryRepository.IsExist(pc => pc.Name == command.Name && pc.Id != command.Id))
-                return operation.Failed("نام وارد شده تکراری است.. لطفا یک نام دیگه امتحان کن.");
+                return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             command.Slug = GenerateSlug.Slugify(command.Slug);
 
