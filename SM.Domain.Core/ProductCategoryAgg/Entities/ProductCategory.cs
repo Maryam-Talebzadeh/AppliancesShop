@@ -1,4 +1,5 @@
 ﻿using Base_Framework.Domain.Core.Entities;
+using SM.Domain.Core.ProductAgg.Entities;
 
 namespace SM.Domain.Core.ProductCategoryAgg.Entities
 {
@@ -15,6 +16,11 @@ namespace SM.Domain.Core.ProductCategoryAgg.Entities
             PictureId = pictureId;
         }
 
+        public ProductCategory()
+        {
+            Products = new List<Product>();
+        }
+
         public string Name { get; private set; }
         public string Description { get; private set; }
         public DateTime CreationDate { get; private set; }
@@ -23,6 +29,7 @@ namespace SM.Domain.Core.ProductCategoryAgg.Entities
         public string Slug { get; private set; }
         public string KeyWords { get; private set; }
         public Picture Picture { get; set; }
+        public List<Product> Products { get; private set; }
 
         public void Edit(string name, string description, string metaDescription, string slug, string keyWords)
         {
