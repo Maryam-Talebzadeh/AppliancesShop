@@ -1,5 +1,7 @@
 ﻿using Base_Framework.Domain.Services;
+using SM.Domain.Core.ProductAgg.Data;
 using SM.Domain.Core.ProductAgg.DTOs;
+using SM.Domain.Core.ProductAgg.Entities;
 using SM.Domain.Core.ProductAgg.Services;
 using System;
 using System.Collections.Generic;
@@ -11,29 +13,56 @@ namespace SM.Domain.Services.ProductAgg
 {
     public class ProductService : IProductService
     {
+        private readonly IProductRepository _productRepository;
+
+        public ProductService(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
         public OperationResult Create(CreateProductDTO command)
         {
-            throw new NotImplementedException();
+            var operation = new OperationResult();
+            if (_productRepository.IsExist(x => x.Name == command.Name))
+                return operation.Failed(ApplicationMessages.DuplicatedRecord);
+
+            var slug = command.Slug.Slugify();
+            _productRepository.Create(command);
+            _productRepository.Save();
+
+            return operation.Succedded();
         }
 
         public OperationResult Edit(EditProductDTO command)
         {
-            throw new NotImplementedException();
+            var operation = new OperationResult();
+            var product = _productRepository.GetBy(command.Id);
+            if (product == null)
+                return operation.Failed(ApplicationMessages.RecordNotFound);
+
+            if (_productRepository.IsExist(x => x.Name == command.Name && x.Id != command.Id))
+                return operation.Failed(ApplicationMessages.DuplicatedRecord);
+
+            var slug = command.Slug.Slugify();
+            _productRepository.Edit(command);
+            _productRepository.Save();
+
+            return operation.Succedded();
         }
 
-        public EditProductDTO GetDetails(long id)
+        public ProductDetailDTO GetDetails(long id)
         {
-            throw new NotImplementedException();
+            return _productRepository.GetDetail(id);
         }
 
         public List<ProductDTO> GetProducts()
         {
-            throw new NotImplementedException();
+            return _productRepository.GetAll();
         }
 
         public List<ProductDTO> Search(SearchProductDTO searchModel)
         {
-            throw new NotImplementedException();
+            return _productRepository.Search(searchModel);
         }
     }
 }

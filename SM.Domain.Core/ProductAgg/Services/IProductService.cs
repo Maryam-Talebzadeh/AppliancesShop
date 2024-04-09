@@ -12,7 +12,7 @@ namespace SM.Domain.Core.ProductAgg.Services
     {
         OperationResult Create(CreateProductDTO command);
         OperationResult Edit(EditProductDTO command);
-        EditProductDTO GetDetails(long id);
+        ProductDetailDTO GetDetails(long id);
         List<ProductDTO> GetProducts();
         List<ProductDTO> Search(SearchProductDTO searchModel);
     }
