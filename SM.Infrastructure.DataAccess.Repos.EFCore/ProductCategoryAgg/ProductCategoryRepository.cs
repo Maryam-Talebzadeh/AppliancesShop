@@ -63,7 +63,8 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
                 IsDeleted = pc.IsDeleted,
                 KeyWords = pc.KeyWords,
                 MetaDescription = pc.MetaDescription,
-                Slug = pc.Slug
+                Slug = pc.Slug,
+                 PictureId = pc.PictureId
             }).Single();
         }
 

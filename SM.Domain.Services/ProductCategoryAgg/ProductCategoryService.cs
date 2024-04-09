@@ -3,6 +3,7 @@ using SM.Domain.Core.ProductCategoryAgg.Data;
 using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using SM.Domain.Core.ProductCategoryAgg.Entities;
 using SM.Domain.Core.ProductCategoryAgg.Services;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SM.Domain.Services.ProductCategoryAgg
 {
@@ -24,13 +25,20 @@ namespace SM.Domain.Services.ProductCategoryAgg
             if (_productCategoryRepository.IsExist(pc => pc.Name == command.Name))
                 return operation.Failed("نام وارد شده تکراری است.. لطفا یک نام دیگه امتحان کن.");
 
+
             command.Slug = GenerateSlug.Slugify(command.Slug);
 
-            //To Do : save image
+            #region Save picture
+
+            string picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "ProductCategoryPictures",picName);
+            FileHandler.SaveImage(path, command.Picture);
+            
+            #endregion
 
             var picture = new CreatePictureDTO()
             {
-                Name = command.Name,
+                Name = picName,
                 Title = command.PictureTitle,
                 Alt = command.PictureAlt
 
@@ -67,10 +75,27 @@ namespace SM.Domain.Services.ProductCategoryAgg
 
             command.Slug = GenerateSlug.Slugify(command.Slug);
 
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "ProductCategoryPictures");
+
+            #region Delete Old Image
+
+            path = Path.Combine(path, command.PictureName);
+            FileHandler.DeleteFile(path);
+
+            #endregion
+
+            #region Save picture
+
+            string picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
+            path = Path.Combine(path, picName);
+            FileHandler.SaveImage(path, command.Picture);
+
+            #endregion
+
             var picture = new PictureDTO()
             {
                 Id = productCategory.PictureId,
-                Name = command.Name,
+                Name = picName,
                 Title = command.PictureTitle,
                 Alt = command.PictureAlt
 
@@ -112,23 +137,23 @@ namespace SM.Domain.Services.ProductCategoryAgg
                 MetaDescription = productCategory.MetaDescription,
                 Slug = productCategory.Slug,
                 PictureTitle = picture.Title,
-                PictureAlt = picture.Alt
-
+                PictureAlt = picture.Alt,
+                PictureName = picture.Name
             };
         }
 
         public List<ProductCategoryViewModel> Search(SearchProductCategoryDTO searchModel)
         {
-           return  _productCategoryRepository.Search(searchModel).Select(p =>
-            new ProductCategoryViewModel()
+            return _productCategoryRepository.Search(searchModel).Select(p =>
+             new ProductCategoryViewModel()
 
-            {
-                Id = p.Id,
-                Name = p.Name,
-                CreationDate = p.CreationDate,
-                ProductsCount = p.ProductsCount,
-                Picture = _pictureRepository.GetBy(p.PictureId).Name
-            }).ToList();
+             {
+                 Id = p.Id,
+                 Name = p.Name,
+                 CreationDate = p.CreationDate,
+                 ProductsCount = p.ProductsCount,
+                 Picture = _pictureRepository.GetBy(p.PictureId).Name
+             }).ToList();
         }
     }
 }

@@ -9,5 +9,6 @@ namespace SM.Domain.Core.ProductCategoryAgg.DTOs
     public class EditProductCategoryViewModel : CreateProductCategoryViewModel
     {
         public long Id { get; set; }
+        public string PictureName { get; set; }
     }
 }
