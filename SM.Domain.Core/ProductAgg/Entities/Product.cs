@@ -20,6 +20,7 @@ namespace SM.Domain.Core.ProductAgg.Entities
         public long CategoryId { get; private set; }
         public string Slug { get; private set; }
         public string Keywords { get; private set; }
+        public DateTime CreationDate { get; set; }
         public string MetaDescription { get; private set; }
         public ProductCategory Category { get; private set; }
 
@@ -38,6 +39,7 @@ namespace SM.Domain.Core.ProductAgg.Entities
             Slug = slug;
             Keywords = keywords;
             MetaDescription = metaDescription;
+            CreationDate = DateTime.Now;
         }
 
         public void Edit(string name, string code, string shortDescription, string description, string picture,

@@ -1,4 +1,5 @@
 ﻿using Base_Framework.Domain.Core.Contracts;
+using Base_Framework.Domain.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,5 +28,6 @@ namespace Base_Framework.Infrastructure.DataAccess
         {
             _context.SaveChanges();
         }
+
     }
 }

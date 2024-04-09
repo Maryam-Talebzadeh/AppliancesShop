@@ -16,7 +16,7 @@ namespace SM.Domain.Core.ProductAgg.Data
         ProductDTO GetBy(long id);
         void Edit(EditProductDTO edit);
         ProductDetailDTO GetDetail(long id);
-        List<ProductDTO> Search(SearchProductCategoryDTO searchModel);
+        List<ProductDTO> Search(SearchProductDTO searchModel);
         List<ProductDTO> GetAll();
     }
 }
