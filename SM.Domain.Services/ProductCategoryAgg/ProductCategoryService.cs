@@ -27,14 +27,18 @@ namespace SM.Domain.Services.ProductCategoryAgg
 
 
             command.Slug = GenerateSlug.Slugify(command.Slug);
+            string picName = "Appliances.jpg";
 
-            #region Save picture
+            if(command.Picture != null)
+            {
+                #region Save picture
 
-            string picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "ProductCategoryPictures",picName);
-            FileHandler.SaveImage(path, command.Picture);
-            
-            #endregion
+                picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "ProductCategoryPictures", picName);
+                FileHandler.SaveImage(path, command.Picture);
+
+                #endregion
+            }
 
             var picture = new CreatePictureDTO()
             {
@@ -75,27 +79,30 @@ namespace SM.Domain.Services.ProductCategoryAgg
 
             command.Slug = GenerateSlug.Slugify(command.Slug);
 
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "ProductCategoryPictures");
+           if(command.Picture != null)
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "ProductCategoryPictures");
 
-            #region Delete Old Image
+                #region Delete Old Image
 
-            path = Path.Combine(path, command.PictureName);
-            FileHandler.DeleteFile(path);
+                path = Path.Combine(path, command.PictureName);
+                FileHandler.DeleteFile(path);
 
-            #endregion
+                #endregion
 
-            #region Save picture
+                #region Save picture
 
-            string picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
-            path = Path.Combine(path, picName);
-            FileHandler.SaveImage(path, command.Picture);
+                command.PictureName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
+                path = Path.Combine(path, command.PictureName);
+                FileHandler.SaveImage(path, command.Picture);
 
-            #endregion
+                #endregion
+            }
 
             var picture = new PictureDTO()
             {
                 Id = productCategory.PictureId,
-                Name = picName,
+                Name = command.PictureName,
                 Title = command.PictureTitle,
                 Alt = command.PictureAlt
 
@@ -126,7 +133,6 @@ namespace SM.Domain.Services.ProductCategoryAgg
             var productCategory = _productCategoryRepository.GetDetail(id);
             var picture = _pictureRepository.GetBy(productCategory.PictureId);
 
-            //To Do : Change photo
 
             return new ProductCategoryDetailViewModel()
             {
