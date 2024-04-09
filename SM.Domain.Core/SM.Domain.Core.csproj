@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="ProductAgg\AppSevices\" />
-    <Folder Include="ProductAgg\Services\" />
   </ItemGroup>
 
 </Project>
