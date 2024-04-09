@@ -11,8 +11,8 @@ namespace SM.Domain.Core.ProductCategoryAgg.AppServices
     public interface IProductCategoryAppService
     {
         OperationResult Create(CreateProductCategoryViewModel command);
-        OperationResult Edit(EditProductCategoryDTO command);
+        OperationResult Edit(EditProductCategoryViewModel command);
         List<ProductCategoryViewModel> Search(SearchProductCategoryDTO searchModel);
-        ProductCategoryDetailDTO GetDetail(long id);
+        ProductCategoryDetailViewModel GetDetail(long id);
     }
 }

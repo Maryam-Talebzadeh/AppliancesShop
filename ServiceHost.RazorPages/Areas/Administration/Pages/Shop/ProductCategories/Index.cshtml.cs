@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SM.Domain.Core.ProductCategoryAgg.AppServices;
 using SM.Domain.Core.ProductCategoryAgg.DTOs;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductCategories
 {
@@ -32,5 +33,19 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductCategori
             var result = _productCategoryAppService.Create(command);
             return new JsonResult(result);
         }
+
+        public IActionResult OnGetEdit(long id)
+        {
+            var productCategory = _productCategoryAppService.GetDetail(id);
+
+            return Partial("Edit", productCategory);
+        }
+
+        public JsonResult OnPostEdit(EditProductCategoryViewModel  command)
+        {
+            var result = _productCategoryAppService.Edit(command);
+            return new JsonResult(result);
+        }
+
     }
 }

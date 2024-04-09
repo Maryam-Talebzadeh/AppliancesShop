@@ -23,12 +23,12 @@ namespace SM.Domain.AppServices.ProductCategoryAgg
             return _productCategoryService.Create(command);
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Edit(EditProductCategoryDTO command)
+        public global::Base_Framework.Domain.Services.OperationResult Edit(EditProductCategoryViewModel command)
         {
             return (_productCategoryService.Edit(command));
         }
 
-        public ProductCategoryDetailDTO GetDetail(long id)
+        public ProductCategoryDetailViewModel GetDetail(long id)
         {
             return _productCategoryService.GetDetail(id);
         }

@@ -1,6 +1,7 @@
 ﻿using Base_Framework.Domain.Services;
 using SM.Domain.Core.ProductCategoryAgg.Data;
 using SM.Domain.Core.ProductCategoryAgg.DTOs;
+using SM.Domain.Core.ProductCategoryAgg.Entities;
 using SM.Domain.Core.ProductCategoryAgg.Services;
 
 namespace SM.Domain.Services.ProductCategoryAgg
@@ -95,9 +96,25 @@ namespace SM.Domain.Services.ProductCategoryAgg
             return operation.Succedded();
         }
 
-        public ProductCategoryDetailDTO GetDetail(long id)
+        public ProductCategoryDetailViewModel GetDetail(long id)
         {
-            return _productCategoryRepository.GetDetail(id);
+            var productCategory = _productCategoryRepository.GetDetail(id);
+            var picture = _pictureRepository.GetBy(productCategory.PictureId);
+
+            //To Do : Change photo
+
+            return new ProductCategoryDetailViewModel()
+            {
+                Id = productCategory.Id,
+                Name = productCategory.Name,
+                Description = productCategory.Description,
+                Keywords = productCategory.KeyWords,
+                MetaDescription = productCategory.MetaDescription,
+                Slug = productCategory.Slug,
+                PictureTitle = picture.Title,
+                PictureAlt = picture.Alt
+
+            };
         }
 
         public List<ProductCategoryViewModel> Search(SearchProductCategoryDTO searchModel)
