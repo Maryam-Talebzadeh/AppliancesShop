@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SM.Domain.Core.ProductAgg.Entities;
 using SM.Domain.Core.ProductCategoryAgg.Entities;
 using SM.Infrastructure.DB.SqlServer.EFCore.Configurations.ProductCategoryAgg;
 using System;
@@ -16,8 +17,18 @@ namespace SM.Infrastructure.DB.SqlServer.EFCore.Contexts
             
         }
 
+        #region ProductCategoryAgg
+
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Picture> Pictures { get; set; }
+
+        #endregion
+
+        #region Product
+
+        public DbSet<Product> Products { get; set; }
+
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
