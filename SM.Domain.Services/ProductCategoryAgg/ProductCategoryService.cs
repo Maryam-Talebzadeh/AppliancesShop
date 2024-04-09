@@ -29,7 +29,7 @@ namespace SM.Domain.Services.ProductCategoryAgg
             command.Slug = GenerateSlug.Slugify(command.Slug);
             string picName = "Appliances.jpg";
 
-            if(command.Picture != null)
+            if (command.Picture != null)
             {
                 #region Save picture
 
@@ -79,14 +79,16 @@ namespace SM.Domain.Services.ProductCategoryAgg
 
             command.Slug = GenerateSlug.Slugify(command.Slug);
 
-           if(command.Picture != null)
+            if (command.Picture != null)
             {
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "ProductCategoryPictures");
 
                 #region Delete Old Image
 
-                path = Path.Combine(path, command.PictureName);
-                FileHandler.DeleteFile(path);
+                if (command.PictureName != "Appliances.jpg")
+                {
+                    FileHandler.DeleteFile(Path.Combine(path, command.PictureName));
+                }
 
                 #endregion
 

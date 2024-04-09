@@ -24,4 +24,3 @@ namespace SM.Domain.Core.ProductCategoryAgg.DTOs
         public string Slug { get; set; }
     }
 }
-}
