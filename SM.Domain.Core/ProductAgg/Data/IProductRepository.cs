@@ -1,5 +1,7 @@
 ﻿using Base_Framework.Domain.Core.Contracts;
+using SM.Domain.Core.ProductAgg.DTOs;
 using SM.Domain.Core.ProductAgg.Entities;
+using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +12,11 @@ namespace SM.Domain.Core.ProductAgg.Data
 {
     public interface IProductRepository : IRepository<long, Product>
     {
+        void Create(CreateProductDTO productCategory);
+        ProductDTO GetBy(long id);
+        void Edit(EditProductDTO edit);
+        ProductDetailDTO GetDetail(long id);
+        List<ProductDTO> Search(SearchProductCategoryDTO searchModel);
+        List<ProductDTO> GetAll();
     }
 }
