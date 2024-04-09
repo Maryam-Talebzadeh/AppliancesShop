@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SM.Domain.AppServices.ProductAgg;
 using SM.Domain.AppServices.ProductCategoryAgg;
+using SM.Domain.Core.ProductAgg.AppSevices;
 using SM.Domain.Core.ProductAgg.Data;
 using SM.Domain.Core.ProductAgg.Services;
 using SM.Domain.Core.ProductCategoryAgg.AppServices;
@@ -31,6 +33,7 @@ namespace SM.Infrastructure.Configuration
 
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductAppService, ProductAppService>();
 
             #endregion
 
