@@ -14,5 +14,6 @@ namespace SM.Domain.Core.ProductCategoryAgg.AppServices
         OperationResult Edit(EditProductCategoryViewModel command);
         List<ProductCategoryViewModel> Search(SearchProductCategoryDTO searchModel);
         ProductCategoryDetailViewModel GetDetail(long id);
+        public List<ProductCategoryViewModel> GetAll();
     }
 }

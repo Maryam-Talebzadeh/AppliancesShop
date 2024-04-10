@@ -41,7 +41,7 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductCategori
             return Partial("Edit", productCategory);
         }
 
-        public JsonResult OnPostEdit(EditProductCategoryViewModel  command)
+        public JsonResult OnPostEdit(EditProductCategoryViewModel command)
         {
             var result = _productCategoryAppService.Edit(command);
             return new JsonResult(result);

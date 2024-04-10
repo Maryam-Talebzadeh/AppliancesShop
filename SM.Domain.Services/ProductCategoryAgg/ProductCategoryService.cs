@@ -130,6 +130,20 @@ namespace SM.Domain.Services.ProductCategoryAgg
             return operation.Succedded();
         }
 
+        public List<ProductCategoryViewModel> GetAll()
+        {
+            return _productCategoryRepository.GetAll().Select(p =>
+            new ProductCategoryViewModel()
+
+            {
+                Id = p.Id,
+                Name = p.Name,
+                CreationDate = p.CreationDate,
+                ProductsCount = p.ProductsCount,
+                Picture = _pictureRepository.GetBy(p.PictureId).Name
+            }).ToList();
+        }
+
         public ProductCategoryDetailViewModel GetDetail(long id)
         {
             var productCategory = _productCategoryRepository.GetDetail(id);

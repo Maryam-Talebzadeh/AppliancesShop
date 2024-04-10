@@ -28,6 +28,11 @@ namespace SM.Domain.AppServices.ProductCategoryAgg
             return (_productCategoryService.Edit(command));
         }
 
+        public List<ProductCategoryViewModel> GetAll()
+        {
+           return _productCategoryService.GetAll();
+        }
+
         public ProductCategoryDetailViewModel GetDetail(long id)
         {
             return _productCategoryService.GetDetail(id);
