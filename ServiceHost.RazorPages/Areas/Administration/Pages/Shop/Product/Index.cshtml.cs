@@ -32,7 +32,9 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.Product
 
         public ActionResult OnGetCreate()
         {
-            return Partial("./Create", new CreateProductDTO());
+            var command =new CreateProductDTO();
+            command.Categories = _productCategoryAppService.GetAll();
+            return Partial("./Create", command);
         }
 
         public JsonResult OnPostCreate(CreateProductDTO command)
