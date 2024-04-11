@@ -18,13 +18,15 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             _context = context;
         }
 
-        public void Create(CreateProductDTO product)
+        public long Create(CreateProductDTO product)
         {
             var dbProduct = new Product(product.Name, product.Code,
             product.ShortDescription, product.Description, product.CategoryId, product.Slug,
             product.Keywords, product.MetaDescription);
 
             _context.Products.Add(dbProduct);
+            Save();
+            return dbProduct.Id;
         }
 
         public void Edit(EditProductDTO edit)

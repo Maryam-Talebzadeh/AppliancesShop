@@ -12,7 +12,7 @@ namespace SM.Domain.Core.ProductAgg.Data
 {
     public interface IProductRepository : IRepository<long, Product>
     {
-        void Create(CreateProductDTO productCategory);
+        long Create(CreateProductDTO productCategory);
         ProductDTO GetBy(long id);
         void Edit(EditProductDTO edit);
         ProductDetailDTO GetDetail(long id);

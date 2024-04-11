@@ -2,6 +2,7 @@
 using SM.Domain.Core.ProductAgg.AppSevices;
 using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductAgg.Services;
+using System.Runtime.CompilerServices;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SM.Domain.AppServices.ProductAgg
@@ -17,7 +18,7 @@ namespace SM.Domain.AppServices.ProductAgg
 
         public OperationResult Create(CreateProductDTO command)
         {
-           return _productService.Create(command);
+            return _productService.Create(command);
         }
 
         public OperationResult Edit(EditProductDTO command)

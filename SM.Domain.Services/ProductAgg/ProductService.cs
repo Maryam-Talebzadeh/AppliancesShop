@@ -1,6 +1,7 @@
 ﻿using Base_Framework.Domain.Services;
 using SM.Domain.Core.ProductAgg.Data;
 using SM.Domain.Core.ProductAgg.DTOs.Product;
+using SM.Domain.Core.ProductAgg.DTOs.ProductPicture;
 using SM.Domain.Core.ProductAgg.Entities;
 using SM.Domain.Core.ProductAgg.Services;
 using System;
@@ -15,10 +16,12 @@ namespace SM.Domain.Services.ProductAgg
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IProductPictureRepository _productPictureRepository;
 
-        public ProductService(IProductRepository productRepository)
+        public ProductService(IProductRepository productRepository, IProductPictureRepository productPictureRepository)
         {
             _productRepository = productRepository;
+            _productPictureRepository = productPictureRepository;
         }
 
         public OperationResult Create(CreateProductDTO command)
@@ -28,8 +31,34 @@ namespace SM.Domain.Services.ProductAgg
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             var slug = command.Slug.Slugify();
-            _productRepository.Create(command);
-            _productRepository.Save();
+
+            #region Save First picture
+
+            string picName = "";
+
+            if(command.Picture != null)
+            {
+                picName = "DefaultProduct.jpg";              
+            }
+
+            picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "ProductPictures", picName);
+            FileHandler.SaveImage(path, command.Picture);
+
+            #endregion
+
+            long productId = _productRepository.Create(command);
+
+            var productPictureDTO = new CreateProductPictureDTO()
+            {
+                PictureTitle = command.PictureTitle,
+                PictureAlt = command.PictureAlt,
+                Picture = picName,
+                ProductId = productId
+            };
+
+            _productPictureRepository.Create(productPictureDTO);
+            _productPictureRepository.Save();
 
             return operation.Succedded();
         }
