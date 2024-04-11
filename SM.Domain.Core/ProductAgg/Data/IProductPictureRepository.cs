@@ -18,5 +18,6 @@ namespace SM.Domain.Core.ProductAgg.Data
         void Restore(long id);
         DetailProductPictureDTO GetDetails(long id);
         List<ProductPictureDTO> Search(SearchProductPictureDTO searchModel);
+        ProductPictureDTO GetBy(long id);
     }
 }

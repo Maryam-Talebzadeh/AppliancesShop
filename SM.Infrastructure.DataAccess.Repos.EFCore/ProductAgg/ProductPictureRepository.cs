@@ -5,7 +5,7 @@ using SM.Domain.Core.ProductAgg.Entities;
 using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
 {
-    public class ProductPictureRepository : BaseRepository_EFCore<long, ProductPicture> ,IProductPictureRepository
+    public class ProductPictureRepository : BaseRepository_EFCore<long, ProductPicture>, IProductPictureRepository
     {
         private readonly ShopContext _context;
 
@@ -24,6 +24,19 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
         {
             var productPicture = Get(command.Id);
             productPicture.Edit(command.ProductId, command.Picture, command.PictureAlt, command.PictureTitle);
+        }
+
+        public ProductPictureDTO GetBy(long id)
+        {
+            return _context.ProductPictures.Select(p =>
+            new ProductPictureDTO()
+            {
+                Id = p.Id,
+                IsRemoved = p.IsDeleted,
+                Picture = p.Picture,
+                ProductId = p.ProductId
+                
+            }).SingleOrDefault(p => p.Id == id);
         }
 
         public DetailProductPictureDTO GetDetails(long id)
