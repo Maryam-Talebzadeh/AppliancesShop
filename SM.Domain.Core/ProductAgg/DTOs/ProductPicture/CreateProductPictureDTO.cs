@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SM.Domain.Core.ProductAgg.DTOs.ProductPicture
 {
-    public class CreatePictureDTO
+    public class CreateProductPictureDTO
     {
         [Range(1, 100000, ErrorMessage = ValidationMessages.IsRequired)]
         public long ProductId { get; set; }
