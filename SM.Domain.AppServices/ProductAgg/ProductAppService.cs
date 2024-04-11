@@ -1,6 +1,6 @@
 ﻿using Base_Framework.Domain.Services;
 using SM.Domain.Core.ProductAgg.AppSevices;
-using SM.Domain.Core.ProductAgg.DTOs;
+using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductAgg.Services;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 

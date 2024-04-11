@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SM.Domain.AppServices.ProductAgg;
 using SM.Domain.Core.ProductAgg.AppSevices;
-using SM.Domain.Core.ProductAgg.DTOs;
+using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductCategoryAgg.AppServices;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 

@@ -2,10 +2,10 @@
 using SM.Domain.Core.ProductAgg.Data;
 using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 using SM.Domain.Core.ProductAgg.Entities;
-using SM.Domain.Core.ProductAgg.DTOs;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Microsoft.EntityFrameworkCore;
 using SM.Domain.Core.ProductCategoryAgg.DTOs;
+using SM.Domain.Core.ProductAgg.DTOs.Product;
 
 namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
 {

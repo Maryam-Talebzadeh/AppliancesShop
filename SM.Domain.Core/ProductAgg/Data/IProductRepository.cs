@@ -1,5 +1,5 @@
 ﻿using Base_Framework.Domain.Core.Contracts;
-using SM.Domain.Core.ProductAgg.DTOs;
+using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductAgg.Entities;
 using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using System;

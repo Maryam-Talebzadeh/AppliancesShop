@@ -1,5 +1,5 @@
 ﻿using Base_Framework.Domain.Services;
-using SM.Domain.Core.ProductAgg.DTOs;
+using SM.Domain.Core.ProductAgg.DTOs.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;

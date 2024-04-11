@@ -1,6 +1,6 @@
 ﻿using Base_Framework.Domain.Services;
 using SM.Domain.Core.ProductAgg.Data;
-using SM.Domain.Core.ProductAgg.DTOs;
+using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductAgg.Entities;
 using SM.Domain.Core.ProductAgg.Services;
 using System;

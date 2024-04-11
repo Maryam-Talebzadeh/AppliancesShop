@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using System.ComponentModel.DataAnnotations;
 
-namespace SM.Domain.Core.ProductAgg.DTOs
+namespace SM.Domain.Core.ProductAgg.DTOs.Product
 {
     public class CreateProductDTO
     {
