@@ -1,5 +1,6 @@
 ﻿using Base_Framework.Domain.Core;
 using Microsoft.AspNetCore.Http;
+using SM.Domain.Core.ProductAgg.DTOs.Product;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,5 +22,6 @@ namespace SM.Domain.Core.ProductAgg.DTOs.ProductPicture
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         public string PictureTitle { get; set; }
+        public List<ProductDTO> Products { get; set; }
     }
 }

@@ -30,8 +30,11 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
 
         public IActionResult OnGetCreate()
         {
-            Products = new SelectList(_productAppService.GetProducts(), "Id", "Name");
-            return Partial("./Create", new CreateProductPictureViewModel());
+            var command = new CreateProductPictureViewModel
+            {
+                Products = _productAppService.GetProducts()
+            };
+            return Partial("./Create", command);
         }
 
         public JsonResult OnPostCreate(CreateProductPictureViewModel command)
@@ -43,7 +46,7 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
         public IActionResult OnGetEdit(long id)
         {
             var productPicture = _productPictureAppService.GetDetails(id);
-            Products = new SelectList(_productAppService.GetProducts(), "Id", "Name");
+            productPicture.Products = _productAppService.GetProducts();
             return Partial("Edit", productPicture);
         }
 
