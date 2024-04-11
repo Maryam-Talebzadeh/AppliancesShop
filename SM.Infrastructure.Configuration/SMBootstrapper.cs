@@ -35,6 +35,10 @@ namespace SM.Infrastructure.Configuration
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductAppService, ProductAppService>();
 
+            services.AddScoped<IProductPictureRepository, ProductPictureRepository>();
+            services.AddScoped<IProductPictureService, ProductPictureService>();
+            services.AddScoped<IProductPictureAppService, ProductPictureAppService>();
+
             #endregion
 
             #region DbContext
