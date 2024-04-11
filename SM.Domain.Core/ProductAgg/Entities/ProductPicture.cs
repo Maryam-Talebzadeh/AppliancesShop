@@ -29,4 +29,4 @@ namespace SM.Domain.Core.ProductAgg.Entities
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;
         }
-    }
+    } }

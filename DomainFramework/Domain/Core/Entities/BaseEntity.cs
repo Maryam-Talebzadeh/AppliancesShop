@@ -16,12 +16,12 @@ namespace Base_Framework.Domain.Core.Entities
         public long Id { get; set; }
         public bool IsDeleted { get; set; }
 
-        void Remove()
+        public void Remove()
         {
             IsDeleted = true;
         }
 
-        void ReStore()
+        public void ReStore()
         {
             IsDeleted = false;
         }

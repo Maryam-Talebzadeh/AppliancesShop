@@ -16,7 +16,7 @@ namespace SM.Domain.Core.ProductAgg.Data
         void Edit(EditProductPictureDTO command);
         void Remove(long id);
         void Restore(long id);
-        EditProductPictureDTO GetDetails(long id);
+        DetailProductPictureDTO GetDetails(long id);
         List<ProductPictureDTO> Search(SearchProductPictureDTO searchModel);
     }
 }

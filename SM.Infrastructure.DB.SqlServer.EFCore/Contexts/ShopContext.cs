@@ -27,6 +27,7 @@ namespace SM.Infrastructure.DB.SqlServer.EFCore.Contexts
         #region Product
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductPicture> ProductPictures { get; set; }
 
         #endregion
 
