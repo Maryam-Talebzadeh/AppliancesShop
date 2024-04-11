@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SM.Domain.Core.ProductAgg.DTOs.Product
+namespace SM.Domain.Core.ProductAgg.DTOs.ProductPicture
 {
-    public class CreateProductViewModel
+    public class CreateProductPictureViewModel
     {
         [Range(1, 100000, ErrorMessage = ValidationMessages.IsRequired)]
         public long ProductId { get; set; }
