@@ -18,5 +18,7 @@ namespace SM.Domain.Core.ProductAgg.Data
         ProductDetailDTO GetDetail(long id);
         List<ProductDTO> Search(SearchProductDTO searchModel);
         List<ProductDTO> GetAll();
+        void NotInStock(long id);
+        void IsInStock(long id);
     }
 }

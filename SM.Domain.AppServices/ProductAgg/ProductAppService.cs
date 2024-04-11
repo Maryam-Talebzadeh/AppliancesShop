@@ -35,6 +35,16 @@ namespace SM.Domain.AppServices.ProductAgg
             return _productService.GetProducts();
         }
 
+        public OperationResult IsInStock(long id)
+        {
+           return _productService.IsInStock(id);
+        }
+
+        public OperationResult NotInStock(long id)
+        {
+           return _productService.NotInStock(id);
+        }
+
         public List<ProductDTO> Search(SearchProductDTO searchModel)
         {
             return _productService.Search(searchModel);

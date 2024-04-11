@@ -22,7 +22,9 @@ namespace SM.Domain.Core.ProductAgg.Entities
         public string Keywords { get; private set; }
         public DateTime CreationDate { get; set; }
         public string MetaDescription { get; private set; }
+        public bool Inventory { get; set; }
         public ProductCategory Category { get; private set; }
+
 
         public Product(string name, string code, string shortDescription, string description,
             string picture, string pictureAlt, string pictureTitle, long categoryId, string slug,
@@ -40,6 +42,7 @@ namespace SM.Domain.Core.ProductAgg.Entities
             Keywords = keywords;
             MetaDescription = metaDescription;
             CreationDate = DateTime.Now;
+            Inventory = true;
         }
 
         public void Edit(string name, string code, string shortDescription, string description, string picture,
@@ -60,6 +63,16 @@ namespace SM.Domain.Core.ProductAgg.Entities
             Slug = slug;
             Keywords = keywords;
             MetaDescription = metaDescription;
+        }
+
+        public void NotInStock()
+        {
+            Inventory = false;
+        }
+
+        public void IsInStock()
+        {
+            Inventory = true;
         }
     }
 }

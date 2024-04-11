@@ -76,6 +76,18 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             }).FirstOrDefault(x => x.Id == id);
         }
 
+        public void IsInStock(long id)
+        {
+            var product = Get(id);
+            product.IsInStock();
+        }
+
+        public void NotInStock(long id)
+        {
+            var product = Get(id);
+            product.NotInStock();
+        }
+
         public List<ProductDTO> Search(SearchProductDTO searchModel)
         {
             var query = _context.Products
@@ -87,7 +99,8 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                    Category = x.Category.Name,
                    CategoryId = x.CategoryId,
                    Code = x.Code,
-                   Picture = x.Picture
+                   Picture = x.Picture,
+                   IsInStock = x.Inventory
                });
 
             if (!string.IsNullOrWhiteSpace(searchModel.Name))

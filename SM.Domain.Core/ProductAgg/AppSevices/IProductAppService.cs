@@ -15,5 +15,7 @@ namespace SM.Domain.Core.ProductAgg.AppSevices
         ProductDetailDTO GetDetails(long id);
         List<ProductDTO> GetProducts();
         List<ProductDTO> Search(SearchProductDTO searchModel);
+        OperationResult NotInStock(long id);
+        OperationResult IsInStock(long id);
     }
 }

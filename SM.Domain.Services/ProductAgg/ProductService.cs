@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SM.Domain.Services.ProductAgg
 {
@@ -58,6 +59,32 @@ namespace SM.Domain.Services.ProductAgg
         public List<ProductDTO> GetProducts()
         {
             return _productRepository.GetAll();
+        }
+
+        public OperationResult IsInStock(long id)
+        {
+            var operation = new OperationResult();
+            var product = _productRepository.GetBy(id);
+
+            if (product == null)
+                return operation.Failed(ApplicationMessages.RecordNotFound);
+
+            _productRepository.IsInStock(id);
+            _productRepository.Save();
+            return operation.Succedded();
+        }
+
+        public OperationResult NotInStock(long id)
+        {
+            var operation = new OperationResult();
+            var product = _productRepository.GetBy(id);
+
+            if (product == null)
+                return operation.Failed(ApplicationMessages.RecordNotFound);
+
+            _productRepository.NotInStock(id);
+            _productRepository.Save();
+            return operation.Succedded();
         }
 
         public List<ProductDTO> Search(SearchProductDTO searchModel)

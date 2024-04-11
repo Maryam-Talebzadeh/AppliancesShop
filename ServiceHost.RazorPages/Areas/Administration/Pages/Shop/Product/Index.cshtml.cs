@@ -18,7 +18,10 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.Product
         public SearchProductDTO SearchModel;
         public SelectList ProductCategories;
 
-        public IndexModel(ProductAppService productAppService, IProductCategoryAppService productCategoryAppService)
+        [TempData]
+        public string Message { get; set; }
+
+        public IndexModel(IProductAppService productAppService, IProductCategoryAppService productCategoryAppService)
         {
             _productAppService = productAppService;
             _productCategoryAppService = productCategoryAppService;
@@ -34,18 +37,21 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.Product
         {
             var command =new CreateProductDTO();
             command.Categories = _productCategoryAppService.GetAll();
+
             return Partial("./Create", command);
         }
 
         public JsonResult OnPostCreate(CreateProductDTO command)
         {
             var result = _productAppService.Create(command);
+
             return new JsonResult(result);
         }
 
         public IActionResult OnGetEdit(long id)
         {
             var product = _productAppService.GetDetails(id);
+            product.Categories = _productCategoryAppService.GetAll();
 
             return Partial("Edit", product);
         }
@@ -56,5 +62,30 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.Product
             return new JsonResult(result);
         }
 
+        public IActionResult OnGetNotInStock(long id)
+        {
+            var result = _productAppService.NotInStock(id);
+
+            if(result.IsSuccedded)
+            {
+                return RedirectToPage("./Index");
+            }
+
+            Message = result.Message;
+            return RedirectToPage("./Index");
+        }
+
+        public IActionResult OnGetIsInStock(long id)
+        {
+            var result = _productAppService.IsInStock(id);
+
+            if (result.IsSuccedded)
+            {
+                return RedirectToPage("./Index");
+            }
+
+            Message = result.Message;
+            return RedirectToPage("./Index");
+        }
     }
 }
