@@ -21,8 +21,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
         public void Create(CreateProductDTO product)
         {
             var dbProduct = new Product(product.Name, product.Code,
-            product.ShortDescription, product.Description,"",
-            product.PictureAlt, product.PictureTitle, product.CategoryId, product.Slug,
+            product.ShortDescription, product.Description, product.CategoryId, product.Slug,
             product.Keywords, product.MetaDescription);
 
             _context.Products.Add(dbProduct);
@@ -33,8 +32,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             var product = Get(edit.Id);
 
             product.Edit(product.Name, product.Code,
-                product.ShortDescription, product.Description, "",
-                product.PictureAlt, product.PictureTitle, product.CategoryId, edit.Slug,
+                product.ShortDescription, product.Description, product.CategoryId, edit.Slug,
                 product.Keywords, product.MetaDescription);
         }
 
@@ -70,8 +68,6 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                 Description = x.Description,
                 Keywords = x.Keywords,
                 MetaDescription = x.MetaDescription,
-                PictureAlt = x.PictureAlt,
-                PictureTitle = x.PictureTitle,
                 ShortDescription = x.ShortDescription,
             }).FirstOrDefault(x => x.Id == id);
         }
@@ -99,7 +95,6 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                    Category = x.Category.Name,
                    CategoryId = x.CategoryId,
                    Code = x.Code,
-                   Picture = x.Picture,
                    IsInStock = x.Inventory
                });
 
