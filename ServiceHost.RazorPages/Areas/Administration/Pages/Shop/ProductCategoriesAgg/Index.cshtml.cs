@@ -4,7 +4,7 @@ using SM.Domain.Core.ProductCategoryAgg.AppServices;
 using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductCategories
+namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductCategoriesAgg
 {
     public class IndexModel : PageModel
     {

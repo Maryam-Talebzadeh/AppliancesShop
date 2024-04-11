@@ -5,7 +5,7 @@ using SM.Domain.Core.ProductAgg.AppSevices;
 using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductCategoryAgg.AppServices;
 
-namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.Product
+namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Product
 {
     public class IndexModel : PageModel
     {
@@ -33,7 +33,7 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.Product
 
         public ActionResult OnGetCreate()
         {
-            var command =new CreateProductDTO();
+            var command = new CreateProductDTO();
             command.Categories = _productCategoryAppService.GetAll();
 
             return Partial("./Create", command);
@@ -54,7 +54,7 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.Product
             return Partial("Edit", product);
         }
 
-        public JsonResult OnPostEdit(EditProductDTO  command)
+        public JsonResult OnPostEdit(EditProductDTO command)
         {
             var result = _productAppService.Edit(command);
             return new JsonResult(result);
@@ -64,7 +64,7 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.Product
         {
             var result = _productAppService.NotInStock(id);
 
-            if(result.IsSuccedded)
+            if (result.IsSuccedded)
             {
                 return RedirectToPage("./Index");
             }
