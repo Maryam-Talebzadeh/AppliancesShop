@@ -66,5 +66,16 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.SliderAgg
             }).SingleOrDefault(s => s.Id == id);
         }
 
+        public void Remove(long id)
+        {
+            var slide = Get(id);
+            slide.Remove();
+        }
+
+        public void Restore(long id)
+        {
+            var slide = Get(id);
+            slide.ReStore();
+        }
     }
 }

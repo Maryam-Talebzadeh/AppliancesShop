@@ -10,8 +10,8 @@ namespace SM.Domain.Core.SliderAgg.Services
 {
     public interface ISlideService
     {
-        OperationResult Create(CreateSlideViewModel command);
-        OperationResult Edit(EditSlideViewModel command);
+        OperationResult Create(CreateSlideDTO command);
+        OperationResult Edit(EditSlideDTO command);
         OperationResult Remove(long id);
         OperationResult Restore(long id);
         SlideDetailViewModel GetDetails(long id);

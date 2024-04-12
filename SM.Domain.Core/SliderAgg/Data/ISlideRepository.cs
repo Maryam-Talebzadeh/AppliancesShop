@@ -1,4 +1,5 @@
 ﻿using Base_Framework.Domain.Core.Contracts;
+using Base_Framework.Domain.Services;
 using SM.Domain.Core.SliderAgg.DTOs;
 using SM.Domain.Core.SliderAgg.Entities;
 using System;
@@ -16,5 +17,7 @@ namespace SM.Domain.Core.SliderAgg.Data
         void Edit(EditSlideDTO edit);
         SlideDetailDTO GetDetail(long id);
         List<SlideDTO> GetAll();
+        void Remove(long id);
+        void Restore(long id);
     }
 }
