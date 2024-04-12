@@ -19,8 +19,9 @@ namespace SM.Domain.Core.SliderAgg.Entities
         public string Name { get; private set; }
         public string Title { get; private set; }
         public string Alt { get; private set; }
+        public Slide Slide { get; set; }
 
-       public void Edit(string name, string title, string alt)
+        public void Edit(string name, string title, string alt)
         {
             Name = name;
             Title = title;
