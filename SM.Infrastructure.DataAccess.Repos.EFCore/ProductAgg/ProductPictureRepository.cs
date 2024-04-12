@@ -74,7 +74,8 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                 Id = p.Id,
                 Picture = p.Picture,
                 ProductId = p.ProductId,
-                IsRemoved = p.IsDeleted
+                IsRemoved = p.IsDeleted,
+                Product = p.Product.Name
             });
 
             if(searchModel.ProductId != 0)

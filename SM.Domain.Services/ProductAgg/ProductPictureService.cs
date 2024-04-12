@@ -84,15 +84,16 @@ namespace SM.Domain.Services.ProductAgg
 
             }
 
-            var pictureDTO = new CreateProductPictureDTO()
+            var pictureDTO = new EditProductPictureDTO()
             {
+                Id = command.Id,
                 Picture = picture.Picture,
                 PictureAlt = command.PictureAlt,
                 PictureTitle = command.PictureTitle,
                 ProductId = command.ProductId
             };
 
-            _productPictureRepository.Create(pictureDTO);
+            _productPictureRepository.Edit(pictureDTO);
             _productPictureRepository.Save();
 
             return operation.Succedded();
