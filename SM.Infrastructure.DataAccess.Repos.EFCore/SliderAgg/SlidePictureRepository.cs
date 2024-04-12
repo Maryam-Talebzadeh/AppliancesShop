@@ -30,7 +30,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.SliderAgg
             return slide.Id;
         }
 
-        public void Edit(SlidePictureDTO slidePicture)
+        public void Edit(EditSlidePictureDTO slidePicture)
         {
             var slide = Get(slidePicture.Id);
             slide.Edit(slidePicture.Name, slidePicture.Title, slidePicture.Alt);

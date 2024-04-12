@@ -33,5 +33,6 @@ namespace SM.Domain.Core.SliderAgg.DTOs
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         public string Link { get; set; }
+
     }
 }

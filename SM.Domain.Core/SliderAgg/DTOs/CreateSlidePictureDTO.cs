@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace SM.Domain.Core.SliderAgg.DTOs
         public string Name { get; set; }
         public string Alt { get; set; }
         public string Title { get; set; }
+        public IFormFile Picture { get; set; }
     }
 }
