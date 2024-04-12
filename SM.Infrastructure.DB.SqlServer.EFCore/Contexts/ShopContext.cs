@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SM.Domain.Core.ProductAgg.Entities;
 using SM.Domain.Core.ProductCategoryAgg.Entities;
+using SM.Domain.Core.SliderAgg.Entities;
 using SM.Infrastructure.DB.SqlServer.EFCore.Configurations.ProductCategoryAgg;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,13 @@ namespace SM.Infrastructure.DB.SqlServer.EFCore.Contexts
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductPicture> ProductPictures { get; set; }
+
+        #endregion
+
+        #region Slide
+
+        public DbSet<Slide> Slides { get; set; }
+        public DbSet<SlidePicture> SlidePictures { get; set; }
 
         #endregion
 

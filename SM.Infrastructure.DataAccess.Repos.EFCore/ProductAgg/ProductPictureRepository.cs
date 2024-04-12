@@ -5,7 +5,7 @@ using SM.Domain.Core.ProductAgg.Entities;
 using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
 {
-    public class ProductPictureRepository : BaseRepository_EFCore<long, ProductPicture>, IProductPictureRepository
+    public class ProductPictureRepository : BaseRepository_EFCore<ProductPicture>, IProductPictureRepository
     {
         private readonly ShopContext _context;
 
@@ -86,9 +86,5 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             return pictures.OrderByDescending(p => p.Id).ToList();
         }
 
-        private ProductPicture Get(long id)
-        {
-            return _context.ProductPictures.SingleOrDefault(p => p.Id == id);
-        }
     }
 }

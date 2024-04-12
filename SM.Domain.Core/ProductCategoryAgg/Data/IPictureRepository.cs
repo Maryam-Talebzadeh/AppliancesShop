@@ -4,7 +4,7 @@ using SM.Domain.Core.ProductCategoryAgg.Entities;
 
 namespace SM.Domain.Core.ProductCategoryAgg.Data
 {
-    public interface IPictureRepository : IRepository<long, Picture>
+    public interface IPictureRepository : IRepository<Picture>
     {
         long Create(CreatePictureDTO create);
         PictureDTO GetBy(long id);

@@ -6,7 +6,7 @@ using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 
 namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
 {
-    public class PictureRepository : BaseRepository_EFCore<long, Picture>, IPictureRepository
+    public class PictureRepository : BaseRepository_EFCore<Picture>, IPictureRepository
     {
         private readonly ShopContext _context;
 
@@ -53,9 +53,5 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
             }).SingleOrDefault(p => p.Id == id);
         }
 
-        private Picture Get(long id)
-        {
-            return _context.Pictures.SingleOrDefault(p => p.Id == id);
-        }
     }
 }

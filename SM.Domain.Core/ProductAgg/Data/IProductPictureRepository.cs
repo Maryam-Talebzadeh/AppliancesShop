@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SM.Domain.Core.ProductAgg.Data
 {
-    public interface IProductPictureRepository : IRepository<long, ProductPicture>
+    public interface IProductPictureRepository : IRepository<ProductPicture>
     {
         void Create(CreateProductPictureDTO command);
         void Edit(EditProductPictureDTO command);

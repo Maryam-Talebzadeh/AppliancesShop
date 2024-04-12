@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace SM.Domain.Core.ProductCategoryAgg.Data
 {
-    public interface IProductCategoryRepository : IRepository<long, ProductCategory>
+    public interface IProductCategoryRepository : IRepository<ProductCategory>
     {
         void Create(CreateProductCategoryDTO productCategory);
         ProductCategoryDTO GetBy(long id);

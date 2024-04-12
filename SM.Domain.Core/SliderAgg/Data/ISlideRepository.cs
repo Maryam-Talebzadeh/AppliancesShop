@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace SM.Domain.Core.SliderAgg.Data
 {
-    public interface ISlideRepository : IRepository<long, Slide>
+    public interface ISlideRepository : IRepository<Slide>
     {
-        void Create(CreateSlideDTO Slide);
+        void Create(CreateSlideDTO slide);
         SlideDTO GetBy(long id);
         void Edit(EditSlideDTO edit);
         SlideDetailDTO GetDetail(long id);

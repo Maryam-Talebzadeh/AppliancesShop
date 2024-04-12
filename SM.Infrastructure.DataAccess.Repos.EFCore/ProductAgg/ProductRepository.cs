@@ -9,7 +9,7 @@ using SM.Domain.Core.ProductAgg.DTOs.Product;
 
 namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
 {
-    public class ProductRepository : BaseRepository_EFCore<long, Product>, IProductRepository
+    public class ProductRepository : BaseRepository_EFCore<Product>, IProductRepository
     {
         private readonly ShopContext _context;
 
@@ -112,9 +112,5 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             return query.OrderByDescending(x => x.Id).ToList();
         }
 
-        private Product Get(long id)
-        {
-            return _context.Products.SingleOrDefault(p => p.Id == id);
-        }
     }
 }

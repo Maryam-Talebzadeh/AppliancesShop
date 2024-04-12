@@ -8,7 +8,7 @@ using Base_Framework.Infrastructure.DataAccess;
 
 namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
 {
-    public class ProductCategoryRepository : BaseRepository_EFCore<long, ProductCategory> ,IProductCategoryRepository
+    public class ProductCategoryRepository : BaseRepository_EFCore<ProductCategory> ,IProductCategoryRepository
     {
         private readonly ShopContext _context;
 
@@ -86,9 +86,5 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
             return query.OrderByDescending(pc => pc.Id).ToList();
         }
 
-        private ProductCategory Get(long id)
-        {
-            return _context.ProductCategories.SingleOrDefault(pc => pc.Id == id);
-        }
     }
 }
