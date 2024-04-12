@@ -94,7 +94,7 @@ namespace SM.Domain.Services.SlideAgg
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
             _slideRepository.Remove(slide.Id);
-
+            _slideRepository.Save();
             return operation.Succedded();
         }
 
@@ -107,7 +107,7 @@ namespace SM.Domain.Services.SlideAgg
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
             _slideRepository.Restore(slide.Id);
-
+            _slideRepository.Save();
             return operation.Succedded();
         }
     }
