@@ -33,9 +33,6 @@ namespace SM.Domain.Services.SlideAgg
             return _slidePictureRepository.Create(command);
         }
 
-
-
-
         public void Edit(EditSlidePictureDTO command)
         {
             if (command.Picture != null)

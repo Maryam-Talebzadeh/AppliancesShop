@@ -16,5 +16,6 @@ namespace SM.Domain.Core.SliderAgg.DTOs
         public string Link { get; set; }
         public bool IsRemoved { get; set; }
         public string Picture { get; set; }
+        public long PictureId { get; set; }
     }
 }

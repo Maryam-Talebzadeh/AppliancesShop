@@ -68,7 +68,8 @@ namespace SM.Domain.Services.SlideAgg
                 Title = slide.Title,
                 BtnText = slide.BtnText,
                 Link = slide.Link,
-                Text = slide.Text
+                Text = slide.Text,
+                PictureId = slide.PictureId
             };
         }
 

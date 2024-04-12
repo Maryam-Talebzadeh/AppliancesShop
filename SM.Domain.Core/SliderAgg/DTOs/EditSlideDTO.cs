@@ -9,5 +9,6 @@ namespace SM.Domain.Core.SliderAgg.DTOs
     public class EditSlideDTO : CreateSlideDTO
     {
         public long Id { get; set; }
+        public long PictureId { get; set; }
     }
 }
