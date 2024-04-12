@@ -15,10 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SliderAgg\Data\" />
-    <Folder Include="SliderAgg\DTOs\" />
     <Folder Include="SliderAgg\AppServices\" />
-    <Folder Include="SliderAgg\Services\" />
   </ItemGroup>
 
 </Project>

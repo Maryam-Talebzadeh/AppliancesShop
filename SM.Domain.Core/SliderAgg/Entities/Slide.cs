@@ -10,17 +10,8 @@ namespace SM.Domain.Core.SliderAgg.Entities
 {
     public class Slide : BaseEntity
     {
-        public string Heading { get; private set; }
-        public string Title { get; private set; }
-        public string Text { get; private set; }
-        public string BtnText { get; private set; }
-        public string Link { get; private set; }
-        public bool IsRemoved { get; private set; }
-        public long PictureId { get; private set; }
-        public SlidePicture Picture { get; private set; }
-
-        public Slide(long pictureId,  string heading,
-            string title, string text, string link, string btnText)
+        public Slide(long pictureId, string heading,
+    string title, string text, string link, string btnText)
         {
             PictureId = pictureId;
             Heading = heading;
@@ -31,10 +22,20 @@ namespace SM.Domain.Core.SliderAgg.Entities
             IsRemoved = false;
         }
 
+        public string Heading { get; private set; }
+        public string Title { get; private set; }
+        public string Text { get; private set; }
+        public string BtnText { get; private set; }
+        public string Link { get; private set; }
+        public bool IsRemoved { get; private set; }
+        public long PictureId { get; private set; }
+        public SlidePicture Picture { get; private set; }
+
+
         public void Edit(long pictureId, string heading,
             string title, string text, string link, string btnText)
         {
-            PictureId= pictureId;
+            PictureId = pictureId;
             Heading = heading;
             Title = title;
             Text = text;
