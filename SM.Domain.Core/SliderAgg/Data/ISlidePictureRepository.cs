@@ -10,6 +10,6 @@ namespace SM.Domain.Core.SliderAgg.Data
         long Create(CreateSlidePictureDTO create);
         SlidePictureDTO GetBy(long id);
         List<SlidePictureDTO> GetAll();
-        void Edit(SlidePictureDTO SlidePicture);
+        void Edit(SlidePictureDTO slidePicture);
     }
 }
