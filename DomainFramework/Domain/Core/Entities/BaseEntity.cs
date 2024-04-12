@@ -11,10 +11,12 @@ namespace Base_Framework.Domain.Core.Entities
         public BaseEntity()
         {
             IsDeleted = false;
+            CreationDate = DateTime.Now;
         }
 
         public long Id { get; set; }
         public bool IsDeleted { get; set; }
+        public DateTime CreationDate { get; set; }
 
         public void Remove()
         {

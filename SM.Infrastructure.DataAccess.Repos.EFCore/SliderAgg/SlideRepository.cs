@@ -36,7 +36,8 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.SliderAgg
                 Heading = s.Heading,
                 PictureId = s.PictureId,
                 Title = s.Title,
-                IsRemoved = s.IsRemoved
+                IsRemoved = s.IsRemoved,
+                CreationDate = s.CreationDate
             }).ToList();
         }
 
