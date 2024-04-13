@@ -37,7 +37,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.SliderAgg
                 PictureId = s.PictureId,
                 Title = s.Title,
                 IsRemoved = s.IsRemoved,
-                CreationDate = s.CreationDate
+                CreationDate = s.CreationDate.ToString()
             }).ToList();
         }
 
