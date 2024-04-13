@@ -14,7 +14,7 @@ namespace SM.Domain.Core.SliderAgg.Services
         OperationResult Edit(EditSlideDTO command);
         OperationResult Remove(long id);
         OperationResult Restore(long id);
-        SlideDetailViewModel GetDetails(long id);
+        EditSlideViewModel GetDetails(long id);
         List<SlideViewModel> GetList();
     }
 }

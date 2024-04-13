@@ -56,15 +56,14 @@ namespace SM.Domain.Services.SlideAgg
             return operation.Succedded();
         }
 
-        public SlideDetailViewModel GetDetails(long id)
+        public EditSlideViewModel GetDetails(long id)
         {
             var slide = _slideRepository.GetDetail(id);
 
-            return new SlideDetailViewModel()
+            return new EditSlideViewModel()
             {
                 Id = slide.Id,
                 Heading = slide.Heading,
-                Picture =_slidePictureRepository.GetBy(slide.PictureId).Name,
                 Title = slide.Title,
                 BtnText = slide.BtnText,
                 Link = slide.Link,

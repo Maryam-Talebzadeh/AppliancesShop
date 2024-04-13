@@ -73,7 +73,7 @@ namespace SM.Domain.AppServices.SliderAgg
 
         }
 
-        public SlideDetailViewModel GetDetails(long id)
+        public EditSlideViewModel GetDetails(long id)
         {
             return _slideService.GetDetails(id);
         }

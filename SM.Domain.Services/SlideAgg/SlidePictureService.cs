@@ -24,8 +24,8 @@ namespace SM.Domain.Services.SlideAgg
 
             #region Save picture
 
-            string picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "SlidePictures", picName);
+            command.Name = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "SlidePictures", command.Name);
             FileHandler.SaveImage(path, command.Picture);
 
             #endregion

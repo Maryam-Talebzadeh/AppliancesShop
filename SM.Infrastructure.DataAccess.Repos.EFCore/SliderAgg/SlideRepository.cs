@@ -53,10 +53,10 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.SliderAgg
            }).SingleOrDefault(s => s.Id == id);
         }
 
-        public SlideDetailDTO GetDetail(long id)
+        public EditSlideDTO GetDetail(long id)
         {
             return _context.Slides.Select(s =>
-            new SlideDetailDTO
+            new EditSlideDTO
             {
                 Id = s.Id,
                 Heading = s.Heading,

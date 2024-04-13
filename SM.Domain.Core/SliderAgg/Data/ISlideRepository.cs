@@ -15,7 +15,7 @@ namespace SM.Domain.Core.SliderAgg.Data
         void Create(CreateSlideDTO slide);
         SlideDTO GetBy(long id);
         void Edit(EditSlideDTO edit);
-        SlideDetailDTO GetDetail(long id);
+        EditSlideDTO GetDetail(long id);
         List<SlideDTO> GetAll();
         void Remove(long id);
         void Restore(long id);
