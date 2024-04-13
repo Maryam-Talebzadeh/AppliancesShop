@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CustomerDiscountAgg\Data\" />
+    <Folder Include="CustomerDiscountAgg\DTOs\" />
+    <Folder Include="CustomerDiscountAgg\AppSevices\" />
+    <Folder Include="CustomerDiscountAgg\Sevices\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DomainFramework\Base_Framework.csproj" />
+  </ItemGroup>
+
 </Project>
