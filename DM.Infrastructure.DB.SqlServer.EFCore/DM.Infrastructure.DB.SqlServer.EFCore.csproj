@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\" />
+    <ProjectReference Include="..\DM.Domain.Core\DM.Domain.Core.csproj" />
   </ItemGroup>
 
 </Project>
