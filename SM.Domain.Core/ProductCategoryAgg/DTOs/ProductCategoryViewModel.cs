@@ -13,5 +13,8 @@ namespace SM.Domain.Core.ProductCategoryAgg.DTOs
         public DateTime CreationDate { get; set; }
         public string Picture { get; set; }
         public long ProductsCount { get; set; }
+        public string Slug { get; set; }
+        public string PictureAlt { get; set; }
+        public string PictureTitle { get; set; }
     }
 }
