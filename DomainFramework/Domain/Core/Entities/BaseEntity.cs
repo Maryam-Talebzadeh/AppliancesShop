@@ -10,22 +10,22 @@ namespace Base_Framework.Domain.Core.Entities
     {
         public BaseEntity()
         {
-            IsDeleted = false;
+            IsRemoved = false;
             CreationDate = DateTime.Now;
         }
 
         public long Id { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsRemoved { get; set; }
         public DateTime CreationDate { get; set; }
 
         public void Remove()
         {
-            IsDeleted = true;
+            IsRemoved = true;
         }
 
         public void ReStore()
         {
-            IsDeleted = false;
+            IsRemoved = false;
         }
     }
 }

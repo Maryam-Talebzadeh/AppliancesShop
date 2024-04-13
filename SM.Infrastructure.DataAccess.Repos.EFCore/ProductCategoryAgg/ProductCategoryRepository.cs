@@ -60,7 +60,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
                 Id = pc.Id,
                 Name = pc.Name,
                 Description = pc.Description,
-                IsDeleted = pc.IsDeleted,
+                IsDeleted = pc.IsRemoved,
                 KeyWords = pc.KeyWords,
                 MetaDescription = pc.MetaDescription,
                 Slug = pc.Slug,

@@ -32,7 +32,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             new ProductPictureDTO()
             {
                 Id = p.Id,
-                IsRemoved = p.IsDeleted,
+                IsRemoved = p.IsRemoved,
                 Picture = p.Picture,
                 ProductId = p.ProductId
                 
@@ -74,7 +74,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                 Id = p.Id,
                 Picture = p.Picture,
                 ProductId = p.ProductId,
-                IsRemoved = p.IsDeleted,
+                IsRemoved = p.IsRemoved,
                 Product = p.Product.Name
             });
 

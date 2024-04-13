@@ -81,7 +81,9 @@ namespace SM.Domain.Services.SlideAgg
                 Heading = s.Heading,
                 Picture = _slidePictureRepository.GetBy(s.PictureId).Name,
                 Title = s.Title,
-                IsRemoved = s.IsRemoved
+                IsRemoved = s.IsRemoved,
+                PictureId = s.PictureId,
+                CreationDate = s.CreationDate
             }).ToList();
         }
 

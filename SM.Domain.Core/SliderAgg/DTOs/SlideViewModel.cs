@@ -12,6 +12,7 @@ namespace SM.Domain.Core.SliderAgg.DTOs
         public string Heading { get; set; }
         public string Title { get; set; }
         public string Picture { get; set; }
+        public long PictureId { get; set; }
         public bool IsRemoved { get; set; }
         public string CreationDate { get; set; }
     }

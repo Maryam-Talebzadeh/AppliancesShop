@@ -27,7 +27,6 @@ namespace SM.Domain.Core.SliderAgg.Entities
         public string Text { get; private set; }
         public string BtnText { get; private set; }
         public string Link { get; private set; }
-        public bool IsRemoved { get; private set; }
         public long PictureId { get; private set; }
         public SlidePicture Picture { get; private set; }
 
