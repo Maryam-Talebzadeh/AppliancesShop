@@ -4,6 +4,7 @@ using DM.Domain.Core.CustomerDiscountAgg.DTOs;
 using DM.Domain.Core.CustomerDiscountAgg.Entities;
 using DM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
+using Base_Framework.Domain.General;
 
 namespace DM.Infrastructure.DataAccess.Repos.EFCore.CustomerDiscountAgg
 {
@@ -20,7 +21,7 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.CustomerDiscountAgg
 
         public void Create(DefineCustomerDiscountDTO command)
         {
-            var customerDiscount = new CustomerDiscount(command.ProductId, command.DiscountRate, DateTime.Parse(command.StartDate), DateTime.Parse(command.EndDate), command.Reason);
+            var customerDiscount = new CustomerDiscount(command.ProductId, command.DiscountRate, command.StartDate.ToGregorianDateTime(), command.EndDate.ToGregorianDateTime(), command.Reason);
             _context.CustomerDiscounts.Add(customerDiscount);
 
         }
@@ -38,8 +39,8 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.CustomerDiscountAgg
             {
                 Id = cd.Id,
                 DiscountRate = cd.DiscountRate,
-                EndDate = cd.EndDate.ToString(),
-                StartDate = cd.StartDate.ToString(),
+                EndDate = cd.EndDate.ToFarsi(),
+                StartDate = cd.StartDate.ToFarsi(),
                 ProductId = cd.ProductId,
                 Reason = cd.Reason
 
@@ -55,8 +56,8 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.CustomerDiscountAgg
              {
                  Id = cd.Id,
                  DiscountRate = cd.DiscountRate,
-                 EndDate = cd.EndDate.ToString(),
-                 StartDate = cd.StartDate.ToString(),
+                 EndDate = cd.EndDate.ToFarsi(),
+                 StartDate = cd.StartDate.ToFarsi(),
                  ProductId = cd.ProductId,
                  Reason = cd.Reason
              });
@@ -68,12 +69,12 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.CustomerDiscountAgg
 
             if(!string.IsNullOrWhiteSpace(searchModel.StartDate))
             {
-                query = query.Where(cd => cd.StartDateGr < DateTime.Now); //  temporary
+                query = query.Where(cd => cd.StartDateGr < searchModel.StartDate.ToGregorianDateTime());
             }
 
             if (!string.IsNullOrWhiteSpace(searchModel.EndDate))
             {
-                query = query.Where(cd => cd.EndDateGr < DateTime.Now); //  temporary
+                query = query.Where(cd => cd.EndDateGr < searchModel.EndDate.ToGregorianDateTime());
             }
 
             var discounts = query.OrderByDescending(cd => cd.Id).ToList();

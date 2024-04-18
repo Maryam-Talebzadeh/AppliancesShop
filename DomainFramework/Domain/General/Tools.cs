@@ -92,7 +92,7 @@ namespace Base_Framework.Domain.General
         }
 
 
-        public static DateTime ToGeorgianDateTime(this string persianDate)
+        public static DateTime ToGregorianDateTime(this string persianDate)
         {
             persianDate = persianDate.ToEnglishNumber();
             var year = Convert.ToInt32(persianDate.Substring(0, 4));
