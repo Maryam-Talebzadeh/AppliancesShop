@@ -11,7 +11,6 @@ namespace DM.Domain.Core.CustomerDiscountAgg.Data
 {
     public interface ICustomerDiscountRepository : IRepository<CustomerDiscount>
     {
-        CustomerDiscountDTO Get(long id);
         void Create(DefineCustomerDiscountDTO command);
         EditCustoemrDiscountDTO GetDetails(long id);
         List<CustomerDiscountDTO> Search(SearchCustomerDiscountDTO searchModel);
