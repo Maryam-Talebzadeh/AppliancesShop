@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DM.Infrastructure.Configurations\DM.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\SM.Infrastructure.Configuration\SM.Infrastructure.Configuration.csproj" />
   </ItemGroup>
 
