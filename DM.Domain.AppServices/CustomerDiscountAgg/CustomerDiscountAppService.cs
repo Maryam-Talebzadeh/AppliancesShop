@@ -15,7 +15,7 @@ namespace DM.Domain.AppServices.CustomerDiscountAgg
             _customerDiscountService = customerDiscountService;
         }
 
-        public OperationResult Define(DefineColleagueDiscountDTO command)
+        public OperationResult Define(DefineCustomerDiscountDTO command)
         {
             return _customerDiscountService.Define(command);
         }

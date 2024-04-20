@@ -19,7 +19,7 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.CustomerDiscountAgg
             _shopContext = shopContext;
         }
 
-        public void Create(DefineColleagueDiscountDTO command)
+        public void Create(DefineCustomerDiscountDTO command)
         {
             var customerDiscount = new CustomerDiscount(command.ProductId, command.DiscountRate, command.StartDate.ToGregorianDateTime(), command.EndDate.ToGregorianDateTime(), command.Reason);
             _context.CustomerDiscounts.Add(customerDiscount);

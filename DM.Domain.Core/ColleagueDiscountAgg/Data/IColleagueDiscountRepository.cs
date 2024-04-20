@@ -8,9 +8,9 @@ namespace DM.Domain.Core.ColleagueDiscountAgg.Data
     public interface IColleagueDiscountRepository : IRepository<ColleagueDiscount>
     {
         void Create(DefineColleagueDiscountDTO command);
-        EditCustomerDiscountDTO GetDetails(long id);
-        List<CustomerDiscountDTO> Search(SearchColleagueDiscountDTO searchModel);
-        void Edit(EditCustomerDiscountDTO command);
+        EditColleagueDiscountDTO GetDetails(long id);
+        List<ColleagueDiscountDTO> Search(SearchColleagueDiscountDTO searchModel);
+        void Edit(EditColleagueDiscountDTO command);
         void Remove(long id);
         void Restore(long id);
     }

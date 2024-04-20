@@ -14,7 +14,7 @@ namespace DM.Domain.Services.CustomerDiscountAgg
             _customerDiscountRepository = customerDiscountRepository;
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Define(DefineColleagueDiscountDTO command)
+        public global::Base_Framework.Domain.Services.OperationResult Define(DefineCustomerDiscountDTO command)
         {
             var operation = new OperationResult();
 

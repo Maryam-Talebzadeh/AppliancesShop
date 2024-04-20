@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DM.Domain.Core.ColleagueDiscountAgg.DTOs
 {
-    public class DefineColleagueDiscount
+    public class DefineColleagueDiscountDTO
     {
         [Range(1, 100000, ErrorMessage = ValidationMessages.IsRequired)]
         public long ProductId { get; set; }

@@ -13,8 +13,4 @@
     <ProjectReference Include="..\SM.Infrastructure.DB.SqlServer.EFCore\SM.Infrastructure.DB.SqlServer.EFCore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ColleagueDiscountAgg\" />
-  </ItemGroup>
-
 </Project>

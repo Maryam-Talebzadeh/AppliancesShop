@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DM.Domain.Core.CustomerDiscountAgg.DTOs
 {
-    public class DefineColleagueDiscountDTO
+    public class DefineCustomerDiscountDTO
     {
         [Range(1, 100000, ErrorMessage = ValidationMessages.IsRequired)]
         public long ProductId { get; set; }

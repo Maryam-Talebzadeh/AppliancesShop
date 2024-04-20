@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DM.Domain.Core.ColleagueDiscountAgg.DTOs
 {
-    public class EditColleagueDiscount : DefineColleagueDiscount
+    public class EditColleagueDiscountDTO : DefineColleagueDiscountDTO
     {
         public long Id { get; set; }
     }

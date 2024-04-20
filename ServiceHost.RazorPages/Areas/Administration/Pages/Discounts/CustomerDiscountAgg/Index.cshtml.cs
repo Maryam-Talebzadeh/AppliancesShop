@@ -33,14 +33,14 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Discounts.CustomerDi
 
         public IActionResult OnGetCreate()
         {
-            var command = new DefineColleagueDiscountDTO
+            var command = new DefineCustomerDiscountDTO
             {
                 Products = _productAppService.GetProducts()
             };
             return Partial("./Create", command);
         }
 
-        public JsonResult OnPostCreate(DefineColleagueDiscountDTO command)
+        public JsonResult OnPostCreate(DefineCustomerDiscountDTO command)
         {
             var result = _customerDiscountAppService.Define(command);
             return new JsonResult(result);
