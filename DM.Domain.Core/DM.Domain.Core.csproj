@@ -11,8 +11,4 @@
     <ProjectReference Include="..\SM.Domain.Core\SM.Domain.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ColleagueDiscountAgg\AppServices\" />
-  </ItemGroup>
-
 </Project>
