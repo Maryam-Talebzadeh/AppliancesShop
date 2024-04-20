@@ -1,4 +1,5 @@
-﻿using DM.Domain.Core.CustomerDiscountAgg.Entities;
+﻿using DM.Domain.Core.ColleagueDiscountAgg.Entities;
+using DM.Domain.Core.CustomerDiscountAgg.Entities;
 using DM.Infrastructure.DB.SqlServer.EFCore.Configuration;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ namespace DM.Infrastructure.DB.SqlServer.EFCore.Contexts
         }
 
         public DbSet<CustomerDiscount> CustomerDiscounts { get; set; }
+        public DbSet<ColleagueDiscount> ColleagueDiscounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
