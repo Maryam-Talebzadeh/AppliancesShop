@@ -29,7 +29,7 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.CustomerDiscountAgg
         public void Edit(EditCustoemrDiscountDTO command)
         {
             var customerDiscount = Get(command.Id);
-            customerDiscount.Edit(command.ProductId, command.DiscountRate, DateTime.Parse(command.StartDate), DateTime.Parse(command.EndDate), command.Reason);
+            customerDiscount.Edit(command.ProductId, command.DiscountRate, command.StartDate.ToGregorianDateTime(), command.EndDate.ToGregorianDateTime(), command.Reason);
         }
 
         public EditCustoemrDiscountDTO GetDetails(long id)

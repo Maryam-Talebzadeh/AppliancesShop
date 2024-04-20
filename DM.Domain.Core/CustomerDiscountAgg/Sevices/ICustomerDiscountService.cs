@@ -13,6 +13,6 @@ namespace DM.Domain.Core.CustomerDiscountAgg.Sevices
         OperationResult Define(DefineCustomerDiscountDTO command);
         OperationResult Edit(EditCustoemrDiscountDTO command);
         EditCustoemrDiscountDTO GetDetails(long id);
-        List<CustomerDiscountDTO> Search(CustomerDiscountDTO searchModel);
+        List<CustomerDiscountDTO> Search(SearchCustomerDiscountDTO searchModel);
     }
 }
