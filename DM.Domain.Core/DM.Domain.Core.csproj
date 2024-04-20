@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="ColleagueDiscountAgg\AppServices\" />
-    <Folder Include="ColleagueDiscountAgg\Services\" />
   </ItemGroup>
 
 </Project>
