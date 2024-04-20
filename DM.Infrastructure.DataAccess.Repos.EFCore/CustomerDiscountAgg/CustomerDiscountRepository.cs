@@ -19,23 +19,23 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.CustomerDiscountAgg
             _shopContext = shopContext;
         }
 
-        public void Create(DefineCustomerDiscountDTO command)
+        public void Create(DefineColleagueDiscountDTO command)
         {
             var customerDiscount = new CustomerDiscount(command.ProductId, command.DiscountRate, command.StartDate.ToGregorianDateTime(), command.EndDate.ToGregorianDateTime(), command.Reason);
             _context.CustomerDiscounts.Add(customerDiscount);
 
         }
 
-        public void Edit(EditCustoemrDiscountDTO command)
+        public void Edit(EditCustomerDiscountDTO command)
         {
             var customerDiscount = Get(command.Id);
             customerDiscount.Edit(command.ProductId, command.DiscountRate, command.StartDate.ToGregorianDateTime(), command.EndDate.ToGregorianDateTime(), command.Reason);
         }
 
-        public EditCustoemrDiscountDTO GetDetails(long id)
+        public EditCustomerDiscountDTO GetDetails(long id)
         {
             return _context.CustomerDiscounts.Select(cd =>
-            new EditCustoemrDiscountDTO()
+            new EditCustomerDiscountDTO()
             {
                 Id = cd.Id,
                 DiscountRate = cd.DiscountRate,

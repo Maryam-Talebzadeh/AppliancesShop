@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DM.Domain.Core.CustomerDiscountAgg.DTOs
+namespace DM.Domain.Core.ColleagueDiscountAgg.DTOs
 {
-    public class EditCustomerDiscountDTO: DefineColleagueDiscountDTO
+    public class EditColleagueDiscount : DefineColleagueDiscount
     {
         public long Id { get; set; }
     }

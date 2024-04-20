@@ -10,9 +10,9 @@ namespace DM.Domain.Core.CustomerDiscountAgg.AppSevices
 {
     public interface ICustomerDiscountAppService
     {
-        OperationResult Define(DefineCustomerDiscountDTO command);
-        OperationResult Edit(EditCustoemrDiscountDTO command);
-        EditCustoemrDiscountDTO GetDetails(long id);
+        OperationResult Define(DefineColleagueDiscountDTO command);
+        OperationResult Edit(EditCustomerDiscountDTO command);
+        EditCustomerDiscountDTO GetDetails(long id);
         List<CustomerDiscountDTO> Search(SearchCustomerDiscountDTO searchModel);
     }
 }

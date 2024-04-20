@@ -15,17 +15,17 @@ namespace DM.Domain.AppServices.CustomerDiscountAgg
             _customerDiscountService = customerDiscountService;
         }
 
-        public OperationResult Define(DefineCustomerDiscountDTO command)
+        public OperationResult Define(DefineColleagueDiscountDTO command)
         {
             return _customerDiscountService.Define(command);
         }
 
-        public OperationResult Edit(EditCustoemrDiscountDTO command)
+        public OperationResult Edit(EditCustomerDiscountDTO command)
         {
             return _customerDiscountService.Edit(command);
         }
 
-        public EditCustoemrDiscountDTO GetDetails(long id)
+        public EditCustomerDiscountDTO GetDetails(long id)
         {
             return _customerDiscountService.GetDetails(id);
         }

@@ -14,7 +14,7 @@ namespace DM.Domain.Services.CustomerDiscountAgg
             _customerDiscountRepository = customerDiscountRepository;
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Define(DefineCustomerDiscountDTO command)
+        public global::Base_Framework.Domain.Services.OperationResult Define(DefineColleagueDiscountDTO command)
         {
             var operation = new OperationResult();
 
@@ -27,7 +27,7 @@ namespace DM.Domain.Services.CustomerDiscountAgg
             return operation.Succedded();
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Edit(EditCustoemrDiscountDTO command)
+        public global::Base_Framework.Domain.Services.OperationResult Edit(EditCustomerDiscountDTO command)
         {
             var operation = new OperationResult();
 
@@ -45,7 +45,7 @@ namespace DM.Domain.Services.CustomerDiscountAgg
 
         }
 
-        public EditCustoemrDiscountDTO GetDetails(long id)
+        public EditCustomerDiscountDTO GetDetails(long id)
         {
             return _customerDiscountRepository.GetDetails(id);
         }
