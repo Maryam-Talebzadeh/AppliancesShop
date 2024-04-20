@@ -35,7 +35,7 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Discounts.CustomerDi
         {
             var command = new DefineCustomerDiscountDTO
             {
-                Products = new SelectList(_productAppService.GetProducts(), "Id", "Name")
+                Products = _productAppService.GetProducts()
             };
             return Partial("./Create", command);
         }
@@ -49,7 +49,7 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Discounts.CustomerDi
         public IActionResult OnGetEdit(long id)
         {
             var customerDiscount = _customerDiscountAppService.GetDetails(id);
-            customerDiscount.Products = new SelectList(_productAppService.GetProducts(), "Id", "Name");
+            customerDiscount.Products = _productAppService.GetProducts();
             return Partial("Edit", customerDiscount);
         }
 

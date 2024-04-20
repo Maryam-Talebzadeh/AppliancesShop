@@ -1,11 +1,6 @@
 ﻿using Base_Framework.Domain.Core;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
+using SM.Domain.Core.ProductAgg.DTOs.Product;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DM.Domain.Core.CustomerDiscountAgg.DTOs
 {
@@ -24,6 +19,6 @@ namespace DM.Domain.Core.CustomerDiscountAgg.DTOs
         public string EndDate { get; set; }
 
         public string Reason { get; set; }
-        public SelectList Products { get; set; }
+        public List<ProductDTO> Products { get; set; }
     }
 }

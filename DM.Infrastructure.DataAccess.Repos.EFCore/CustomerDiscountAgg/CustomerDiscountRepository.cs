@@ -59,7 +59,10 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.CustomerDiscountAgg
                  EndDate = cd.EndDate.ToFarsi(),
                  StartDate = cd.StartDate.ToFarsi(),
                  ProductId = cd.ProductId,
-                 Reason = cd.Reason
+                 Reason = cd.Reason,
+                 CreationDate = cd.CreationDate.ToFarsi(),
+                 EndDateGr = cd.EndDate,
+                 StartDateGr = cd.StartDate
              });
 
             if(searchModel.ProductId > 0)
