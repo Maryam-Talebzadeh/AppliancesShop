@@ -19,7 +19,7 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Discounts.CustomerDi
         private readonly IProductAppService _productAppService;
         private readonly ICustomerDiscountAppService _customerDiscountAppService;
 
-        public IndexModel(IProductAppService productAppService, CustomerDiscountAppService customerDiscountApplication)
+        public IndexModel(IProductAppService productAppService, ICustomerDiscountAppService customerDiscountApplication)
         {
             _productAppService = productAppService;
             _customerDiscountAppService = customerDiscountApplication;

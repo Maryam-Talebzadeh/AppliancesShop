@@ -9,6 +9,11 @@ namespace DM.Domain.Services.CustomerDiscountAgg
     {
         private readonly ICustomerDiscountRepository _customerDiscountRepository;
 
+        public CustomerDiscountService(ICustomerDiscountRepository customerDiscountRepository)
+        {
+            _customerDiscountRepository = customerDiscountRepository;
+        }
+
         public global::Base_Framework.Domain.Services.OperationResult Define(DefineCustomerDiscountDTO command)
         {
             var operation = new OperationResult();
