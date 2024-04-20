@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Administration\Pages\Discounts\CustomerDiscountAgg\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Administration\Pages\Discounts\CustomerDiscountAgg\Index.cshtml" />
     <None Include="wwwroot\AdminTheme\assets\modal-effect\js\classie.js" />
     <None Include="wwwroot\AdminTheme\assets\modal-effect\js\modalEffects.js" />
   </ItemGroup>
@@ -32,6 +37,14 @@
     <Folder Include="wwwroot\Theme\assets\img\banners\" />
     <Folder Include="wwwroot\Theme\assets\img\category\" />
     <Folder Include="wwwroot\Theme\assets\img\products\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Administration\Pages\Discounts\CustomerDiscountAgg\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Discounts\CustomerDiscountAgg\Index.cshtml" />
   </ItemGroup>
 
 </Project>

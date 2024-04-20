@@ -69,9 +69,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{44FED820-3A13-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Infrastructure.Configuration", "DM.Infrastructure.Configurations\DM.Infrastructure.Configuration.csproj", "{1C390792-9224-4B3B-A14F-C267E8480358}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Infrastructure.DataAccess.Repos.EFCore", "DM.Infrastructure.DataAccess.Repos.EFCore\DM.Infrastructure.DataAccess.Repos.EFCore.csproj", "{F8D08C50-BEA1-4364-BCE7-403BCE00490B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Infrastructure.DataAccess.Repos.EFCore", "DM.Infrastructure.DataAccess.Repos.EFCore\DM.Infrastructure.DataAccess.Repos.EFCore.csproj", "{F8D08C50-BEA1-4364-BCE7-403BCE00490B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Infrastructure.DB.SqlServer.EFCore", "DM.Infrastructure.DB.SqlServer.EFCore\DM.Infrastructure.DB.SqlServer.EFCore.csproj", "{410F48AA-4858-4B68-B97F-27FB3743FB6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DM.Infrastructure.DB.SqlServer.EFCore", "DM.Infrastructure.DB.SqlServer.EFCore\DM.Infrastructure.DB.SqlServer.EFCore.csproj", "{410F48AA-4858-4B68-B97F-27FB3743FB6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
