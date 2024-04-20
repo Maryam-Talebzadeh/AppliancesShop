@@ -1,4 +1,6 @@
 ﻿
+using DM.Domain.AppServices.CustomerDiscountAgg;
+using DM.Domain.Core.CustomerDiscountAgg.AppSevices;
 using DM.Domain.Core.CustomerDiscountAgg.Data;
 using DM.Domain.Core.CustomerDiscountAgg.Sevices;
 using DM.Domain.Services.CustomerDiscountAgg;
@@ -20,6 +22,7 @@ namespace DM.Infrastructure.Configuration
         {
             services.AddScoped<ICustomerDiscountRepository, CustomerDiscountRepository>();
             services.AddScoped<ICustomerDiscountService, CustomerDiscountService>();
+            services.AddScoped<ICustomerDiscountAppService, CustomerDiscountAppService>();
 
             #region DBContext
 

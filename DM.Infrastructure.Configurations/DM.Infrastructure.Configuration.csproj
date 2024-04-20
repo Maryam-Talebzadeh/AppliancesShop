@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DM.Domain.AppServices\DM.Domain.AppServices.csproj" />
     <ProjectReference Include="..\DM.Domain.Core\DM.Domain.Core.csproj" />
     <ProjectReference Include="..\DM.Domain.Services\DM.Domain.Services.csproj" />
     <ProjectReference Include="..\DM.Infrastructure.DataAccess.Repos.EFCore\DM.Infrastructure.DataAccess.Repos.EFCore.csproj" />
