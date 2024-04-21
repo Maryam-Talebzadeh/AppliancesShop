@@ -8,7 +8,6 @@ namespace IM.Domain.Core.InventoryAgg.Entities
 {
     public class InventoryOperation
     {
-        public long Id { get; private set; }
         public bool Operation { get; private set; }  //if 1 then Increase, if 0 then Decrease
         public long Count { get; private set; }
         public long OperatorId { get; private set; }
