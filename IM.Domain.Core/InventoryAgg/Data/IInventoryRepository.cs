@@ -1,8 +1,10 @@
-﻿using IM.Domain.Core.InventoryAgg.DTOs;
+﻿using Base_Framework.Domain.Core.Contracts;
+using IM.Domain.Core.InventoryAgg.DTOs;
+using IM.Domain.Core.InventoryAgg.Entities;
 
 namespace IM.Domain.Core.InventoryAgg.Data
 {
-    public interface IInventoryRepository
+    public interface IInventoryRepository : IRepository<Inventory>
     {
         void Create(CreateInventoryDTO command);
         void Edit(EditInventoryDTO command);
