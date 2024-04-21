@@ -1,15 +1,16 @@
 ﻿using Base_Framework.Domain.Services;
 using DM.Domain.Core.ColleagueDiscountAgg.AppServices;
 using DM.Domain.Core.ColleagueDiscountAgg.DTOs;
+using DM.Domain.Core.ColleagueDiscountAgg.Services;
 using DM.Domain.Services.ColleagueDiscountAgg;
 
 namespace DM.Domain.AppServices.ColleagueDiscountAgg
 {
     public class ColleagueDiscountAppService : IColleagueDiscountAppService
     {
-        private readonly ColleagueDiscountService _colleagueDiscountService;
+        private readonly IColleagueDiscountService _colleagueDiscountService;
 
-        public ColleagueDiscountAppService(ColleagueDiscountService colleagueDiscountService)
+        public ColleagueDiscountAppService(IColleagueDiscountService colleagueDiscountService)
         {
             _colleagueDiscountService = colleagueDiscountService;
         }
