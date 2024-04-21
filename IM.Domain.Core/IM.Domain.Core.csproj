@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="InventoryAgg\Data\" />
+    <Folder Include="InventoryAgg\DTOs\" />
+    <Folder Include="InventoryAgg\AppServices\" />
+    <Folder Include="InventoryAgg\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DomainFramework\Base_Framework.csproj" />
+  </ItemGroup>
+
 </Project>
