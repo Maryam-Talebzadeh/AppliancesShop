@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="InventoryAgg\AppServices\" />
-    <Folder Include="InventoryAgg\Services\" />
   </ItemGroup>
 
   <ItemGroup>
