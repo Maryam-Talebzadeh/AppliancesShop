@@ -6,7 +6,7 @@ using IM.Infrastructure.DataAccess.Repos.EFCore.InventoryAgg;
 
 namespace IM.Infrastructure.Configuration
 {
-    public class InventoryBootstrapper
+    public class InventoryManagementBootstrapper
     {
         public static void Configure(IServiceCollection services, string connectionString)
         {

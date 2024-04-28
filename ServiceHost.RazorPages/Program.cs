@@ -1,5 +1,6 @@
 using SM.Infrastructure.Configuration;
 using DM.Infrastructure.Configuration;
+using IM.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddRazorPages();
 
 SMBootstrapper.Configure(builder.Services, builder.Configuration.GetConnectionString("AppliancesConnectionString"));
 DiscountManagementBootstrapper.Configure(builder.Services, builder.Configuration.GetConnectionString("AppliancesConnectionString"));
+InventoryManagementBootstrapper.Configure(builder.Services, builder.Configuration.GetConnectionString("AppliancesConnectionString"));
 
 #endregion
 
