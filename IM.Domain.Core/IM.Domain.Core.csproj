@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="InventoryAgg\AppServices\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DomainFramework\Base_Framework.csproj" />
     <ProjectReference Include="..\SM.Domain.Core\SM.Domain.Core.csproj" />
   </ItemGroup>

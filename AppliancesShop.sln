@@ -89,17 +89,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{DC28CB87-0DB4-403A-9AD5-10E37C9B437A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IM.Infrastructure.Configuration", "IM.Infrastructure.Configuration\IM.Infrastructure.Configuration.csproj", "{3B438555-B5FC-4D08-9AD7-9B58AF2263E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IM.Infrastructure.Configuration", "IM.Infrastructure.Configuration\IM.Infrastructure.Configuration.csproj", "{3B438555-B5FC-4D08-9AD7-9B58AF2263E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IM.Domain.Core", "IM.Domain.Core\IM.Domain.Core.csproj", "{8187B5F5-B632-489A-B6D8-4BF5514349AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IM.Domain.Core", "IM.Domain.Core\IM.Domain.Core.csproj", "{8187B5F5-B632-489A-B6D8-4BF5514349AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IM.Domain.AppServices", "IM.Domain.AppServices\IM.Domain.AppServices.csproj", "{2ECC4AE4-26D5-49D6-A902-5E52F5075FCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IM.Domain.AppServices", "IM.Domain.AppServices\IM.Domain.AppServices.csproj", "{2ECC4AE4-26D5-49D6-A902-5E52F5075FCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IM.Domain.Services", "IM.Domain.Services\IM.Domain.Services.csproj", "{C8DD8DE0-C477-4198-8B92-657E8DB2F169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IM.Domain.Services", "IM.Domain.Services\IM.Domain.Services.csproj", "{C8DD8DE0-C477-4198-8B92-657E8DB2F169}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IM.Infrastructure.DataAccess.Repos.EFCore", "IM.Infrastructure.DataAccess.Repos.EFCore\IM.Infrastructure.DataAccess.Repos.EFCore.csproj", "{DE35B555-58B9-4268-8346-832A5A445C5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IM.Infrastructure.DataAccess.Repos.EFCore", "IM.Infrastructure.DataAccess.Repos.EFCore\IM.Infrastructure.DataAccess.Repos.EFCore.csproj", "{DE35B555-58B9-4268-8346-832A5A445C5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IM.Infrastructure.DB.SqlServer.EFCore", "IM.Infrastructure.DB.SqlServer.EFCore\IM.Infrastructure.DB.SqlServer.EFCore.csproj", "{3AC0F06A-B4C7-4544-9B71-A99222DA2BB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IM.Infrastructure.DB.SqlServer.EFCore", "IM.Infrastructure.DB.SqlServer.EFCore\IM.Infrastructure.DB.SqlServer.EFCore.csproj", "{3AC0F06A-B4C7-4544-9B71-A99222DA2BB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
