@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SM.Domain.Core.ProductAgg.AppSevices;
 
-namespace ServiceHost.RazorPages.Areas.Administration.Pages.Inventory
+namespace ServiceHost.RazorPages.Areas.Administration.Pages.Inventory.InventoryAgg
 {
     public class IndexModel : PageModel
     {

@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using IM.Infrastructure.DataAccess.Repos.EFCore.InventoryAgg;
 using IM.Domain.Core.InventoryAgg.Services;
 using IM.Domain.Services.InventoryAgg;
+using IM.Domain.Core.InventoryAgg.AppServices;
+using IM.Domain.AppServices.InventoryAgg;
 
 namespace IM.Infrastructure.Configuration
 {
@@ -14,6 +16,7 @@ namespace IM.Infrastructure.Configuration
         {
             services.AddScoped<IInventoryRepository, InventoryRepository>();
             services.AddScoped<IInventoryService, InventoryService>();
+            services.AddScoped<IInventoryAppService, InventoryAppService>();
 
             #region DbContext
 
