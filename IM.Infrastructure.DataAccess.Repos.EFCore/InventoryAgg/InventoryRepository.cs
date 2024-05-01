@@ -74,7 +74,7 @@ namespace IM.Infrastructure.DataAccess.Repos.EFCore.InventoryAgg
             if (searchModel.ProductId > 0)
                 query = query.Where(i => i.ProductId == searchModel.ProductId);
 
-            if (!searchModel.InStock)
+            if (searchModel.InStock)
                 query = query.Where(i => !i.InStock);
 
             var inventory = query.OrderByDescending(i => i.Id).ToList();
