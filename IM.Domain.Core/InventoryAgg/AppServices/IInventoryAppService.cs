@@ -12,5 +12,6 @@ namespace IM.Domain.Core.InventoryAgg.AppServices
         OperationResult Reduce(List<ReduceInventoryDTO> command);
         EditInventoryDTO GetDetails(long id);
         List<InventoryDTO> Search(SearchInventoryDTO searchModel);
+        List<InventoryOperationDTO> GetOperationLog(long inventoryId);
     }
 }

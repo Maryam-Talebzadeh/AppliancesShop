@@ -86,5 +86,11 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Inventory.InventoryA
             var result = _inventoryAppService.Reduce(command);
             return new JsonResult(result);
         }
+
+        public IActionResult OnGetLog(long id)
+        {
+            var log = _inventoryAppService.GetOperationLog(id);
+            return Partial("OperationLog", log);
+        }
     }
 }

@@ -50,6 +50,11 @@ namespace IM.Domain.Services.InventoryAgg
             return _inventoryRepository.GetDetails(id);
         }
 
+        public List<InventoryOperationDTO> GetOperationLog(long inventoryId)
+        {
+            return _inventoryRepository.GetOperationLog(inventoryId);
+        }
+
         public OperationResult Increase(IncreaseInventoryDTO command)
         {
             var operation = new OperationResult();

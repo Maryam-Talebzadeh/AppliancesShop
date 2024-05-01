@@ -43,6 +43,25 @@ namespace IM.Infrastructure.DataAccess.Repos.EFCore.InventoryAgg
             }).SingleOrDefault(i => i.Id == id);
         }
 
+        public List<InventoryOperationDTO> GetOperationLog(long inventoryId)
+        {
+            var inventory = _context.Inventory.FirstOrDefault(x => x.Id == inventoryId);
+            var operations = inventory.Operations.Select(x => new InventoryOperationDTO
+            {
+                Id = x.Id,
+                Count = x.Count,
+                CurrentCount = x.CurrentCount,
+                Description = x.Description,
+                Operation = x.Operation,
+                OperationDate = x.OperationDate.ToFarsi(),
+                OperatorId = x.OperatorId,
+                Operator = "مدیر سیستم", // Temporary
+                OrderId = x.OrderId
+            }).OrderByDescending(x => x.Id).ToList();
+
+            return operations;
+        }
+
         public void Increase(IncreaseInventoryDTO command)
         {
             var inventory = Get(command.InventoryId);

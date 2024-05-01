@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Base_Framework.Domain.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IM.Domain.Core.InventoryAgg.Entities
 {
-    public class InventoryOperation
+    public class InventoryOperation : BaseEntity
     {
         public bool Operation { get; private set; }  //if 1 then Increase, if 0 then Decrease
         public long Count { get; private set; }

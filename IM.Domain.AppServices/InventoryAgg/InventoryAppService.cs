@@ -28,6 +28,11 @@ namespace IM.Domain.AppServices.InventoryAgg
             return _inventoryService.GetDetails(id);
         }
 
+        public List<InventoryOperationDTO> GetOperationLog(long inventoryId)
+        {
+            return _inventoryService.GetOperationLog(inventoryId);
+        }
+
         public global::Base_Framework.Domain.Services.OperationResult Increase(IncreaseInventoryDTO command)
         {
             return _inventoryService.Increase(command);
