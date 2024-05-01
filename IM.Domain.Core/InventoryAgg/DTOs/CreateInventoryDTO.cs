@@ -1,4 +1,5 @@
 ﻿using Base_Framework.Domain.Core;
+using SM.Domain.Core.ProductAgg.DTOs.Product;
 using System.ComponentModel.DataAnnotations;
 
 namespace IM.Domain.Core.InventoryAgg.DTOs
@@ -10,5 +11,6 @@ namespace IM.Domain.Core.InventoryAgg.DTOs
 
         [Range(1, double.MaxValue, ErrorMessage = ValidationMessages.IsRequired)]
         public double UnitPrice { get; set; }
+        public List<ProductDTO> Products { get; set; }
     }
 }
