@@ -57,14 +57,17 @@ namespace IM.Infrastructure.DB.SqlServer.EFCore.Migrations
                             b1.Property<long>("InventoryId")
                                 .HasColumnType("bigint");
 
-                            b1.Property<int>("Id")
+                            b1.Property<long>("Id")
                                 .ValueGeneratedOnAdd()
-                                .HasColumnType("int");
+                                .HasColumnType("bigint");
 
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<long>("Id"));
 
                             b1.Property<long>("Count")
                                 .HasColumnType("bigint");
+
+                            b1.Property<DateTime>("CreationDate")
+                                .HasColumnType("datetime2");
 
                             b1.Property<long>("CurrentCount")
                                 .HasColumnType("bigint");
@@ -73,6 +76,9 @@ namespace IM.Infrastructure.DB.SqlServer.EFCore.Migrations
                                 .IsRequired()
                                 .HasMaxLength(1000)
                                 .HasColumnType("nvarchar(1000)");
+
+                            b1.Property<bool>("IsRemoved")
+                                .HasColumnType("bit");
 
                             b1.Property<bool>("Operation")
                                 .HasColumnType("bit");
@@ -88,7 +94,7 @@ namespace IM.Infrastructure.DB.SqlServer.EFCore.Migrations
 
                             b1.HasKey("InventoryId", "Id");
 
-                            b1.ToTable("InventoryOperation");
+                            b1.ToTable("InventoryOperations");
 
                             b1.WithOwner("Inventory")
                                 .HasForeignKey("InventoryId");

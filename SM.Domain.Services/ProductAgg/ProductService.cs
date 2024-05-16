@@ -42,7 +42,7 @@ namespace SM.Domain.Services.ProductAgg
             }
 
             picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "ProductPictures", picName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "ProductPictures", picName);
             FileHandler.SaveImage(path, command.Picture);
 
             #endregion

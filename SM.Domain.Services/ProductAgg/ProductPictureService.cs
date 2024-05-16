@@ -2,14 +2,6 @@
 using SM.Domain.Core.ProductAgg.Data;
 using SM.Domain.Core.ProductAgg.DTOs.ProductPicture;
 using SM.Domain.Core.ProductAgg.Services;
-using SM.Domain.Core.ProductCategoryAgg.DTOs;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SM.Domain.Services.ProductAgg
 {
@@ -34,7 +26,7 @@ namespace SM.Domain.Services.ProductAgg
             #region Save picture
 
             string picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "ProductPictures", picName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "ProductPictures", picName);
             FileHandler.SaveImage(path, command.Picture);
 
             #endregion
@@ -63,7 +55,7 @@ namespace SM.Domain.Services.ProductAgg
 
             if (command.Picture != null)
             {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "AdminTheme", "ProductPictures");
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "ProductPictures");
 
                 #region Delete Old Image
 

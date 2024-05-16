@@ -12,6 +12,7 @@ namespace IM.Infrastructure.DB.SqlServer.EFCore.contexts
         }
 
         public DbSet<Inventory> Inventory { get; set; }
+        public DbSet<InventoryOperation> InventoryOperations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace IM.Infrastructure.DB.SqlServer.EFCore.Migrations
 {
     /// <inheritdoc />
-    public partial class InventoryAgg : Migration
+    public partial class ReCreation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,25 +29,27 @@ namespace IM.Infrastructure.DB.SqlServer.EFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InventoryOperation",
+                name: "InventoryOperations",
                 columns: table => new
                 {
-                    InventoryId = table.Column<long>(type: "bigint", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    InventoryId = table.Column<long>(type: "bigint", nullable: false),
                     Operation = table.Column<bool>(type: "bit", nullable: false),
                     Count = table.Column<long>(type: "bigint", nullable: false),
                     OperatorId = table.Column<long>(type: "bigint", nullable: false),
                     OperationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CurrentCount = table.Column<long>(type: "bigint", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    OrderId = table.Column<long>(type: "bigint", nullable: false)
+                    OrderId = table.Column<long>(type: "bigint", nullable: false),
+                    IsRemoved = table.Column<bool>(type: "bit", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InventoryOperation", x => new { x.InventoryId, x.Id });
+                    table.PrimaryKey("PK_InventoryOperations", x => new { x.InventoryId, x.Id });
                     table.ForeignKey(
-                        name: "FK_InventoryOperation_Inventory_InventoryId",
+                        name: "FK_InventoryOperations_Inventory_InventoryId",
                         column: x => x.InventoryId,
                         principalTable: "Inventory",
                         principalColumn: "Id",
@@ -59,7 +61,7 @@ namespace IM.Infrastructure.DB.SqlServer.EFCore.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "InventoryOperation");
+                name: "InventoryOperations");
 
             migrationBuilder.DropTable(
                 name: "Inventory");

@@ -1,17 +1,27 @@
 using SM.Infrastructure.Configuration;
 using DM.Infrastructure.Configuration;
 using IM.Infrastructure.Configuration;
+using Base_Framework.Configs;
+using System.Configuration;
+using SiteQuery_Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+#region ?Fill SiteSetting
+
+var siteSetting= builder.Configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
+
+#endregion
+
 #region CustomConfiguration
 
-SMBootstrapper.Configure(builder.Services, builder.Configuration.GetConnectionString("AppliancesConnectionString"));
-DiscountManagementBootstrapper.Configure(builder.Services, builder.Configuration.GetConnectionString("AppliancesConnectionString"));
-InventoryManagementBootstrapper.Configure(builder.Services, builder.Configuration.GetConnectionString("AppliancesConnectionString"));
+SMBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
+DiscountManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
+InventoryManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
+SQBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
 
 #endregion
 
