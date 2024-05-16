@@ -99,7 +99,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IM.Infrastructure.DB.SqlSer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiteQuery_Ado", "SiteQuery_Ado\SiteQuery_Ado.csproj", "{24449340-3D97-4721-B16C-132B11906E01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteQuery_Configuration", "SiteQuery_Configuration\SiteQuery_Configuration.csproj", "{FDE2815C-98A3-4292-BDF8-45DF78E98771}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiteQuery_Configuration", "SiteQuery_Configuration\SiteQuery_Configuration.csproj", "{FDE2815C-98A3-4292-BDF8-45DF78E98771}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

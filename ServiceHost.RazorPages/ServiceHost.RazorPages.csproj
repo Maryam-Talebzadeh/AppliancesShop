@@ -8,9 +8,11 @@
 
   <ItemGroup>
     <Content Remove="Areas\Administration\Pages\Inventory\Index.cshtml" />
+    <Content Remove="Pages\ProductCategory.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Pages\ProductCategory.cshtml" />
     <None Include="wwwroot\AdminTheme\assets\modal-effect\js\classie.js" />
     <None Include="wwwroot\AdminTheme\assets\modal-effect\js\modalEffects.js" />
   </ItemGroup>
@@ -48,6 +50,11 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Inventory\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\ProductCategory.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\ProductCategory.cshtml" />
   </ItemGroup>
 
 </Project>
