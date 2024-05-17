@@ -1,4 +1,5 @@
 ﻿using Base_Framework.Domain.Core;
+using Base_Framework.Domain.Core.Attributes;
 using Microsoft.AspNetCore.Http;
 using SM.Domain.Core.ProductAgg.DTOs.Product;
 using System;
@@ -15,6 +16,8 @@ namespace SM.Domain.Core.ProductAgg.DTOs.ProductPicture
         [Range(1, 100000, ErrorMessage = ValidationMessages.IsRequired)]
         public long ProductId { get; set; }
 
+        [Required(ErrorMessage = ValidationMessages.IsRequired)]
+        [MaxFileSize(3*24, ErrorMessage = ValidationMessages.MaxFileSize)]
         public IFormFile Picture { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]

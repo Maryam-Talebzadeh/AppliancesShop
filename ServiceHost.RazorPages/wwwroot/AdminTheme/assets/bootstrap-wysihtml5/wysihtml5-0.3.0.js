@@ -7373,9 +7373,9 @@ wysihtml5.Commands = Base.extend(
      * 
      * @example
      *    // either ...
-     *    wysihtml5.commands.insertImage.exec(composer, "insertImage", "http://www.google.de/logo.png");
+     *    wysihtml5.commands.insertImage.exec(composer, "insertImage", "http://www.google.de/logo.jpg");
      *    // ... or ...
-     *    wysihtml5.commands.insertImage.exec(composer, "insertImage", { src: "http://www.google.de/logo.png", title: "foo" });
+     *    wysihtml5.commands.insertImage.exec(composer, "insertImage", { src: "http://www.google.de/logo.jpg", title: "foo" });
      */
     exec: function(composer, command, value) {
       value = typeof(value) === "object" ? value : { src: value };
