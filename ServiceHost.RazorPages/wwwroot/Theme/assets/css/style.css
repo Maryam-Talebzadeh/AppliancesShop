@@ -277,12 +277,12 @@ select {
 }
 
 .header-area--middle-logo .header-wrapper {
-	padding-top: 15px;
+	padding-top: 5px;
 }
 
 .header-area--middle-logo .header-wrapper .navigation-menu-wrapper {
 	-webkit-flex-basis: 40%;
-	-ms-flex-preferred-size: 40%;
+	-ms-flex-preferred-size: 20%;
 	flex-basis: 40%;
 }
 
@@ -294,7 +294,7 @@ select {
 
 .header-area--middle-logo .header-wrapper .header-icon-wrapper {
 	-webkit-flex-basis: 40%;
-	-ms-flex-preferred-size: 40%;
+	-ms-flex-preferred-size: 20%;
 	flex-basis: 40%;
 }
 
@@ -303,12 +303,12 @@ select {
 }
 
 .header-area--left-logo .header-wrapper {
-	padding-top: 15px;
+	padding-top: 5px;
 }
 
 .header-area--left-logo .header-wrapper .navigation-menu-wrapper {
 	-webkit-flex-basis: 40%;
-	-ms-flex-preferred-size: 40%;
+	-ms-flex-preferred-size: 20%;
 	flex-basis: 40%;
 }
 
@@ -320,7 +320,7 @@ select {
 
 .header-area--left-logo .header-wrapper .header-icon-wrapper {
 	-webkit-flex-basis: 40%;
-	-ms-flex-preferred-size: 40%;
+	-ms-flex-preferred-size: 20%;
 	flex-basis: 40%;
 }
 
@@ -2896,7 +2896,7 @@ select {
 }
 
 .single-feature-logo__image {
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 .single-feature-logo__content .title {
@@ -7049,7 +7049,7 @@ h3.comment-counter {
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
 
 .header-area--middle-logo .header-wrapper .navigation-menu-wrapper nav > ul > li {
-	margin-right: 20px;
+	margin-right: 10px;
 }
 
 .header-area--middle-logo .header-wrapper .navigation-menu-wrapper nav > ul > li .mega-menu.four-column {
@@ -7057,7 +7057,7 @@ h3.comment-counter {
 }
 
 .header-area--left-logo .header-wrapper .navigation-menu-wrapper nav > ul > li {
-	margin-right: 20px;
+	margin-right: 10px;
 }
 
 .header-area--left-logo .header-wrapper .navigation-menu-wrapper nav > ul > li .mega-menu.four-column {

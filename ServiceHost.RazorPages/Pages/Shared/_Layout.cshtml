@@ -9,7 +9,7 @@
 
 <body>
 
-    <partial name="_Header" />
+    @await Component.InvokeAsync("Menu")
 
     <div class="container">
         <main role="main" class="pb-3">
@@ -17,7 +17,7 @@
         </main>
     </div>
 
-    <partial name="_Footer" />
+    @await Component.InvokeAsync("Footer")
 
     <div class="offcanvas-mobile-menu" id="offcanvas-mobile-menu">
         <a href="javascript:void(0)" class="offcanvas-menu-close" id="offcanvas-menu-close-trigger">
@@ -333,12 +333,9 @@
     </div>
 
 
-    <!-- scroll to top  -->
     <div id="scroll-top">
-        <span>Back to top</span><i class="ion-chevron-right"></i><i class="ion-chevron-right"></i>
+        <span>یرو به بالا</span><i class="ion-chevron-right"></i><i class="ion-chevron-right"></i>
     </div>
-    <!-- end of scroll to top -->
-    <!-- Vendor JS -->
     <script src="~/Theme/assets/js/vendors.js"></script>
 
     <!-- Active JS -->
