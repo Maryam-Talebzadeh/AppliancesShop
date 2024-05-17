@@ -11,6 +11,7 @@ namespace SiteQuery_Configuration
         public static void Configure(IServiceCollection services, string connectionString)
         {
             services.AddScoped<IProductCategoryQuery>(provider => new ProductCategoryQuery(connectionString));
+            services.AddScoped<IProductQuery>(provider => new ProductQuery(connectionString));
         }
     }
 }

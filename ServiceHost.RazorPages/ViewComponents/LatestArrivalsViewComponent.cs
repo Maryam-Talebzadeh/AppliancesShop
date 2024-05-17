@@ -3,8 +3,6 @@ using SiteQuery_Ado.Contracts;
 
 namespace ServiceHost.RazorPages.ViewComponents
 {
-    public class LatestArrivals
-    {
         public class LatestArrivalsViewComponent : ViewComponent
         {
             private readonly IProductQuery _productQuery;
@@ -20,5 +18,5 @@ namespace ServiceHost.RazorPages.ViewComponents
                 return View(products);
             }
         }
-    }
+    
 }
