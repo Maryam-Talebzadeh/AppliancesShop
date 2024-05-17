@@ -30,24 +30,24 @@ namespace SM.Domain.Services.ProductAgg
             if (_productRepository.IsExist(x => x.Name == command.Name))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
-            var slug = command.Slug.Slugify();
+            command.Slug = command.Slug.Slugify();
+
+            long productId = _productRepository.Create(command);
 
             #region Save First picture
 
             string picName = "";
 
-            if(command.Picture != null)
+            if (command.Picture != null)
             {
-                picName = "DefaultProduct.jpg";              
+                picName = "DefaultProduct.jpg";
             }
 
             picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "ProductPictures", picName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", productId.ToString(), "ProductPictures", picName);
             FileHandler.SaveImage(path, command.Picture);
 
             #endregion
-
-            long productId = _productRepository.Create(command);
 
             var productPictureDTO = new CreateProductPictureDTO()
             {

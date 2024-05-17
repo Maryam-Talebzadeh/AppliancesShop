@@ -75,5 +75,59 @@ namespace SiteQuery_Ado.Queries
 
             return products;
         }
+
+        public List<ProductQueryModel> Search(string value)
+        {
+            var products = new List<ProductQueryModel>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SearchProducts", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@value", SqlDbType.NVarChar));
+                    command.Parameters["@value"].Value = value;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var product = new ProductQueryModel()
+                            {
+
+                                Category = reader.GetString(reader.GetOrdinal("p.CategoryName")),
+                                Id = reader.GetInt64(reader.GetOrdinal("p.Id")),
+                                Name = reader.GetString(reader.GetOrdinal("p.Name")),
+                                Picture = reader.GetString(reader.GetOrdinal("p.Picture")),
+                                PictureAlt = reader.GetString(reader.GetOrdinal("p.PictureAlt")),
+                                PictureTitle = reader.GetString(reader.GetOrdinal("p.PictureTitle")),
+                                Slug = reader.GetString(reader.GetOrdinal("p.Slug")),
+                                ShortDescription = reader.GetString(reader.GetOrdinal("p.ShortDescription")),
+                            };
+
+                            if (!Convert.IsDBNull(reader["p.Price"]))
+                            {
+                                var price = reader.GetDouble(reader.GetOrdinal("p.Price"));
+                                product.Price = price.ToMoney();
+                                var discountRate = reader["p.DiscountRate"];
+
+                                if (!Convert.IsDBNull(reader["p.DiscountRate"]))
+                                {
+                                    product.DiscountRate = reader.GetInt32(reader.GetOrdinal("p.PictureTitle"));
+                                    product.HasDiscount = product.DiscountRate > 0;
+                                    var discountAmount = Math.Round((double)(price * product.DiscountRate) / 100);
+                                    product.PriceWithDiscount = (price - discountAmount).ToMoney();
+                                }
+                            }
+
+                            products.Add(product);
+                        }
+                    }
+                }
+            }
+
+            return products;
+        }
     }
 }
