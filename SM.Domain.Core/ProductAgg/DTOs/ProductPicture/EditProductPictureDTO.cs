@@ -9,5 +9,6 @@ namespace SM.Domain.Core.ProductAgg.DTOs.ProductPicture
     public class EditProductPictureDTO : CreateProductPictureDTO
     {
         public long Id { get; set; }
+        public string CategorySlug { get; set; }
     }
 }

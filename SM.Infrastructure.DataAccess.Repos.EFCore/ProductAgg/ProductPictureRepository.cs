@@ -34,7 +34,8 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                 Id = p.Id,
                 IsRemoved = p.IsRemoved,
                 Picture = p.Picture,
-                ProductId = p.ProductId
+                ProductId = p.ProductId,
+                CategorySlug = p.Product.Category.Slug
                 
             }).SingleOrDefault(p => p.Id == id);
         }
@@ -48,7 +49,8 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                 Picture = p.Picture,
                 PictureAlt = p.PictureAlt,
                 PictureTitle = p.PictureTitle,
-                ProductId = p.ProductId
+                ProductId = p.ProductId,
+                CategorySlug = p.Product.Category.Slug
             }).SingleOrDefault(p => p.Id == id);
         }
 
@@ -75,7 +77,8 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                 Picture = p.Picture,
                 ProductId = p.ProductId,
                 IsRemoved = p.IsRemoved,
-                Product = p.Product.Name
+                Product = p.Product.Name,
+                CategorySlug = p.Product.Category.Slug
             });
 
             if(searchModel.ProductId != 0)

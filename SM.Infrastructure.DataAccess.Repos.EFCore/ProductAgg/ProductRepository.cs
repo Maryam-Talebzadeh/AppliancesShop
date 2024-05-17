@@ -74,6 +74,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                 Keywords = x.Keywords,
                 MetaDescription = x.MetaDescription,
                 ShortDescription = x.ShortDescription,
+                CategorySlug = x.Category.Slug
             }).FirstOrDefault(x => x.Id == id);
         }
 
@@ -100,7 +101,8 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                    Category = x.Category.Name,
                    CategoryId = x.CategoryId,
                    Code = x.Code,
-                   IsInStock = x.Inventory
+                   IsInStock = x.Inventory,
+                   CategorySlug = x.Category.Slug
                });
 
             if (!string.IsNullOrWhiteSpace(searchModel.Name))

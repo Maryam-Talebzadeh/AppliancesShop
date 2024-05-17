@@ -49,6 +49,7 @@ namespace SiteQuery_Ado.Queries
                                 Picture = reader.GetString(reader.GetOrdinal("p.Picture")),
                                 PictureAlt = reader.GetString(reader.GetOrdinal("p.PictureAlt")),
                                 PictureTitle = reader.GetString(reader.GetOrdinal("p.PictureTitle")),
+                                CategorySlug = reader.GetString(reader.GetOrdinal("p.CategorySlug"))
 
                             };
 
@@ -104,6 +105,7 @@ namespace SiteQuery_Ado.Queries
                                 PictureTitle = reader.GetString(reader.GetOrdinal("p.PictureTitle")),
                                 Slug = reader.GetString(reader.GetOrdinal("p.Slug")),
                                 ShortDescription = reader.GetString(reader.GetOrdinal("p.ShortDescription")),
+                                CategorySlug = reader.GetString(reader.GetOrdinal("p.CategorySlug"))
                             };
 
                             if (!Convert.IsDBNull(reader["p.Price"]))
