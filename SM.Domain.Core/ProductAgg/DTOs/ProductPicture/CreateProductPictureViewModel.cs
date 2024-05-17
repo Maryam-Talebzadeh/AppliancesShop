@@ -5,9 +5,6 @@ using SM.Domain.Core.ProductAgg.DTOs.Product;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SM.Domain.Core.ProductAgg.DTOs.ProductPicture
 {
@@ -18,6 +15,7 @@ namespace SM.Domain.Core.ProductAgg.DTOs.ProductPicture
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         [MaxFileSize(3*24, ErrorMessage = ValidationMessages.MaxFileSize)]
+        [FileExtentionLimitation(new string[] {".jpeg", ".jpg",".png"}, ErrorMessage = ValidationMessages.InvalidFileFormat)]
         public IFormFile Picture { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]

@@ -39,8 +39,13 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
             return Partial("./Create", command);
         }
 
-        public JsonResult OnPostCreate(CreateProductDTO command)
+        public ActionResult OnPostCreate(CreateProductDTO command)
         {
+            if(!ModelState.IsValid)
+            {
+                return Partial("./Create", command);
+            }
+
             var result = _productAppService.Create(command);
 
             return new JsonResult(result);
@@ -54,8 +59,13 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
             return Partial("Edit", product);
         }
 
-        public JsonResult OnPostEdit(EditProductDTO command)
+        public ActionResult OnPostEdit(EditProductDTO command)
         {
+            if (!ModelState.IsValid)
+            {
+                return Partial("Edit", command);
+            }
+
             var result = _productAppService.Edit(command);
             return new JsonResult(result);
         }
