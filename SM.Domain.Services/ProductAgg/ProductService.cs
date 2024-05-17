@@ -2,14 +2,9 @@
 using SM.Domain.Core.ProductAgg.Data;
 using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductAgg.DTOs.ProductPicture;
-using SM.Domain.Core.ProductAgg.Entities;
 using SM.Domain.Core.ProductAgg.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using SM.Domain.Core.ProductCategoryAgg.Data;
+using SM.Domain.Core.ProductCategoryAgg.Services;
 
 namespace SM.Domain.Services.ProductAgg
 {
@@ -33,6 +28,7 @@ namespace SM.Domain.Services.ProductAgg
             command.Slug = command.Slug.Slugify();
 
             long productId = _productRepository.Create(command);
+            var categorySlug = _productRepository.GetCategorySlugByProductId(productId);
 
             #region Save First picture
 
@@ -44,7 +40,7 @@ namespace SM.Domain.Services.ProductAgg
             }
 
             picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", productId.ToString(), "ProductPictures", picName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", categorySlug, "ProductPictures", picName);
             FileHandler.SaveImage(path, command.Picture);
 
             #endregion

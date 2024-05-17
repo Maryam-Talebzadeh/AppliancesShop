@@ -8,10 +8,12 @@ namespace SM.Domain.Services.ProductAgg
     public class ProductPictureService : IProductPictureService
     {
         private readonly IProductPictureRepository _productPictureRepository;
+        private readonly IProductRepository _productRepository;
 
-        public ProductPictureService(IProductPictureRepository productPictureRepository)
+        public ProductPictureService(IProductPictureRepository productPictureRepository, IProductRepository productRepository)
         {
             _productPictureRepository = productPictureRepository;
+            _productRepository = productRepository;
         }
 
         public OperationResult Create(CreateProductPictureViewModel command)
@@ -22,6 +24,9 @@ namespace SM.Domain.Services.ProductAgg
             {
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             }
+
+            long categoryId = _productRepository.GetBy(command.ProductId).CategoryId;
+            var categorySlug = _productRepository.GetCategorySlugByProductId(command.ProductId);
 
             #region Save picture
 

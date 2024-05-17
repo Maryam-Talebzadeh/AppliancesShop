@@ -68,7 +68,6 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg
             }).Single();
         }
 
-
         public List<ProductCategoryDTO> Search(SearchProductCategoryDTO searchModel)
         {
             var query = _context.ProductCategories.Select(pc =>

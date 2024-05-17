@@ -1,12 +1,6 @@
 ﻿using Base_Framework.Domain.Core.Contracts;
 using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductAgg.Entities;
-using SM.Domain.Core.ProductCategoryAgg.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SM.Domain.Core.ProductAgg.Data
 {
@@ -20,5 +14,6 @@ namespace SM.Domain.Core.ProductAgg.Data
         List<ProductDTO> GetAll();
         void NotInStock(long id);
         void IsInStock(long id);
+        string GetCategorySlugByProductId(long id);
     }
 }

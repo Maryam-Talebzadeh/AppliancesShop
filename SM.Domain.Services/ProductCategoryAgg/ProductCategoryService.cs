@@ -3,7 +3,6 @@ using SM.Domain.Core.ProductCategoryAgg.Data;
 using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using SM.Domain.Core.ProductCategoryAgg.Entities;
 using SM.Domain.Core.ProductCategoryAgg.Services;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SM.Domain.Services.ProductCategoryAgg
 {

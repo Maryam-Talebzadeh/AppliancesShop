@@ -2,9 +2,7 @@
 using SM.Domain.Core.ProductAgg.Data;
 using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 using SM.Domain.Core.ProductAgg.Entities;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Microsoft.EntityFrameworkCore;
-using SM.Domain.Core.ProductCategoryAgg.DTOs;
 using SM.Domain.Core.ProductAgg.DTOs.Product;
 
 namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
@@ -56,6 +54,11 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                  Id = p.Id,
                  Name = p.Name
              }).SingleOrDefault(p => p.Id == id);
+        }
+
+        public string GetCategorySlugByProductId(long id)
+        {
+            return _context.Products.Include(p => p.Category).Where(p => p.Id == id).Select(p => p.Category.Slug).FirstOrDefault();
         }
 
         public ProductDetailDTO GetDetail(long id)
