@@ -63,7 +63,13 @@
                                                     <img src="~/ProductPictures/@Model.Product.Picture" class="img-fluid"
                                                          alt="@Model.Product.Picture">
                                                 </div>
-
+                                                @foreach (var picture in Model.Product.Pictures)
+                                                {
+                                                    <div class="single-image">
+                                                        <img src="~/ProductPictures/@picture.Picture" class="img-fluid"
+                                                             alt="@picture.PictureAlt" title="@picture.PictureTitle">
+                                                    </div>
+                                                }
                                             </div>
                                         </div>
 
@@ -93,8 +99,14 @@
                                                 <img src="~/ProductPictures/@Model.Product.Picture" class="img-fluid"
                                                      alt="@Model.Product.Picture">
                                             </div>
+                                            @foreach (var picture in Model.Product.Pictures)
+                                            {
+                                                <div class="single-image">
+                                                    <img src="~/ProductPictures/@picture.Picture" class="img-fluid"
+                                                         alt="@picture.PictureAlt" title="@picture.PictureTitle">
+                                                </div>
+                                            }
                                         </div>
-                                        }
                                     </div>
                                 </div>
                             </div>
