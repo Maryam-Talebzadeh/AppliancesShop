@@ -22,43 +22,43 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
             _productPictureAppService = productPictureAppService;
         }
 
-        public void OnGet(int id, SearchProductPictureDTO? searchModel)
+        public async Task OnGet(int id, SearchProductPictureDTO? searchModel, CancellationToken cancellationToken)
         {
-            Products = new SelectList(_productAppService.GetProducts(), "Id", "Name");
-            ProductPictures = _productPictureAppService.Search(searchModel);
+            Products = new SelectList(await _productAppService.GetProducts(cancellationToken), "Id", "Name");
+            ProductPictures = await _productPictureAppService.Search(searchModel , cancellationToken);
         }
 
-        public IActionResult OnGetCreate()
+        public async Task<IActionResult> OnGetCreate(CancellationToken cancellationToken)
         {
             var command = new CreateProductPictureViewModel
             {
-                Products = _productAppService.GetProducts()
+                Products = await _productAppService.GetProducts(cancellationToken)
             };
             return Partial("./Create", command);
         }
 
-        public JsonResult OnPostCreate(CreateProductPictureViewModel command)
+        public async Task<JsonResult> OnPostCreate(CreateProductPictureViewModel command, CancellationToken cancellationToken)
         {
-            var result = _productPictureAppService.Create(command);
+            var result = await _productPictureAppService.Create(command, cancellationToken);
             return new JsonResult(result);
         }
 
-        public IActionResult OnGetEdit(long id)
+        public async Task<IActionResult> OnGetEdit(long id, CancellationToken cancellationToken)
         {
-            var productPicture = _productPictureAppService.GetDetails(id);
-            productPicture.Products = _productAppService.GetProducts();
+            var productPicture = await _productPictureAppService.GetDetails(id, cancellationToken);
+            productPicture.Products = await _productAppService.GetProducts(cancellationToken);
             return Partial("Edit", productPicture);
         }
 
-        public JsonResult OnPostEdit(EditProductPictureViewModel command)
+        public async Task<JsonResult> OnPostEdit(EditProductPictureViewModel command, CancellationToken cancellationToken)
         {
-            var result = _productPictureAppService.Edit(command);
+            var result = await _productPictureAppService.Edit(command, cancellationToken);
             return new JsonResult(result);
         }
 
-        public IActionResult OnGetRemove(long id)
+        public async Task<IActionResult> OnGetRemove(long id, CancellationToken cancellationToken)
         {
-            var result = _productPictureAppService.Remove(id);
+            var result = await _productPictureAppService.Remove(id, cancellationToken);
             if (result.IsSuccedded)
                 return RedirectToPage("./Index");
 
@@ -66,9 +66,9 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
             return RedirectToPage("./Index");
         }
 
-        public IActionResult OnGetRestore(long id)
+        public async Task<IActionResult> OnGetRestore(long id, CancellationToken cancellationToken)
         {
-            var result = _productPictureAppService.Restore(id);
+            var result = await _productPictureAppService.Restore(id, cancellationToken);
             if (result.IsSuccedded)
                 return RedirectToPage("./Index");
 

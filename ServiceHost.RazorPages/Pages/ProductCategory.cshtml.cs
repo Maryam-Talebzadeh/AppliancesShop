@@ -14,9 +14,9 @@ namespace ServiceHost.RazorPages.Pages
             _productCategoryQuery = productCategoryQuery;
         }
 
-        public void OnGet(string id)
+        public async Task OnGet(string id, CancellationToken cancellationToken)
         {
-            ProductCategory = _productCategoryQuery.GetProductCategoryWithProducstsBy(id);
+            ProductCategory = await _productCategoryQuery.GetProductCategoryWithProducstsBy(id, cancellationToken);
         }
     }
 }

@@ -16,10 +16,10 @@ namespace ServiceHost.RazorPages.Pages
                 _productQuery = productQuery;
             }
 
-            public void OnGet(string value)
+            public async Task OnGet(string value, CancellationToken cancellationToken)
             {
                 Value = value;
-                Products = _productQuery.Search(value);
+                Products = await _productQuery.Search(value, cancellationToken);
             }
         
     }

@@ -14,19 +14,19 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             _context = context;
         }
 
-        public void Create(CreateProductPictureDTO command)
+        public async Task Create(CreateProductPictureDTO command, CancellationToken cancellationToken)
         {
             var picture = new ProductPicture(command.ProductId, command.Picture, command.PictureAlt, command.PictureTitle);
             _context.ProductPictures.Add(picture);
         }
 
-        public void Edit(EditProductPictureDTO command)
+        public async Task Edit(EditProductPictureDTO command, CancellationToken cancellationToken)
         {
             var productPicture = Get(command.Id);
             productPicture.Edit(command.ProductId, command.Picture, command.PictureAlt, command.PictureTitle);
         }
 
-        public ProductPictureDTO GetBy(long id)
+        public async Task<ProductPictureDTO> GetBy(long id, CancellationToken cancellationToken)
         {
             return _context.ProductPictures.Select(p =>
             new ProductPictureDTO()
@@ -40,7 +40,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             }).SingleOrDefault(p => p.Id == id);
         }
 
-        public DetailProductPictureDTO GetDetails(long id)
+        public async Task<DetailProductPictureDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
             return _context.ProductPictures.Select(p =>
             new DetailProductPictureDTO()
@@ -55,20 +55,20 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
         }
 
 
-        public void Remove(long id)
+        public async Task Remove(long id, CancellationToken cancellationToken)
         {
             var productPicture = Get(id);
             productPicture.Remove();
         }
 
-        public void Restore(long id)
+        public async Task Restore(long id, CancellationToken cancellationToken)
         {
             var productPicture = Get(id);
             productPicture.ReStore();
         }
 
 
-        public List<ProductPictureDTO> Search(SearchProductPictureDTO searchModel)
+        public async Task<List<ProductPictureDTO>> Search(SearchProductPictureDTO searchModel, CancellationToken cancellationToken)
         {
             var pictures = _context.ProductPictures.Select(p =>
             new ProductPictureDTO()

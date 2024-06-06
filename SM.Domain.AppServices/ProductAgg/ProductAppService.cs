@@ -2,8 +2,6 @@
 using SM.Domain.Core.ProductAgg.AppSevices;
 using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductAgg.Services;
-using System.Runtime.CompilerServices;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SM.Domain.AppServices.ProductAgg
 {
@@ -16,39 +14,39 @@ namespace SM.Domain.AppServices.ProductAgg
             _productService = productService;
         }
 
-        public OperationResult Create(CreateProductDTO command)
+        public async Task<OperationResult> Create(CreateProductDTO command, CancellationToken cancellationToken)
         {
-            return _productService.Create(command);
+            return await _productService.Create(command, cancellationToken);
         }
 
-        public OperationResult Edit(EditProductDTO command)
+        public async Task<OperationResult> Edit(EditProductDTO command, CancellationToken cancellationToken)
         {
-            return _productService.Edit(command);
+            return await _productService.Edit(command, cancellationToken);
         }
 
-        public ProductDetailDTO GetDetails(long id)
+        public async Task<ProductDetailDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
-            return _productService.GetDetails(id);
+            return await _productService.GetDetails(id, cancellationToken);
         }
 
-        public List<ProductDTO> GetProducts()
+        public async Task<List<ProductDTO>> GetProducts(CancellationToken cancellationToken)
         {
-            return _productService.GetProducts();
+            return await _productService.GetProducts(cancellationToken);
         }
 
-        public OperationResult IsInStock(long id)
+        public async Task<OperationResult> IsInStock(long id, CancellationToken cancellationToken)
         {
-           return _productService.IsInStock(id);
+           return await _productService.IsInStock(id, cancellationToken);
         }
 
-        public OperationResult NotInStock(long id)
+        public async Task<OperationResult> NotInStock(long id, CancellationToken cancellationToken)
         {
-           return _productService.NotInStock(id);
+           return await _productService.NotInStock(id, cancellationToken);
         }
 
-        public List<ProductDTO> Search(SearchProductDTO searchModel)
+        public async Task<List<ProductDTO>> Search(SearchProductDTO searchModel, CancellationToken cancellationToken)
         {
-            return _productService.Search(searchModel);
+            return await _productService.Search(searchModel, cancellationToken);
         }
     }
 }

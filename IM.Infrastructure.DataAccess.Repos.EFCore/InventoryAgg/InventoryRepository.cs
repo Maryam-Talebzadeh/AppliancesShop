@@ -19,20 +19,20 @@ namespace IM.Infrastructure.DataAccess.Repos.EFCore.InventoryAgg
             _shopContext = shopContext;
         }
 
-        public void Create(CreateInventoryDTO command)
+        public async Task Create(CreateInventoryDTO command, CancellationToken cancellationToken)
         {
             var inventory = new Inventory(command.ProductId, command.UnitPrice);
             _context.Inventory.Add(inventory);
 
         }
 
-        public void Edit(EditInventoryDTO command)
+        public async Task Edit(EditInventoryDTO command, CancellationToken cancellationToken)
         {
             var inventory = Get(command.Id);
             inventory.Edit(command.ProductId, command.UnitPrice);
         }
 
-        public EditInventoryDTO GetDetails(long id)
+        public async Task<EditInventoryDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
             return _context.Inventory.Select(i =>
             new EditInventoryDTO
@@ -43,7 +43,7 @@ namespace IM.Infrastructure.DataAccess.Repos.EFCore.InventoryAgg
             }).SingleOrDefault(i => i.Id == id);
         }
 
-        public List<InventoryOperationDTO> GetOperationLog(long inventoryId)
+        public async Task<List<InventoryOperationDTO>> GetOperationLog(long inventoryId, CancellationToken cancellationToken)
         {
             var inventory = _context.Inventory.FirstOrDefault(x => x.Id == inventoryId);
             var operations = inventory.Operations.Select(x => new InventoryOperationDTO
@@ -62,21 +62,21 @@ namespace IM.Infrastructure.DataAccess.Repos.EFCore.InventoryAgg
             return operations;
         }
 
-        public void Increase(IncreaseInventoryDTO command)
+        public async Task Increase(IncreaseInventoryDTO command, CancellationToken cancellationToken)
         {
             var inventory = Get(command.InventoryId);
             var operatorId = 1; //Temporary
             inventory.Increase(command.Count, operatorId, command.Description);
         }
 
-        public void Reduce(ReduceInventoryDTO command)
+        public async Task Reduce(ReduceInventoryDTO command, CancellationToken cancellationToken)
         {
             var inventory = Get(command.InventoryId);
             var operatorId = 1; //Temporary
             inventory.Reduce(command.Count, operatorId, command.Description, command.OrderId);
         }
 
-        public List<InventoryDTO> Search(SearchInventoryDTO searchModel)
+        public async Task<List<InventoryDTO>> Search(SearchInventoryDTO searchModel, CancellationToken cancellationToken)
         {
             var products = _shopContext.Products.Select(p => new { Id = p.Id, Name = p.Name });
             var query = _context.Inventory.Select(i =>

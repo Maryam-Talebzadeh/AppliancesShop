@@ -25,13 +25,13 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
             _productCategoryAppService = productCategoryAppService;
         }
 
-        public void OnGet(SearchProductDTO search)
+        public async Task OnGet(SearchProductDTO search, CancellationToken cancellationToken)
         {
             ProductCategories = new SelectList(_productCategoryAppService.GetAll(), "Id", "Name");
-            Products = _productAppService.Search(search);
+            Products = await _productAppService.Search(search, cancellationToken);
         }
 
-        public ActionResult OnGetCreate()
+        public async Task<ActionResult> OnGetCreate(CancellationToken cancellationToken)
         {
             var command = new CreateProductDTO();
             command.Categories = _productCategoryAppService.GetAll();
@@ -39,40 +39,40 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
             return Partial("./Create", command);
         }
 
-        public ActionResult OnPostCreate(CreateProductDTO command)
+        public async Task<ActionResult> OnPostCreate(CreateProductDTO command, CancellationToken cancellationToken)
         {
             if(!ModelState.IsValid)
             {
                 return Partial("./Create", command);
             }
 
-            var result = _productAppService.Create(command);
+            var result = await _productAppService.Create(command, cancellationToken);
 
             return new JsonResult(result);
         }
 
-        public IActionResult OnGetEdit(long id)
+        public async Task<ActionResult> OnGetEdit(long id, CancellationToken cancellationToken)
         {
-            var product = _productAppService.GetDetails(id);
+            var product = await _productAppService.GetDetails(id, cancellationToken);
             product.Categories = _productCategoryAppService.GetAll();
 
             return Partial("Edit", product);
         }
 
-        public ActionResult OnPostEdit(EditProductDTO command)
+        public async Task<ActionResult> OnPostEdit(EditProductDTO command, CancellationToken cancellationToken)
         {
             if (!ModelState.IsValid)
             {
                 return Partial("Edit", command);
             }
 
-            var result = _productAppService.Edit(command);
+            var result = await _productAppService.Edit(command, cancellationToken);
             return new JsonResult(result);
         }
 
-        public IActionResult OnGetNotInStock(long id)
+        public async Task<ActionResult> OnGetNotInStock(long id, CancellationToken cancellationToken)
         {
-            var result = _productAppService.NotInStock(id);
+            var result = await _productAppService.NotInStock(id, cancellationToken);
 
             if (result.IsSuccedded)
             {
@@ -83,9 +83,9 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
             return RedirectToPage("./Index");
         }
 
-        public IActionResult OnGetIsInStock(long id)
+        public async Task<ActionResult> OnGetIsInStock(long id, CancellationToken cancellationToken)
         {
-            var result = _productAppService.IsInStock(id);
+            var result = await _productAppService.IsInStock(id, cancellationToken);
 
             if (result.IsSuccedded)
             {

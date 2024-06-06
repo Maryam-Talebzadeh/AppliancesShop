@@ -6,12 +6,12 @@ namespace IM.Domain.Core.InventoryAgg.Data
 {
     public interface IInventoryRepository : IRepository<Inventory>
     {
-        void Create(CreateInventoryDTO command);
-        void Edit(EditInventoryDTO command);
-        void Increase(IncreaseInventoryDTO command);
-        void Reduce(ReduceInventoryDTO command);
-        EditInventoryDTO GetDetails(long id);
-        List<InventoryDTO> Search(SearchInventoryDTO searchModel);
-        List<InventoryOperationDTO> GetOperationLog(long inventoryId);
+        Task Create(CreateInventoryDTO command, CancellationToken cancellationToken);
+        Task Edit(EditInventoryDTO command, CancellationToken cancellationToken);
+        Task Increase(IncreaseInventoryDTO command, CancellationToken cancellationToken);
+        Task Reduce(ReduceInventoryDTO command, CancellationToken cancellationToken);
+        Task<EditInventoryDTO> GetDetails(long id, CancellationToken cancellationToken);
+        Task<List<InventoryDTO>> Search(SearchInventoryDTO searchModel, CancellationToken cancellationToken);
+        Task<List<InventoryOperationDTO>> GetOperationLog(long inventoryId, CancellationToken cancellationToken);
     }
 }

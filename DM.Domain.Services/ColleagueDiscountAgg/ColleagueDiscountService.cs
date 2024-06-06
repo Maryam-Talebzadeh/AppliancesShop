@@ -19,20 +19,20 @@ namespace DM.Domain.Services.ColleagueDiscountAgg
             _colleagueDiscountRepository = colleagueDiscountRepository;
         }
 
-        public OperationResult Define(DefineColleagueDiscountDTO command)
+        public async Task<OperationResult> Define(DefineColleagueDiscountDTO command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
 
             if (_colleagueDiscountRepository.IsExist(x => x.ProductId == command.ProductId))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
-            _colleagueDiscountRepository.Create(command);
+           await _colleagueDiscountRepository.Create(command, cancellationToken);
             _colleagueDiscountRepository.Save();
 
             return operation.Succedded();
         }
 
-        public OperationResult Edit(EditColleagueDiscountDTO command)
+        public async Task<OperationResult> Edit(EditColleagueDiscountDTO command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
 
@@ -42,46 +42,46 @@ namespace DM.Domain.Services.ColleagueDiscountAgg
             if (_colleagueDiscountRepository.IsExist(cd => cd.ProductId == command.ProductId && cd.DiscountRate == command.DiscountRate && cd.Id != command.Id))
                 operation.Failed(ApplicationMessages.DuplicatedRecord);
 
-            _colleagueDiscountRepository.Edit(command);
+            await _colleagueDiscountRepository.Edit(command, cancellationToken);
             _colleagueDiscountRepository.Save();
 
             return operation.Succedded();
         }
 
-        public EditColleagueDiscountDTO GetDetails(long id)
+        public async Task<EditColleagueDiscountDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
-            return _colleagueDiscountRepository.GetDetails(id);
+            return await _colleagueDiscountRepository.GetDetails(id, cancellationToken);
         }
 
-        public OperationResult Remove(long id)
+        public async Task<OperationResult> Remove(long id, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
 
             if (_colleagueDiscountRepository.IsExist(cd => cd.Id == id))
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
-            _colleagueDiscountRepository.Remove(id);
+            await _colleagueDiscountRepository.Remove(id, cancellationToken);
             _colleagueDiscountRepository.Save();
 
             return operation.Succedded();
         }
 
-        public OperationResult Restore(long id)
+        public async Task<OperationResult> Restore(long id, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
 
             if (_colleagueDiscountRepository.IsExist(cd => cd.Id == id))
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
-            _colleagueDiscountRepository.Restore(id);
+            await _colleagueDiscountRepository.Restore(id, cancellationToken);
             _colleagueDiscountRepository.Save();
 
             return operation.Succedded();
         }
 
-        public List<ColleagueDiscountDTO> Search(SearchColleagueDiscountDTO searchModel)
+        public async Task<List<ColleagueDiscountDTO>> Search(SearchColleagueDiscountDTO searchModel, CancellationToken cancellationToken)
         {
-            return _colleagueDiscountRepository.Search(searchModel);
+            return await _colleagueDiscountRepository.Search(searchModel, cancellationToken);
         }
     }
 }

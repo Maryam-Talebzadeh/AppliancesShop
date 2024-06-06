@@ -3,8 +3,7 @@ using SM.Domain.Core.ProductAgg.Data;
 using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductAgg.DTOs.ProductPicture;
 using SM.Domain.Core.ProductAgg.Services;
-using SM.Domain.Core.ProductCategoryAgg.Data;
-using SM.Domain.Core.ProductCategoryAgg.Services;
+using System.Threading;
 
 namespace SM.Domain.Services.ProductAgg
 {
@@ -19,7 +18,7 @@ namespace SM.Domain.Services.ProductAgg
             _productPictureRepository = productPictureRepository;
         }
 
-        public OperationResult Create(CreateProductDTO command)
+        public async Task<OperationResult> Create(CreateProductDTO command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
             if (_productRepository.IsExist(x => x.Name == command.Name))
@@ -27,8 +26,8 @@ namespace SM.Domain.Services.ProductAgg
 
             command.Slug = command.Slug.Slugify();
 
-            long productId = _productRepository.Create(command);
-            var categorySlug = _productRepository.GetCategorySlugByProductId(productId);
+            long productId = await _productRepository.Create(command, cancellationToken);
+            var categorySlug = await _productRepository.GetCategorySlugByProductId(productId, cancellationToken);
 
             #region Save First picture
 
@@ -53,16 +52,16 @@ namespace SM.Domain.Services.ProductAgg
                 ProductId = productId
             };
 
-            _productPictureRepository.Create(productPictureDTO);
+          await  _productPictureRepository.Create(productPictureDTO, cancellationToken);
             _productPictureRepository.Save();
 
             return operation.Succedded();
         }
 
-        public OperationResult Edit(EditProductDTO command)
+        public async Task<OperationResult> Edit(EditProductDTO command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
-            var product = _productRepository.GetBy(command.Id);
+            var product = await _productRepository.GetBy(command.Id, cancellationToken);
             if (product == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
@@ -70,51 +69,51 @@ namespace SM.Domain.Services.ProductAgg
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             var slug = command.Slug.Slugify();
-            _productRepository.Edit(command);
+           await _productRepository.Edit(command, cancellationToken);
             _productRepository.Save();
 
             return operation.Succedded();
         }
 
-        public ProductDetailDTO GetDetails(long id)
+        public async Task<ProductDetailDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
-            return _productRepository.GetDetail(id);
+            return await _productRepository.GetDetail(id, cancellationToken);
         }
 
-        public List<ProductDTO> GetProducts()
+        public async Task<List<ProductDTO>> GetProducts(CancellationToken cancellationToken)
         {
-            return _productRepository.GetAll();
+            return await _productRepository.GetAll(cancellationToken);
         }
 
-        public OperationResult IsInStock(long id)
+        public async Task<OperationResult> IsInStock(long id, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
-            var product = _productRepository.GetBy(id);
+            var product = await _productRepository.GetBy(id, cancellationToken);
+
+            if (product == null)
+                return  operation.Failed(ApplicationMessages.RecordNotFound);
+
+           await _productRepository.IsInStock(id, cancellationToken);
+            _productRepository.Save();
+            return operation.Succedded();
+        }
+
+        public async Task<OperationResult> NotInStock(long id, CancellationToken cancellationToken)
+        {
+            var operation = new OperationResult();
+            var product = await _productRepository.GetBy(id, cancellationToken);
 
             if (product == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
-            _productRepository.IsInStock(id);
+            await _productRepository.NotInStock(id, cancellationToken);
             _productRepository.Save();
             return operation.Succedded();
         }
 
-        public OperationResult NotInStock(long id)
+        public async Task<List<ProductDTO>> Search(SearchProductDTO searchModel, CancellationToken cancellationToken)
         {
-            var operation = new OperationResult();
-            var product = _productRepository.GetBy(id);
-
-            if (product == null)
-                return operation.Failed(ApplicationMessages.RecordNotFound);
-
-            _productRepository.NotInStock(id);
-            _productRepository.Save();
-            return operation.Succedded();
-        }
-
-        public List<ProductDTO> Search(SearchProductDTO searchModel)
-        {
-            return _productRepository.Search(searchModel);
+            return await _productRepository.Search(searchModel, cancellationToken);
         }
     }
 }

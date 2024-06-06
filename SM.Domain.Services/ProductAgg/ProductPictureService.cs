@@ -16,7 +16,7 @@ namespace SM.Domain.Services.ProductAgg
             _productRepository = productRepository;
         }
 
-        public OperationResult Create(CreateProductPictureViewModel command)
+        public async Task<OperationResult> Create(CreateProductPictureViewModel command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
 
@@ -25,8 +25,9 @@ namespace SM.Domain.Services.ProductAgg
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             }
 
-            long categoryId = _productRepository.GetBy(command.ProductId).CategoryId;
-            var categorySlug = _productRepository.GetCategorySlugByProductId(command.ProductId);
+            var category = await _productRepository.GetBy(command.ProductId, cancellationToken);
+            long categoryId = category.CategoryId;
+            var categorySlug = await _productRepository.GetCategorySlugByProductId(command.ProductId, cancellationToken);
 
             #region Save picture
 
@@ -44,16 +45,16 @@ namespace SM.Domain.Services.ProductAgg
                 PictureTitle = command.PictureTitle
             };
 
-            _productPictureRepository.Create(picture);
+            await _productPictureRepository.Create(picture, cancellationToken);
             _productPictureRepository.Save();
 
             return operation.Succedded();
         }
 
-        public OperationResult Edit(EditProductPictureViewModel command)
+        public async Task<OperationResult> Edit(EditProductPictureViewModel command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
-            var picture = _productPictureRepository.GetBy(command.Id);
+            var picture = await _productPictureRepository.GetBy(command.Id, cancellationToken);
 
             if (picture == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
@@ -90,47 +91,47 @@ namespace SM.Domain.Services.ProductAgg
                 ProductId = command.ProductId
             };
 
-            _productPictureRepository.Edit(pictureDTO);
+            await _productPictureRepository.Edit(pictureDTO, cancellationToken);
             _productPictureRepository.Save();
 
             return operation.Succedded();
         }
 
-        public DetailProductPictureDTO GetDetails(long id)
+        public async Task<DetailProductPictureDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
-            return _productPictureRepository.GetDetails(id);
+            return await _productPictureRepository.GetDetails(id, cancellationToken);
         }
 
-        public OperationResult Remove(long id)
+        public async Task<OperationResult> Remove(long id, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
-            var picture = _productPictureRepository.GetBy(id);
+            var picture = await _productPictureRepository.GetBy(id, cancellationToken);
 
             if (picture == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
-            _productPictureRepository.Remove(id);
+            await _productPictureRepository.Remove(id,cancellationToken);
             _productPictureRepository.Save();
             return operation.Succedded();
         }
 
-        public OperationResult Restore(long id)
+        public async Task<OperationResult> Restore(long id, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
-            var picture = _productPictureRepository.GetBy(id);
+            var picture = await _productPictureRepository.GetBy(id, cancellationToken);
 
             if (picture == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
-            _productPictureRepository.Restore(id);
+            await _productPictureRepository.Restore(id, cancellationToken);
             _productPictureRepository.Save();
             return operation.Succedded();
         }
 
 
-        public List<ProductPictureDTO> Search(SearchProductPictureDTO searchModel)
+        public async Task<List<ProductPictureDTO>> Search(SearchProductPictureDTO searchModel, CancellationToken cancellationToken)
         {
-            return _productPictureRepository.Search(searchModel);
+            return await _productPictureRepository.Search(searchModel, cancellationToken);
         }
     }
 

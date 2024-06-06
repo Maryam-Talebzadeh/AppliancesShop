@@ -12,9 +12,9 @@ namespace ServiceHost.RazorPages.ViewComponents
                 _productQuery = productQuery;
             }
 
-            public IViewComponentResult Invoke()
+            public async Task<IViewComponentResult> InvokeAsync(CancellationToken cancellationToken)
             {
-                var products = _productQuery.GetLatestArrivals();
+                var products =await _productQuery.GetLatestArrivals(cancellationToken);
                 return View(products);
             }
         }

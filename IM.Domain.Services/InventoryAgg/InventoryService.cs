@@ -1,8 +1,8 @@
 ﻿using Base_Framework.Domain.Services;
 using IM.Domain.Core.InventoryAgg.Data;
 using IM.Domain.Core.InventoryAgg.DTOs;
-using IM.Domain.Core.InventoryAgg.Entities;
 using IM.Domain.Core.InventoryAgg.Services;
+using System.Threading;
 
 namespace IM.Domain.Services.InventoryAgg
 {
@@ -15,20 +15,20 @@ namespace IM.Domain.Services.InventoryAgg
             _inventoryRepository = inventoryRepository;
         }
 
-        public OperationResult Create(CreateInventoryDTO command)
+        public async Task<OperationResult> Create(CreateInventoryDTO command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
 
             if (_inventoryRepository.IsExist(x => x.ProductId == command.ProductId))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
-            _inventoryRepository.Create(command);
-            _inventoryRepository.Save();
+           await _inventoryRepository.Create(command, cancellationToken);
+           _inventoryRepository.Save();
 
             return operation.Succedded();
         }
 
-        public OperationResult Edit(EditInventoryDTO command)
+        public async Task<OperationResult> Edit(EditInventoryDTO command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
             var inventory = _inventoryRepository.IsExist(x => x.Id == command.Id);
@@ -39,23 +39,23 @@ namespace IM.Domain.Services.InventoryAgg
             if (_inventoryRepository.IsExist(x => x.ProductId == command.ProductId && x.Id != command.Id))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
-            _inventoryRepository.Edit(command);
+            await _inventoryRepository.Edit(command, cancellationToken);
             _inventoryRepository.Save();
 
             return operation.Succedded();
         }
 
-        public EditInventoryDTO GetDetails(long id)
+        public async Task<EditInventoryDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
-            return _inventoryRepository.GetDetails(id);
+            return await _inventoryRepository.GetDetails(id, cancellationToken);
         }
 
-        public List<InventoryOperationDTO> GetOperationLog(long inventoryId)
+        public async Task<List<InventoryOperationDTO>> GetOperationLog(long inventoryId, CancellationToken cancellationToken)
         {
-            return _inventoryRepository.GetOperationLog(inventoryId);
+            return await _inventoryRepository.GetOperationLog(inventoryId, cancellationToken);
         }
 
-        public OperationResult Increase(IncreaseInventoryDTO command)
+        public async Task<OperationResult> Increase(IncreaseInventoryDTO command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
             var inventory = _inventoryRepository.IsExist(x => x.Id == command.InventoryId);
@@ -63,14 +63,14 @@ namespace IM.Domain.Services.InventoryAgg
             if (inventory == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
-            _inventoryRepository.Increase(command);
+            await _inventoryRepository.Increase(command, cancellationToken);
             _inventoryRepository.Save();
 
             return operation.Succedded();
         }
     
 
-        public OperationResult Reduce(ReduceInventoryDTO command)
+        public async Task<OperationResult> Reduce(ReduceInventoryDTO command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
             var inventory = _inventoryRepository.IsExist(x => x.Id == command.InventoryId);
@@ -79,28 +79,28 @@ namespace IM.Domain.Services.InventoryAgg
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
             command.OrderId = 0;  //Because this operation is performed by storekeeper and not by the customer
-            _inventoryRepository.Reduce(command);
+            await _inventoryRepository.Reduce(command, cancellationToken);
             _inventoryRepository.Save();
 
             return operation.Succedded();
         }
 
-        public OperationResult Reduce(List<ReduceInventoryDTO> command)
+        public async Task<OperationResult> Reduce(List<ReduceInventoryDTO> command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
 
             foreach (var item in command)
             {
-                _inventoryRepository.Reduce(item);
+                await _inventoryRepository.Reduce(item, cancellationToken);
             }
 
             _inventoryRepository.Save();
             return operation.Succedded();
         }
 
-        public List<InventoryDTO> Search(SearchInventoryDTO searchModel)
+        public async Task<List<InventoryDTO>> Search(SearchInventoryDTO searchModel, CancellationToken cancellationToken)
         {
-            return _inventoryRepository.Search(searchModel);
+            return await _inventoryRepository.Search(searchModel, cancellationToken);
         }
     }
     }

@@ -1,4 +1,5 @@
-﻿using IM.Domain.Core.InventoryAgg.AppServices;
+﻿using Base_Framework.Domain.Services;
+using IM.Domain.Core.InventoryAgg.AppServices;
 using IM.Domain.Core.InventoryAgg.DTOs;
 using IM.Domain.Core.InventoryAgg.Services;
 
@@ -13,44 +14,44 @@ namespace IM.Domain.AppServices.InventoryAgg
             _inventoryService = inventoryService;
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Create(CreateInventoryDTO command)
+        public async Task<OperationResult> Create(CreateInventoryDTO command, CancellationToken cancellationToken)
         {
-            return _inventoryService.Create(command);
+            return await _inventoryService.Create(command, cancellationToken);
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Edit(EditInventoryDTO command)
+        public async Task<OperationResult> Edit(EditInventoryDTO command, CancellationToken cancellationToken)
         {
-            return _inventoryService.Edit(command);
+            return await _inventoryService.Edit(command, cancellationToken);
         }
 
-        public EditInventoryDTO GetDetails(long id)
+        public async Task<EditInventoryDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
-            return _inventoryService.GetDetails(id);
+            return await _inventoryService.GetDetails(id, cancellationToken);
         }
 
-        public List<InventoryOperationDTO> GetOperationLog(long inventoryId)
+        public async Task<List<InventoryOperationDTO>> GetOperationLog(long inventoryId, CancellationToken cancellationToken)
         {
-            return _inventoryService.GetOperationLog(inventoryId);
+            return await _inventoryService.GetOperationLog(inventoryId, cancellationToken);
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Increase(IncreaseInventoryDTO command)
+        public async Task<OperationResult> Increase(IncreaseInventoryDTO command, CancellationToken cancellationToken)
         {
-            return _inventoryService.Increase(command);
+            return await _inventoryService.Increase(command, cancellationToken);
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Reduce(ReduceInventoryDTO command)
+        public async Task<OperationResult>  Reduce(ReduceInventoryDTO command, CancellationToken cancellationToken)
         {
-            return _inventoryService.Reduce(command);
+            return await _inventoryService.Reduce(command, cancellationToken);
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Reduce(List<ReduceInventoryDTO> command)
+        public async Task<OperationResult> Reduce(List<ReduceInventoryDTO> command, CancellationToken cancellationToken)
         {
-            return _inventoryService.Reduce(command);
+            return await _inventoryService.Reduce(command, cancellationToken);
         }
 
-        public List<InventoryDTO> Search(SearchInventoryDTO searchModel)
+        public async Task<List<InventoryDTO>> Search(SearchInventoryDTO searchModel, CancellationToken cancellationToken)
         {
-            return _inventoryService.Search(searchModel);
+            return await _inventoryService.Search(searchModel, cancellationToken);
         }
     }
 }

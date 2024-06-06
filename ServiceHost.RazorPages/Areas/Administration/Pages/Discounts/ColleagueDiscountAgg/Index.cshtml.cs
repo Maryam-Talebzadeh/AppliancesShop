@@ -24,49 +24,49 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Discounts.ColleagueD
             _colleagueDiscountAppService = colleagueDiscountAppService;
         }
 
-        public void OnGet(SearchColleagueDiscountDTO searchModel)
+        public async Task OnGet(SearchColleagueDiscountDTO searchModel, CancellationToken cancellationToken)
         {
-            Products = new SelectList(_productAppService.GetProducts(), "Id", "Name");
-            ColleagueDiscounts = _colleagueDiscountAppService.Search(searchModel);
+            Products = new SelectList(await _productAppService.GetProducts(cancellationToken), "Id", "Name");
+            ColleagueDiscounts = await _colleagueDiscountAppService.Search(searchModel, cancellationToken);
         }
 
-        public IActionResult OnGetCreate()
+        public async Task<IActionResult> OnGetCreate( CancellationToken cancellationToken)
         {
             var command = new DefineColleagueDiscountDTO
             {
-                Products = _productAppService.GetProducts()
+                Products = await _productAppService.GetProducts( cancellationToken)
             };
             return Partial("./Create", command);
         }
 
-        public JsonResult OnPostCreate(DefineColleagueDiscountDTO command)
+        public async Task<JsonResult> OnPostCreate(DefineColleagueDiscountDTO command, CancellationToken cancellationToken)
         {
-            var result = _colleagueDiscountAppService.Define(command);
+            var result = await _colleagueDiscountAppService.Define(command, cancellationToken);
             return new JsonResult(result);
         }
 
-        public IActionResult OnGetEdit(long id)
+        public async Task<IActionResult> OnGetEdit(long id, CancellationToken cancellationToken)
         {
-            var colleagueDiscount = _colleagueDiscountAppService.GetDetails(id);
-            colleagueDiscount.Products = _productAppService.GetProducts();
+            var colleagueDiscount = await _colleagueDiscountAppService.GetDetails(id, cancellationToken);
+            colleagueDiscount.Products = await _productAppService.GetProducts( cancellationToken);
             return Partial("Edit", colleagueDiscount);
         }
 
-        public JsonResult OnPostEdit(EditColleagueDiscountDTO command)
+        public async Task<JsonResult> OnPostEdit(EditColleagueDiscountDTO command, CancellationToken cancellationToken)
         {
-            var result = _colleagueDiscountAppService.Edit(command);
+            var result = await _colleagueDiscountAppService.Edit(command, cancellationToken);
             return new JsonResult(result);
         }
 
-        public IActionResult OnGetRemove(long id)
+        public async Task<IActionResult> OnGetRemove(long id, CancellationToken cancellationToken)
         {
-            _colleagueDiscountAppService.Remove(id);
+            await _colleagueDiscountAppService.Remove(id, cancellationToken);
             return RedirectToPage("./Index");
         }
 
-        public IActionResult OnGetRestore(long id)
+        public async Task<IActionResult> OnGetRestore(long id, CancellationToken cancellationToken)
         {
-            _colleagueDiscountAppService.Restore(id);
+            await _colleagueDiscountAppService.Restore(id, cancellationToken);
             return RedirectToPage("./Index");
         }
 

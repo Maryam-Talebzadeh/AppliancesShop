@@ -6,9 +6,9 @@ namespace SiteQuery_Ado.Contracts
 {
     public interface IProductCategoryQuery
     {
-        ProductCategoryQueryModel GetProductCategoryWithProducstsBy(string slug);
-        ProductCategoryQueryModel GetProductCategoryBy(string slug);
-        List<ProductCategoryQueryModel> GetProductCategories();
-        List<ProductCategoryQueryModel> GetProductCategoriesWithProducts();
+        Task<ProductCategoryQueryModel> GetProductCategoryWithProducstsBy(string slug, CancellationToken cancellationToken);
+        Task<ProductCategoryQueryModel> GetProductCategoryBy(string slug, CancellationToken cancellationToken);
+        Task<List<ProductCategoryQueryModel>> GetProductCategories(CancellationToken cancellationToken);
+        Task<List<ProductCategoryQueryModel>> GetProductCategoriesWithProducts(CancellationToken cancellationToken);
     }
 }

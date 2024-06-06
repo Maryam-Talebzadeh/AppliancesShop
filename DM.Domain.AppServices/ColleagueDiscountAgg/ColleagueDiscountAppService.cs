@@ -3,6 +3,7 @@ using DM.Domain.Core.ColleagueDiscountAgg.AppServices;
 using DM.Domain.Core.ColleagueDiscountAgg.DTOs;
 using DM.Domain.Core.ColleagueDiscountAgg.Services;
 using DM.Domain.Services.ColleagueDiscountAgg;
+using System.Threading;
 
 namespace DM.Domain.AppServices.ColleagueDiscountAgg
 {
@@ -15,34 +16,34 @@ namespace DM.Domain.AppServices.ColleagueDiscountAgg
             _colleagueDiscountService = colleagueDiscountService;
         }
 
-        public OperationResult Define(DefineColleagueDiscountDTO command)
+        public async Task<OperationResult> Define(DefineColleagueDiscountDTO command, CancellationToken cancellationToken)
         {
-           return _colleagueDiscountService.Define(command);
+           return await _colleagueDiscountService.Define(command, cancellationToken);
         }
 
-        public OperationResult Edit(EditColleagueDiscountDTO command)
+        public async Task<OperationResult> Edit(EditColleagueDiscountDTO command, CancellationToken cancellationToken)
         {
-            return _colleagueDiscountService.Edit(command);
+            return await _colleagueDiscountService.Edit(command, cancellationToken);
         }
 
-        public EditColleagueDiscountDTO GetDetails(long id)
+        public async Task<EditColleagueDiscountDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
-            return _colleagueDiscountService.GetDetails(id);
+            return await _colleagueDiscountService.GetDetails(id, cancellationToken);
         }
 
-        public OperationResult Remove(long id)
+        public async Task<OperationResult> Remove(long id, CancellationToken cancellationToken)
         {
-            return _colleagueDiscountService.Remove(id);
+            return await _colleagueDiscountService.Remove(id, cancellationToken);
         }
 
-        public OperationResult Restore(long id)
+        public async Task<OperationResult> Restore(long id, CancellationToken cancellationToken)
         {
-            return _colleagueDiscountService.Restore(id);
+            return await _colleagueDiscountService.Restore(id, cancellationToken);
         }
 
-        public List<ColleagueDiscountDTO> Search(SearchColleagueDiscountDTO searchModel)
+        public async Task<List<ColleagueDiscountDTO>> Search(SearchColleagueDiscountDTO searchModel, CancellationToken cancellationToken)
         {
-            return _colleagueDiscountService.Search(searchModel);
+            return await _colleagueDiscountService.Search(searchModel, cancellationToken);
         }
     }
 }

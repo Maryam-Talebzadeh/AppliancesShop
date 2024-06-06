@@ -6,14 +6,14 @@ namespace SM.Domain.Core.ProductAgg.Data
 {
     public interface IProductRepository : IRepository<Product>
     {
-        long Create(CreateProductDTO productCategory);
-        ProductDTO GetBy(long id);
-        void Edit(EditProductDTO edit);
-        ProductDetailDTO GetDetail(long id);
-        List<ProductDTO> Search(SearchProductDTO searchModel);
-        List<ProductDTO> GetAll();
-        void NotInStock(long id);
-        void IsInStock(long id);
-        string GetCategorySlugByProductId(long id);
+        Task<long> Create(CreateProductDTO productCategory, CancellationToken cancellationToken);
+        Task<ProductDTO> GetBy(long id, CancellationToken cancellationToken);
+        Task Edit(EditProductDTO edit, CancellationToken cancellationToken);
+        Task<ProductDetailDTO> GetDetail(long id, CancellationToken cancellationToken);
+        Task<List<ProductDTO>> Search(SearchProductDTO searchModel, CancellationToken cancellationToken);
+        Task<List<ProductDTO>> GetAll( CancellationToken cancellationToken);
+        Task NotInStock(long id, CancellationToken cancellationToken);
+        Task IsInStock(long id, CancellationToken cancellationToken);
+        Task<string> GetCategorySlugByProductId(long id, CancellationToken cancellationToken);
     }
 }

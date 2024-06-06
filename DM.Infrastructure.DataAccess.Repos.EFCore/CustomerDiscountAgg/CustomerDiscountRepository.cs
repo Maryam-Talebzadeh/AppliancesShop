@@ -19,20 +19,20 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.CustomerDiscountAgg
             _shopContext = shopContext;
         }
 
-        public void Create(DefineCustomerDiscountDTO command)
+        public async Task Create(DefineCustomerDiscountDTO command, CancellationToken cancellationToken)
         {
             var customerDiscount = new CustomerDiscount(command.ProductId, command.DiscountRate, command.StartDate.ToGregorianDateTime(), command.EndDate.ToGregorianDateTime(), command.Reason);
             _context.CustomerDiscounts.Add(customerDiscount);
 
         }
 
-        public void Edit(EditCustomerDiscountDTO command)
+        public async Task Edit(EditCustomerDiscountDTO command, CancellationToken cancellationToken)
         {
             var customerDiscount = Get(command.Id);
             customerDiscount.Edit(command.ProductId, command.DiscountRate, command.StartDate.ToGregorianDateTime(), command.EndDate.ToGregorianDateTime(), command.Reason);
         }
 
-        public EditCustomerDiscountDTO GetDetails(long id)
+        public async Task<EditCustomerDiscountDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
             return _context.CustomerDiscounts.Select(cd =>
             new EditCustomerDiscountDTO()
@@ -47,7 +47,7 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.CustomerDiscountAgg
             }).SingleOrDefault(cd => cd.Id == id);
         }
 
-        public List<CustomerDiscountDTO> Search(SearchCustomerDiscountDTO searchModel)
+        public async Task<List<CustomerDiscountDTO>> Search(SearchCustomerDiscountDTO searchModel, CancellationToken cancellationToken)
         {
             var products = _shopContext.Products.Select(p => new { p.Id, p.Name }).ToList();
 

@@ -5,13 +5,13 @@ namespace IM.Domain.Core.InventoryAgg.AppServices
 {
     public interface IInventoryAppService
     {
-        OperationResult Create(CreateInventoryDTO command);
-        OperationResult Edit(EditInventoryDTO command);
-        OperationResult Increase(IncreaseInventoryDTO command);
-        OperationResult Reduce(ReduceInventoryDTO command);
-        OperationResult Reduce(List<ReduceInventoryDTO> command);
-        EditInventoryDTO GetDetails(long id);
-        List<InventoryDTO> Search(SearchInventoryDTO searchModel);
-        List<InventoryOperationDTO> GetOperationLog(long inventoryId);
+        Task<OperationResult> Create(CreateInventoryDTO command, CancellationToken cancellationToken);
+        Task<OperationResult> Edit(EditInventoryDTO command, CancellationToken cancellationToken);
+        Task<OperationResult> Increase(IncreaseInventoryDTO command, CancellationToken cancellationToken);
+        Task<OperationResult> Reduce(ReduceInventoryDTO command, CancellationToken cancellationToken);
+        Task<OperationResult> Reduce(List<ReduceInventoryDTO> command, CancellationToken cancellationToken);
+        Task<EditInventoryDTO> GetDetails(long id, CancellationToken cancellationToken);
+        Task<List<InventoryDTO>> Search(SearchInventoryDTO searchModel, CancellationToken cancellationToken);
+        Task<List<InventoryOperationDTO>> GetOperationLog(long inventoryId, CancellationToken cancellationToken);
     }
 }

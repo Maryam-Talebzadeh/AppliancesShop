@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SM.Domain.Core.ProductAgg.AppSevices;
+using System.Threading;
 
 namespace ServiceHost.RazorPages.Areas.Administration.Pages.Discounts.CustomerDiscountAgg
 {
@@ -25,37 +26,37 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Discounts.CustomerDi
             _customerDiscountAppService = customerDiscountApplication;
         }
 
-        public void OnGet(SearchCustomerDiscountDTO searchModel)
+        public async Task OnGet(SearchCustomerDiscountDTO searchModel, CancellationToken cancellationToken)
         {
-            Products = new SelectList(_productAppService.GetProducts(), "Id", "Name");
-            CustomerDiscounts = _customerDiscountAppService.Search(searchModel);
+            Products = new SelectList(await _productAppService.GetProducts( cancellationToken), "Id", "Name");
+            CustomerDiscounts = await _customerDiscountAppService.Search(searchModel, cancellationToken);
         }
 
-        public IActionResult OnGetCreate()
+        public async Task<IActionResult> OnGetCreate(CancellationToken cancellationToken)
         {
             var command = new DefineCustomerDiscountDTO
             {
-                Products = _productAppService.GetProducts()
+                Products = await _productAppService.GetProducts( cancellationToken)
             };
             return Partial("./Create", command);
         }
 
-        public JsonResult OnPostCreate(DefineCustomerDiscountDTO command)
+        public async Task<JsonResult> OnPostCreate(DefineCustomerDiscountDTO command, CancellationToken cancellationToken)
         {
-            var result = _customerDiscountAppService.Define(command);
+            var result = await _customerDiscountAppService.Define(command, cancellationToken);
             return new JsonResult(result);
         }
 
-        public IActionResult OnGetEdit(long id)
+        public async Task<IActionResult> OnGetEdit(long id, CancellationToken cancellationToken)
         {
-            var customerDiscount = _customerDiscountAppService.GetDetails(id);
-            customerDiscount.Products = _productAppService.GetProducts();
+            var customerDiscount = await _customerDiscountAppService.GetDetails(id, cancellationToken);
+            customerDiscount.Products = await  _productAppService.GetProducts(cancellationToken);
             return Partial("Edit", customerDiscount);
         }
 
-        public JsonResult OnPostEdit(EditCustomerDiscountDTO command)
+        public async Task<JsonResult> OnPostEdit(EditCustomerDiscountDTO command, CancellationToken cancellationToken)
         {
-            var result = _customerDiscountAppService.Edit(command);
+            var result = _customerDiscountAppService.Edit(command, cancellationToken);
             return new JsonResult(result);
         }
     }

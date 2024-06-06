@@ -15,7 +15,7 @@ namespace SiteQuery_Ado.Queries
             _connectionString = connectionString;
         }
 
-        public List<ProductCategoryQueryModel> GetProductCategories()
+        public async Task<List<ProductCategoryQueryModel>> GetProductCategories(CancellationToken cancellationToken)
         {
             List<ProductCategoryQueryModel> productCategories = new List<ProductCategoryQueryModel>();
 
@@ -56,9 +56,9 @@ namespace SiteQuery_Ado.Queries
             return productCategories;
         }
 
-        public List<ProductCategoryQueryModel> GetProductCategoriesWithProducts()
+        public async Task<List<ProductCategoryQueryModel>> GetProductCategoriesWithProducts(CancellationToken cancellationToken)
         {
-            var productCategories = GetProductCategories();
+            var productCategories = await GetProductCategories(cancellationToken);
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -96,10 +96,7 @@ namespace SiteQuery_Ado.Queries
                                     Category = reader.GetString(reader.GetOrdinal("p.CategoryName")),
                                     Id = reader.GetInt64(reader.GetOrdinal("p.Id")),
                                     Name = reader.GetString(reader.GetOrdinal("p.Name")),
-                                    Picture = reader.GetString(reader.GetOrdinal("p.Picture")),
-                                    PictureAlt = reader.GetString(reader.GetOrdinal("p.PictureAlt")),
-                                    PictureTitle = reader.GetString(reader.GetOrdinal("p.PictureTitle")),
-
+                                    Slug = reader.GetString(reader.GetOrdinal("p.Slug"))
                                 };
 
                                 if (!Convert.IsDBNull(reader["p.Price"]))
@@ -117,6 +114,12 @@ namespace SiteQuery_Ado.Queries
                                     }
                                 }
 
+                                var firstPicture = await GetFirstPictureByProductId(product.Id, cancellationToken);
+
+                                product.Picture = firstPicture.Picture;
+                                product.PictureAlt = firstPicture.PictureAlt;
+                                product.PictureTitle = firstPicture.PictureTitle;
+
                                 categoryProducts.Add(product);
                             }
                         }
@@ -129,7 +132,7 @@ namespace SiteQuery_Ado.Queries
             return productCategories;
         }
 
-        public ProductCategoryQueryModel GetProductCategoryBy(string slug)
+        public async Task<ProductCategoryQueryModel> GetProductCategoryBy(string slug, CancellationToken cancellationToken)
         {
             var category = new ProductCategoryQueryModel();
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -152,7 +155,7 @@ namespace SiteQuery_Ado.Queries
                     command.Parameters["@CategorySlug"].Value = slug;
 
                     using (SqlDataReader reader = command.ExecuteReader())
-                    { 
+                    {
                         while (reader.Read())
                         {
 
@@ -169,9 +172,9 @@ namespace SiteQuery_Ado.Queries
             return category;
         }
 
-        public ProductCategoryQueryModel GetProductCategoryWithProducstsBy(string slug)
+        public async Task<ProductCategoryQueryModel> GetProductCategoryWithProducstsBy(string slug, CancellationToken cancellationToken)
         {
-            var category = GetProductCategoryBy(slug);
+            var category = await GetProductCategoryBy(slug, cancellationToken);
             var categoryProducts = new List<ProductQueryModel>();
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -206,11 +209,15 @@ namespace SiteQuery_Ado.Queries
                                 Category = reader.GetString(reader.GetOrdinal("p.CategoryName")),
                                 Id = reader.GetInt64(reader.GetOrdinal("p.Id")),
                                 Name = reader.GetString(reader.GetOrdinal("p.Name")),
-                                Picture = reader.GetString(reader.GetOrdinal("p.Picture")),
-                                PictureAlt = reader.GetString(reader.GetOrdinal("p.PictureAlt")),
-                                PictureTitle = reader.GetString(reader.GetOrdinal("p.PictureTitle")),
-                         
+                                Slug = reader.GetString(reader.GetOrdinal("p.Slug"))
                             };
+
+
+                            var firstPicture = await GetFirstPictureByProductId(product.Id, cancellationToken);
+
+                            product.Picture = firstPicture.Picture;
+                            product.PictureAlt = firstPicture.PictureAlt;
+                            product.PictureTitle = firstPicture.PictureTitle;
 
                             if (!Convert.IsDBNull(reader["p.Price"]))
                             {
@@ -239,6 +246,43 @@ namespace SiteQuery_Ado.Queries
 
             return category;
         }
+
+
+        public async Task<ProductPictureQueryModel> GetFirstPictureByProductId(long id, CancellationToken cancellationToken)
+        {
+            var picture = new ProductPictureQueryModel();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("GetFirstPictureByProductId", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@productId", SqlDbType.NVarChar));
+                    command.Parameters["@productId"].Value = id;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+
+
+                            picture.Picture = reader.GetString(reader.GetOrdinal("p.Picture"));
+                            picture.PictureAlt = reader.GetString(reader.GetOrdinal("p.PictureAlt"));
+                            picture.PictureTitle = reader.GetString(reader.GetOrdinal("p.PictureTitle"));
+                            picture.ProductId = reader.GetInt64(reader.GetOrdinal("p.Id"));
+
+
+                        }
+                    }
+                }
+            }
+
+            return picture;
+        }
     }
+
+
 
 }

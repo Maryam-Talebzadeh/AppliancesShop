@@ -11,7 +11,7 @@ namespace ServiceHost.RazorPages.ViewComponents
             _productCategoryQuery = productCategoryQuery;
         }
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
           
             return View();

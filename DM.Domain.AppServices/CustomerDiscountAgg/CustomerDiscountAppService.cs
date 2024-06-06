@@ -2,6 +2,7 @@
 using DM.Domain.Core.CustomerDiscountAgg.AppSevices;
 using DM.Domain.Core.CustomerDiscountAgg.DTOs;
 using DM.Domain.Core.CustomerDiscountAgg.Sevices;
+using System.Threading;
 
 namespace DM.Domain.AppServices.CustomerDiscountAgg
 {
@@ -15,24 +16,24 @@ namespace DM.Domain.AppServices.CustomerDiscountAgg
             _customerDiscountService = customerDiscountService;
         }
 
-        public OperationResult Define(DefineCustomerDiscountDTO command)
+        public async Task<OperationResult> Define(DefineCustomerDiscountDTO command, CancellationToken cancellationToken)
         {
-            return _customerDiscountService.Define(command);
+            return await _customerDiscountService.Define(command, cancellationToken);
         }
 
-        public OperationResult Edit(EditCustomerDiscountDTO command)
+        public async Task<OperationResult> Edit(EditCustomerDiscountDTO command, CancellationToken cancellationToken)
         {
-            return _customerDiscountService.Edit(command);
+            return await _customerDiscountService.Edit(command, cancellationToken);
         }
 
-        public EditCustomerDiscountDTO GetDetails(long id)
+        public async Task<EditCustomerDiscountDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
-            return _customerDiscountService.GetDetails(id);
+            return await _customerDiscountService.GetDetails(id, cancellationToken);
         }
 
-        public List<CustomerDiscountDTO> Search(SearchCustomerDiscountDTO searchModel)
+        public async Task<List<CustomerDiscountDTO>> Search(SearchCustomerDiscountDTO searchModel, CancellationToken cancellationToken)
         {
-            return _customerDiscountService.Search(searchModel);
+            return await _customerDiscountService.Search(searchModel, cancellationToken);
         }
     }
 }

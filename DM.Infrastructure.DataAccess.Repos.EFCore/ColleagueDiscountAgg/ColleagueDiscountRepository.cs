@@ -3,15 +3,7 @@ using Base_Framework.Infrastructure.DataAccess;
 using DM.Domain.Core.ColleagueDiscountAgg.Data;
 using DM.Domain.Core.ColleagueDiscountAgg.DTOs;
 using DM.Domain.Core.ColleagueDiscountAgg.Entities;
-using DM.Domain.Core.ColleagueDiscountAgg.DTOs;
 using DM.Infrastructure.DB.SqlServer.EFCore.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DM.Domain.Core.CustomerDiscountAgg.DTOs;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 
 namespace DM.Infrastructure.DataAccess.Repos.EFCore.ColleagueDiscountAgg
@@ -27,19 +19,19 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.ColleagueDiscountAgg
             _shopContext = shopContext;
         }
 
-        public void Create(DefineColleagueDiscountDTO command)
+        public async Task Create(DefineColleagueDiscountDTO command, CancellationToken cancellationToken)
         {
             var colleagueDiscount = new ColleagueDiscount(command.ProductId, command.DiscountRate);
             _context.ColleagueDiscounts.Add(colleagueDiscount);
         }
 
-        public void Edit(EditColleagueDiscountDTO command)
+        public async Task Edit(EditColleagueDiscountDTO command, CancellationToken cancellationToken)
         {
             var colleagueDiscount = Get(command.Id);
             colleagueDiscount.Edit(command.ProductId, command.DiscountRate);
         }
 
-        public EditColleagueDiscountDTO GetDetails(long id)
+        public async Task<EditColleagueDiscountDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
             return _context.ColleagueDiscounts.Select(cd =>
             new EditColleagueDiscountDTO()
@@ -50,19 +42,19 @@ namespace DM.Infrastructure.DataAccess.Repos.EFCore.ColleagueDiscountAgg
             }).SingleOrDefault(cd => cd.Id == id);
         }
 
-        public void Remove(long id)
+        public async Task Remove(long id, CancellationToken cancellationToken)
         {
             var colleagueDiscount = Get(id);
             colleagueDiscount.Remove();
         }
 
-        public void Restore(long id)
+        public async Task Restore(long id, CancellationToken cancellationToken)
         {
             var colleagueDiscount = Get(id);
             colleagueDiscount.ReStore();
         }
 
-        public List<ColleagueDiscountDTO> Search(SearchColleagueDiscountDTO searchModel)
+        public async Task<List<ColleagueDiscountDTO>> Search(SearchColleagueDiscountDTO searchModel, CancellationToken cancellationToken)
         {
             var products = _shopContext.Products.Select(p => new { Id = p.Id, Name = p.Name });
             var query = _context.ColleagueDiscounts.Select(cd =>

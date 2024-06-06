@@ -4,6 +4,7 @@ using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 using SM.Domain.Core.ProductAgg.Entities;
 using Microsoft.EntityFrameworkCore;
 using SM.Domain.Core.ProductAgg.DTOs.Product;
+using System.Threading;
 
 namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
 {
@@ -16,7 +17,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             _context = context;
         }
 
-        public long Create(CreateProductDTO product)
+        public async Task<long> Create(CreateProductDTO product, CancellationToken cancellationToken)
         {
             var dbProduct = new Product(product.Name, product.Code,
             product.ShortDescription, product.Description, product.CategoryId, product.Slug,
@@ -27,7 +28,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             return dbProduct.Id;
         }
 
-        public void Edit(EditProductDTO edit)
+        public async Task Edit(EditProductDTO edit, CancellationToken cancellationToken)
         {
             var product = Get(edit.Id);
 
@@ -36,7 +37,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                 product.Keywords, product.MetaDescription);
         }
 
-        public List<ProductDTO> GetAll()
+        public async Task<List<ProductDTO>> GetAll(CancellationToken cancellationToken)
         {
             return _context.Products.Select(p =>
             new ProductDTO()
@@ -46,7 +47,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             }).ToList();
         }
 
-        public ProductDTO GetBy(long id)
+        public async Task<ProductDTO> GetBy(long id, CancellationToken cancellationToken)
         {
             return _context.Products.Select(p =>
              new ProductDTO()
@@ -56,12 +57,12 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
              }).SingleOrDefault(p => p.Id == id);
         }
 
-        public string GetCategorySlugByProductId(long id)
+        public async Task<string> GetCategorySlugByProductId(long id, CancellationToken cancellationToken)
         {
             return _context.Products.Include(p => p.Category).Where(p => p.Id == id).Select(p => p.Category.Slug).FirstOrDefault();
         }
 
-        public ProductDetailDTO GetDetail(long id)
+        public async Task<ProductDetailDTO> GetDetail(long id, CancellationToken cancellationToken)
         {
             return _context.Products.Select(x => new ProductDetailDTO
             {
@@ -78,19 +79,20 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
             }).FirstOrDefault(x => x.Id == id);
         }
 
-        public void IsInStock(long id)
+        public async Task IsInStock(long id, CancellationToken cancellationToken)
         {
             var product = Get(id);
             product.IsInStock();
         }
 
-        public void NotInStock(long id)
+        public async Task NotInStock(long id, CancellationToken cancellationToken)
         {
             var product = Get(id);
             product.NotInStock();
         }
 
-        public List<ProductDTO> Search(SearchProductDTO searchModel)
+        public async Task<List<ProductDTO>> Search(SearchProductDTO searchModel, CancellationToken cancellationToken)
+        
         {
             var query = _context.Products
                .Include(x => x.Category)

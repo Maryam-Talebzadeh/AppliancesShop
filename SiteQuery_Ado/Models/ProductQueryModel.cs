@@ -27,5 +27,7 @@ namespace SiteQuery_Ado.Models
         {
             get; set;
         }
+
+        public List<ProductPictureQueryModel> Pictures { get; set; }
     }
 }

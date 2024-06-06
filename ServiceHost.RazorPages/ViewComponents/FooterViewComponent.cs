@@ -4,7 +4,7 @@ namespace ServiceHost.RazorPages.ViewComponents
 {
         public class FooterViewComponent : ViewComponent
         {
-            public IViewComponentResult Invoke()
+            public async Task<IViewComponentResult> InvokeAsync()
             {
                 return View();
             }

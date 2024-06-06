@@ -23,41 +23,41 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Inventory.InventoryA
             _inventoryAppService = inventoryApplication;
         }
 
-        public void OnGet(SearchInventoryDTO searchModel)
+        public async Task OnGet(SearchInventoryDTO searchModel, CancellationToken cancellationToken)
         {
-            Products = new SelectList(_productAppService.GetProducts(), "Id", "Name");
-            Inventory = _inventoryAppService.Search(searchModel);
+            Products = new SelectList(await _productAppService.GetProducts(cancellationToken), "Id", "Name");
+            Inventory = await _inventoryAppService.Search(searchModel, cancellationToken);
         }
 
-        public IActionResult OnGetCreate()
+        public async Task<IActionResult> OnGetCreate(CancellationToken cancellationToken)
         {
             var command = new CreateInventoryDTO
             {
-                Products = _productAppService.GetProducts()
+                Products = await _productAppService.GetProducts(cancellationToken)
             };
             return Partial("./Create", command);
         }
 
-        public JsonResult OnPostCreate(CreateInventoryDTO command)
+        public async Task<JsonResult> OnPostCreate(CreateInventoryDTO command, CancellationToken cancellationToken)
         {
-            var result = _inventoryAppService.Create(command);
+            var result = await _inventoryAppService.Create(command, cancellationToken);
             return new JsonResult(result);
         }
 
-        public IActionResult OnGetEdit(long id)
+        public async Task<IActionResult> OnGetEdit(long id, CancellationToken cancellationToken)
         {
-            var inventory = _inventoryAppService.GetDetails(id);
-            inventory.Products = _productAppService.GetProducts();
+            var inventory = await _inventoryAppService.GetDetails(id, cancellationToken);
+            inventory.Products = await _productAppService.GetProducts(cancellationToken);
             return Partial("Edit", inventory);
         }
 
-        public JsonResult OnPostEdit(EditInventoryDTO command)
+        public async Task<JsonResult> OnPostEdit(EditInventoryDTO command, CancellationToken cancellationToken)
         {
-            var result = _inventoryAppService.Edit(command);
+            var result = await _inventoryAppService.Edit(command, cancellationToken);
             return new JsonResult(result);
         }
 
-        public IActionResult OnGetIncrease(long id)
+        public async Task<IActionResult> OnGetIncrease(long id, CancellationToken cancellationToken)
         {
             var command = new IncreaseInventoryDTO()
             {
@@ -66,13 +66,13 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Inventory.InventoryA
             return Partial("Increase", command);
         }
 
-        public JsonResult OnPostIncrease(IncreaseInventoryDTO command)
+        public async Task<JsonResult> OnPostIncrease(IncreaseInventoryDTO command, CancellationToken cancellationToken)
         {
-            var result = _inventoryAppService.Increase(command);
+            var result = await _inventoryAppService.Increase(command, cancellationToken);
             return new JsonResult(result);
         }
 
-        public IActionResult OnGetReduce(long id)
+        public async Task<IActionResult> OnGetReduce(long id, CancellationToken cancellationToken)
         {
             var command = new ReduceInventoryDTO()
             {
@@ -81,15 +81,15 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Inventory.InventoryA
             return Partial("Reduce", command);
         }
 
-        public JsonResult OnPostReduce(ReduceInventoryDTO command)
+        public async Task<JsonResult> OnPostReduce(ReduceInventoryDTO command, CancellationToken cancellationToken)
         {
-            var result = _inventoryAppService.Reduce(command);
+            var result = await _inventoryAppService.Reduce(command, cancellationToken);
             return new JsonResult(result);
         }
 
-        public IActionResult OnGetLog(long id)
+        public async Task<IActionResult> OnGetLog(long id, CancellationToken cancellationToken)
         {
-            var log = _inventoryAppService.GetOperationLog(id);
+            var log = await _inventoryAppService.GetOperationLog(id, cancellationToken);
             return Partial("OperationLog", log);
         }
     }

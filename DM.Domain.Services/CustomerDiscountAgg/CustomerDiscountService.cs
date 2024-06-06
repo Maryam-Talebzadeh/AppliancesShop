@@ -14,20 +14,20 @@ namespace DM.Domain.Services.CustomerDiscountAgg
             _customerDiscountRepository = customerDiscountRepository;
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Define(DefineCustomerDiscountDTO command)
+        public async Task<OperationResult> Define(DefineCustomerDiscountDTO command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
 
             if (_customerDiscountRepository.IsExist(x => x.ProductId == command.ProductId))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
-            _customerDiscountRepository.Create(command);
+           await _customerDiscountRepository.Create(command, cancellationToken);
             _customerDiscountRepository.Save();
 
             return operation.Succedded();
         }
 
-        public global::Base_Framework.Domain.Services.OperationResult Edit(EditCustomerDiscountDTO command)
+        public async Task<OperationResult> Edit(EditCustomerDiscountDTO command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();
 
@@ -37,7 +37,7 @@ namespace DM.Domain.Services.CustomerDiscountAgg
             if(_customerDiscountRepository.IsExist(cd => cd.ProductId == command.ProductId && cd.DiscountRate == command.DiscountRate && cd.Id != command.Id))
                 operation.Failed(ApplicationMessages.DuplicatedRecord);
 
-            _customerDiscountRepository.Edit(command);
+            await _customerDiscountRepository.Edit(command, cancellationToken);
             _customerDiscountRepository.Save();
 
             return operation.Succedded();
@@ -45,14 +45,14 @@ namespace DM.Domain.Services.CustomerDiscountAgg
 
         }
 
-        public EditCustomerDiscountDTO GetDetails(long id)
+        public async Task<EditCustomerDiscountDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
-            return _customerDiscountRepository.GetDetails(id);
+            return await _customerDiscountRepository.GetDetails(id, cancellationToken);
         }
 
-        public List<CustomerDiscountDTO> Search(SearchCustomerDiscountDTO searchModel)
+        public async Task<List<CustomerDiscountDTO>> Search(SearchCustomerDiscountDTO searchModel, CancellationToken cancellationToken)
         {
-            return _customerDiscountRepository.Search(searchModel);
+            return await _customerDiscountRepository.Search(searchModel, cancellationToken);
         }
     }
 }

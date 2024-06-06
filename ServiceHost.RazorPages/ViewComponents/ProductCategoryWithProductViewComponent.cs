@@ -12,9 +12,9 @@ namespace ServiceHost.RazorPages.ViewComponents
             _productCategoryQuery = productCategoryQuery;
         }
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync( CancellationToken cancellationToken)
         {
-            var categories = _productCategoryQuery.GetProductCategoriesWithProducts();
+            var categories = await _productCategoryQuery.GetProductCategoriesWithProducts( cancellationToken);
             return View(categories);
         }
     }

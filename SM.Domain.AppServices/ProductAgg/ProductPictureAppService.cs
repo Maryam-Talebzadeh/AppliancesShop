@@ -1,13 +1,7 @@
 ﻿using Base_Framework.Domain.Services;
 using SM.Domain.Core.ProductAgg.AppSevices;
-using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductAgg.DTOs.ProductPicture;
 using SM.Domain.Core.ProductAgg.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SM.Domain.AppServices.ProductAgg
 {
@@ -20,35 +14,35 @@ namespace SM.Domain.AppServices.ProductAgg
             _productPictureService = productPictureService;
         }
 
-        public OperationResult Create(CreateProductPictureViewModel command)
+        public async Task<OperationResult> Create(CreateProductPictureViewModel command, CancellationToken cancellationToken)
         {
-            return _productPictureService.Create(command);
+            return await _productPictureService.Create(command, cancellationToken);
         }
 
-        public OperationResult Edit(EditProductPictureViewModel command)
+        public async Task<OperationResult> Edit(EditProductPictureViewModel command, CancellationToken cancellationToken)
         {
-            return _productPictureService.Edit(command);
+            return await _productPictureService.Edit(command, cancellationToken);
         }
 
-        public DetailProductPictureDTO GetDetails(long id)
+        public async Task<DetailProductPictureDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
-            return _productPictureService.GetDetails(id);
+            return await _productPictureService.GetDetails(id, cancellationToken);
         }
 
-        public OperationResult Remove(long id)
+        public async Task<OperationResult> Remove(long id, CancellationToken cancellationToken)
         {
-            return _productPictureService.Remove(id);
+            return await _productPictureService.Remove(id, cancellationToken);
 
         }
 
-        public OperationResult Restore(long id)
+        public async Task<OperationResult> Restore(long id, CancellationToken cancellationToken)
         {
-            return _productPictureService.Restore(id);
+            return await _productPictureService.Restore(id, cancellationToken);
         }
 
-        public List<ProductPictureDTO> Search(SearchProductPictureDTO searchModel)
+        public  async Task<List<ProductPictureDTO>> Search(SearchProductPictureDTO searchModel, CancellationToken cancellationToken)
         {
-            return _productPictureService.Search(searchModel);
+            return await _productPictureService.Search(searchModel, cancellationToken);
         }
     }
 }
