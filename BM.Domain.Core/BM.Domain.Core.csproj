@@ -7,10 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ArticleCategoryAgg\Data\" />
     <Folder Include="ArticleCategoryAgg\AppServices\" />
-    <Folder Include="ArticleCategoryAgg\DTOs\" />
     <Folder Include="ArticleCategoryAgg\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DomainFramework\Base_Framework.csproj" />
   </ItemGroup>
 
 </Project>
