@@ -31,6 +31,15 @@ namespace BM.Infrastructure.DataAccess.Repos.EFCore.ArticleCategoryAgg
                 , command.Slug, command.Keywords, command.MetaDescription, command.CanonicalAddress);
         }
 
+        public async Task<List<ArticleCategoryDTO>> GetArticleCategories(CancellationToken cancellationToken)
+        {
+            return _context.ArticleCategories.Select(x => new ArticleCategoryDTO
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+        }
+
         public async Task<EditArticleCategoryDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
             return _context.ArticleCategories.Select(x =>

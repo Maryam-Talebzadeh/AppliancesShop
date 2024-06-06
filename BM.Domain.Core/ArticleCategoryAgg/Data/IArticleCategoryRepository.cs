@@ -9,6 +9,7 @@ namespace BM.Domain.Core.ArticleCategoryAgg.Data
         Task Create(CreateArticleCategoryDTO command, CancellationToken cancellationToken);
         Task Edit(EditArticleCategoryDTO command, CancellationToken cancellationToken);
         Task<List<ArticleCategoryDTO>> Search(SearchArticleCategoryDTO searchModel, CancellationToken cancellationToken);
+        Task<List<ArticleCategoryDTO>> GetArticleCategories(CancellationToken cancellationToken);
         Task<EditArticleCategoryDTO> GetDetails(long id,  CancellationToken cancellationToken);
     }
 }

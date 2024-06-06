@@ -4,6 +4,7 @@ using IM.Infrastructure.Configuration;
 using Base_Framework.Configs;
 using System.Configuration;
 using SiteQuery_Configuration;
+using Base_Framework.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ SMBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.Applianc
 DiscountManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
 InventoryManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
 SQBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
+BaseFrameworkBootstrapper.Configure(builder.Services);
 
 #endregion
 
