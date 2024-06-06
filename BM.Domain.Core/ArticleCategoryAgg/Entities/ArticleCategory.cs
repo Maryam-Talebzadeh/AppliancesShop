@@ -1,8 +1,10 @@
 ﻿
 
+using Base_Framework.Domain.Core.Entities;
+
 namespace BM.Domain.Core.ArticleCategoryAgg.Entities
 {
-    public class ArticleCategory
+    public class ArticleCategory : BaseEntity
     {
         public string Name { get; private set; }
         public string Picture { get; private set; }

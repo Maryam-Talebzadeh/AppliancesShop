@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BM.Infrastructure.DB.SqlServer.EFCore.Contexts
 {
-    internal class BlogContext : DbContext
+   public class BlogContext : DbContext
     {
         public DbSet<ArticleCategory> ArticleCategories { get; set; }
 

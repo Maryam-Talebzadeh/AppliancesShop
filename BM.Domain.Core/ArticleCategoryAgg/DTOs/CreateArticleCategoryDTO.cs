@@ -33,5 +33,6 @@ namespace BM.Domain.Core.ArticleCategoryAgg.DTOs
         public string MetaDescription { get; set; }
 
         public string CanonicalAddress { get; set; }
+        public string PictureName { get; set; }
     }
 }
