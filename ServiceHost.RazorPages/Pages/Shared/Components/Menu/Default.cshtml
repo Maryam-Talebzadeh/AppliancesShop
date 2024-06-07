@@ -1,11 +1,14 @@
-﻿<div class="header-area header-sticky">
+﻿@using SiteQuery_Ado.Models
+@model MenuModel
+
+<div class="header-area header-sticky">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="header-wrapper d-none d-lg-flex">
                     <div class="logo">
                         <a asp-page="/Index">
-                            <img height="60%" width="60%" src="~/Theme/assets/img/logo.png" class="img-fluid" alt="">
+                            <img src="~/Theme/assets/img/logo.png" class="img-fluid" alt="">
                         </a>
                     </div>
                     <div class="navigation-menu-wrapper">
@@ -17,13 +20,23 @@
                                 <li class="menu-item-has-children">
                                     <a>محصولات</a>
                                     <ul class="sub-menu">
-                                        
+                                        @foreach (var category in Model.ProductCategories)
+                                        {
+                                            <li>
+                                                <a asp-page="./ProductCategory" asp-route-id="@category.Slug">@category.Name</a>
+                                            </li>
+                                        }
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a>مقالات</a>
                                     <ul class="sub-menu">
-                                      
+                                        @foreach (var category in Model.ArticleCategories)
+                                        {
+                                            <li>
+                                                <a asp-page="./ArticleCategory" asp-route-id="@category.Slug">@category.Name</a>
+                                            </li>
+                                        }
                                     </ul>
                                 </li>
                                 <li>
@@ -230,7 +243,7 @@
                                 </a>
                             </li>
                             <li>
-                                <i class="ion-android-mail"></i> <a href="mailto:info@yourdomain.com">info@MaryamTalebzadeh.com</a>
+                                <i class="ion-android-mail"></i> <a href="mailto:info@yourdomain.com">info@atriya.com</a>
                             </li>
                         </ul>
                     </div>
