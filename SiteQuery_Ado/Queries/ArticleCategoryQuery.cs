@@ -60,6 +60,9 @@ namespace SiteQuery_Ado.Queries
                 using (SqlCommand command = new SqlCommand("GetArticleCategoryBySlug", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@slug", SqlDbType.NVarChar));
+                    command.Parameters["@slug"].Value = slug;
+
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -98,7 +101,7 @@ namespace SiteQuery_Ado.Queries
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("GetArticleBySlug", connection))
+                using (SqlCommand command = new SqlCommand("GetArticleByCategorySlug", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@categorySlug", SqlDbType.NVarChar));
