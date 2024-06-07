@@ -68,6 +68,7 @@ namespace BM.Infrastructure.DataAccess.Repos.EFCore.ArticleCategoryAgg
         public async Task<List<ArticleCategoryDTO>> Search(SearchArticleCategoryDTO searchModel, CancellationToken cancellationToken)
         {
             var query = _context.ArticleCategories
+                .Include(x => x.Articles)
                 .Select(x => new ArticleCategoryDTO
                 {
                     Id = x.Id,

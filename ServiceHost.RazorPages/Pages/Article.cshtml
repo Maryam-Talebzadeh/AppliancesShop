@@ -63,12 +63,12 @@
                                         <div class="tag-area">
                                             <span>تگ ها: </span>
                                             <ul>
-                                               @*  @foreach (var tag in Model.Article.KeywordList)
+                                                @foreach (var tag in Model.Article.KeywordList)
                                                 {
                                                     <li>
                                                         <a asp-page="/Search" asp-route-value="@tag">@tag</a>,
                                                     </li>
-                                                } *@
+                                                }
                                             </ul>
                                         </div>
 
