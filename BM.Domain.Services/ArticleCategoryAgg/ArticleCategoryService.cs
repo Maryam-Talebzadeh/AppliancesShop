@@ -24,7 +24,7 @@ namespace BM.Domain.Services.ArticleCategoryAgg
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             var slug = command.Slug.Slugify();
-            var pictureName = _fileUploader.Upload(command.Picture, slug);
+            command.PictureName = _fileUploader.Upload(command.Picture, slug);
 
            await _articleCategoryRepository.Create(command, cancellationToken);
             _articleCategoryRepository.Save();
@@ -35,14 +35,14 @@ namespace BM.Domain.Services.ArticleCategoryAgg
         {
             var operation = new OperationResult();
 
-            if (_articleCategoryRepository.IsExist(x => x.Id == command.Id))
+            if (!_articleCategoryRepository.IsExist(x => x.Id == command.Id))
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
             if (_articleCategoryRepository.IsExist(x => x.Name == command.Name && x.Id != command.Id))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             var slug = command.Slug.Slugify();
-            var pictureName = _fileUploader.Upload(command.Picture, slug);;
+           command.PictureName = _fileUploader.Upload(command.Picture, slug);;
 
            await _articleCategoryRepository.Edit(command, cancellationToken);
             _articleCategoryRepository.Save();
