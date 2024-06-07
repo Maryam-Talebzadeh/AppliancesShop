@@ -2,6 +2,8 @@
 @model ServiceHost.RazorPages.Pages.ProductModel
 @{
     ViewData["Title"] = Model.Product.Name;
+    ViewData["keywords"] = Model.Product.Keywords;
+    ViewData["metaDescription"] = Model.Product.MetaDescription;
 }
 
 

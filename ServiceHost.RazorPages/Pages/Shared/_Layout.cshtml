@@ -2,9 +2,23 @@
 <html lang="en">
 
 <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @if (ViewData["Title"] != null)
+    {
+        <title>@ViewData["Title"] - فروشگاه لوازم دکوری</title>
+    }
+    else
+    {
+        <title>فروشگاه لوازم دکوری</title>
+    }
+
+    <meta name="keywords" content="@ViewData["keywords"]" />
+    <meta name="description" content="@ViewData["metaDescription"]" />
+
     <partial name="_Links" />
-    <title>VJ JEWELLERY</title>
-    <partial name="_Links" />
+  
 </head>
 
 <body>
