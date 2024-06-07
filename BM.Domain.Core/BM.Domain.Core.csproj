@@ -14,9 +14,4 @@
     <ProjectReference Include="..\DomainFramework\Base_Framework.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ArticleAgg\AppServices\" />
-    <Folder Include="ArticleAgg\Services\" />
-  </ItemGroup>
-
 </Project>
