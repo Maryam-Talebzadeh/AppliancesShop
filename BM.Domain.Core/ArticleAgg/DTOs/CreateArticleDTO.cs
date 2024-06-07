@@ -46,5 +46,6 @@ namespace BM.Domain.Core.ArticleAgg.DTOs
 
         [Range(1, long.MaxValue, ErrorMessage = ValidationMessages.IsRequired)]
         public long CategoryId { get; set; }
+        public string PictureName { get; set; }
     }
 }
