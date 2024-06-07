@@ -5,6 +5,7 @@ using Base_Framework.Configs;
 using System.Configuration;
 using SiteQuery_Configuration;
 using Base_Framework.Configuration;
+using BM.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +20,11 @@ var siteSetting= builder.Configuration.GetSection(nameof(SiteSettings)).Get<Site
 
 #region CustomConfiguration
 
-SMBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
+SiteManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
 DiscountManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
 InventoryManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
-SQBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
+SiteQueryBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
+BlogManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
 BaseFrameworkBootstrapper.Configure(builder.Services);
 
 #endregion

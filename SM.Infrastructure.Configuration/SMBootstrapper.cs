@@ -22,7 +22,7 @@ using SM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 
 namespace SM.Infrastructure.Configuration
 {
-    public class SMBootstrapper
+    public class SiteManagementBootstrapper
     {
         public static void Configure(IServiceCollection services, string connectionString)
         {

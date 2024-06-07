@@ -4,7 +4,7 @@ using SiteQuery_Ado.Queries;
 
 namespace SiteQuery_Configuration
 {
-    public class SQBootstrapper
+    public class SiteQueryBootstrapper
     {
         public static string ConnectionString { get; set; }
 

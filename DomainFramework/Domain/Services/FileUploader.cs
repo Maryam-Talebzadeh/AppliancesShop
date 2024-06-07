@@ -2,8 +2,6 @@
 using Base_Framework.Domain.General;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
-using System;
-using System.IO;
 
 namespace Base_Framework.Domain.Services
 {

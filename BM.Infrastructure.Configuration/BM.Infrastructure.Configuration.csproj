@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BM.Domain.AppServices\BM.Domain.AppServices.csproj" />
+    <ProjectReference Include="..\BM.Domain.Core\BM.Domain.Core.csproj" />
+    <ProjectReference Include="..\BM.Domain.Services\BM.Domain.Services.csproj" />
+    <ProjectReference Include="..\BM.Infrastructure.DataAccess.Repos.EFCore\BM.Infrastructure.DataAccess.Repos.EFCore.csproj" />
+    <ProjectReference Include="..\BM.Infrastructure.DB.SqlServer.EFCore\BM.Infrastructure.DB.SqlServer.EFCore.csproj" />
+  </ItemGroup>
+
 </Project>
