@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 using SiteQuery_Ado.Contracts;
 using SiteQuery_Ado.Models;
 using System.Data;
-using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
+using Base_Framework.Domain.General;
 
 namespace SiteQuery_Ado.Queries
 {
@@ -35,7 +35,7 @@ namespace SiteQuery_Ado.Queries
                     {
                         while (reader.Read())
                         {
-                            article.Id = reader.GetInt64(reader.GetOrdinal("p.Id"));
+                            article.Id = reader.GetInt64(reader.GetOrdinal("ar.Id"));
                             article.Title= reader.GetString(reader.GetOrdinal("ar.Title"));
                             article.CategoryName = reader.GetString(reader.GetOrdinal("ar.CategoryName"));
                             article.CategorySlug = reader.GetString(reader.GetOrdinal("ar.CategorySlug"));
@@ -47,7 +47,7 @@ namespace SiteQuery_Ado.Queries
                             article.Picture = reader.GetString(reader.GetOrdinal("ar.Picture"));
                             article.PictureTitle = reader.GetString(reader.GetOrdinal("ar.PictureTitle"));
                             article.PictureAlt = reader.GetString(reader.GetOrdinal("ar.PictureAlt"));
-                            article.PublishDate = reader.GetString(reader.GetOrdinal("ar.PublishDate"));
+                            article.PublishDate = reader.GetDateTime(reader.GetOrdinal("ar.PublishDate")).ToFarsi();
                             article.ShortDescription= reader.GetString(reader.GetOrdinal("ar.ShortDescription"));
                         }
                     }
@@ -76,14 +76,14 @@ namespace SiteQuery_Ado.Queries
                         {
                             var article = new ArticleQueryModel();
 
-                            article.Id = reader.GetInt64(reader.GetOrdinal("p.Id"));
+                            article.Id = reader.GetInt64(reader.GetOrdinal("ar.Id"));
                             article.Title = reader.GetString(reader.GetOrdinal("ar.Title"));                          
                             article.Slug = reader.GetString(reader.GetOrdinal("ar.Slug"));                          
                             article.Picture = reader.GetString(reader.GetOrdinal("ar.Picture"));
                             article.PictureTitle = reader.GetString(reader.GetOrdinal("ar.PictureTitle"));
                             article.PictureAlt = reader.GetString(reader.GetOrdinal("ar.PictureAlt"));
-                            article.PublishDate = reader.GetString(reader.GetOrdinal("ar.PublishDate"));
                             article.ShortDescription = reader.GetString(reader.GetOrdinal("ar.ShortDescription"));
+                            article.PublishDate = reader.GetDateTime(reader.GetOrdinal("ar.PublishDate")).ToFarsi();
 
                             Articles.Add(article);
                         }
