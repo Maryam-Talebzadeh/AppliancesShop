@@ -55,7 +55,7 @@ namespace SiteQuery_Ado.Queries
             }
 
             if (!string.IsNullOrWhiteSpace(keywords))
-                article.KeywordList = article.Keywords.Split(",").ToList();
+                article.KeywordList = keywords.Split(",").ToList();
 
             return article;
         }

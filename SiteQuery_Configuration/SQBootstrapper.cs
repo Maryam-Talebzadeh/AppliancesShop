@@ -13,6 +13,7 @@ namespace SiteQuery_Configuration
             services.AddScoped<IProductCategoryQuery>(provider => new ProductCategoryQuery(connectionString));
             services.AddScoped<IProductQuery>(provider => new ProductQuery(connectionString));
             services.AddScoped<IArticleQuery>(provider => new ArticleQuery(connectionString));
+            services.AddScoped<IArticleCategoryQuery>(provider => new ArticleCategoryQuery(connectionString));
         }
     }
 }

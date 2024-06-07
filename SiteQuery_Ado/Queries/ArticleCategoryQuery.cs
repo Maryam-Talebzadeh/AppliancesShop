@@ -36,7 +36,7 @@ namespace SiteQuery_Ado.Queries
                             category.Picture = reader.GetString(reader.GetOrdinal("c.Picture"));
                             category.PictureTitle = reader.GetString(reader.GetOrdinal("c.PictureTitle"));
                             category.PictureAlt = reader.GetString(reader.GetOrdinal("c.PictureAlt"));
-                            category.ArticlesCount = reader.GetInt64(reader.GetOrdinal("c.ArticlesCount"));
+                            category.ArticlesCount = reader.GetInt32(reader.GetOrdinal("c.ArticlesCount"));
 
                             Categories.Add(category);
                         }
