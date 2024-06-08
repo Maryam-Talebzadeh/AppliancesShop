@@ -73,6 +73,7 @@ namespace SiteQuery_Ado.Queries
                 }
             }
 
+            product.Comments =await GetCommentsByProductId(product.Id, cancellationToken);
             return product;
         }
 
@@ -267,6 +268,42 @@ namespace SiteQuery_Ado.Queries
             }
 
             return picture;
+        }
+
+        private async Task<List<CommentQueryModel>> GetCommentsByProductId(long productId, CancellationToken cancellationToken)
+        {
+            var Comments = new List<CommentQueryModel>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("GetCommentsByProductId ", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@productId", SqlDbType.NVarChar));
+                    command.Parameters["@productId"].Value = productId;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            var comment = new CommentQueryModel();
+
+                            comment.Id = reader.GetInt64(reader.GetOrdinal("c.Id"));
+                            comment.Name = reader.GetString(reader.GetOrdinal("c.Name"));
+                            comment.Message = reader.GetString(reader.GetOrdinal("c.Message"));
+                            comment.CreationDate = reader.GetDateTime(reader.GetOrdinal("c.CreationDate")).ToFarsi();
+                            comment.Name = reader.GetString(reader.GetOrdinal("c.Name"));
+                            comment.ParentId= reader.GetInt64(reader.GetOrdinal("ParentId"));
+
+                            Comments.Add(comment);
+                        }
+                    }
+                }
+            }
+
+            return Comments;
         }
     }
 }

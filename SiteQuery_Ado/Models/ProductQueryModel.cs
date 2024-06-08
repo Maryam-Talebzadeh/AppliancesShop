@@ -29,5 +29,6 @@ namespace SiteQuery_Ado.Models
         }
 
         public List<ProductPictureQueryModel> Pictures { get; set; }
+        public List<CommentQueryModel> Comments{ get; set; }
     }
 }
