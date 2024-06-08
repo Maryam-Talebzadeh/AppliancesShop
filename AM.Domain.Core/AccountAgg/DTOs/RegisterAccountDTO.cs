@@ -21,5 +21,6 @@ namespace AM.Domain.Core.AccountAgg.DTOs
         public long RoleId { get; set; }
 
         public IFormFile ProfilePhoto { get; set; }
+        public string ProfileName { get; set; }
     }
 }

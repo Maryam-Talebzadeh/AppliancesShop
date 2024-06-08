@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AM.Domain.Core\AM.Domain.Core.csproj" />
+    <ProjectReference Include="..\AM.Infrastructure.DB.SqlServer.EFCore\AM.Infrastructure.DB.SqlServer.EFCore.csproj" />
+  </ItemGroup>
+
 </Project>

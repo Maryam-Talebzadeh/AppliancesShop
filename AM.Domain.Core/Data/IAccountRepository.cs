@@ -1,8 +1,10 @@
 ﻿using AM.Domain.Core.AccountAgg.DTOs;
+using AM.Domain.Core.AccountAgg.Entities;
+using Base_Framework.Domain.Core.Contracts;
 
 namespace AM.Domain.Core.Data
 {
-   public interface IAccountRepository
+   public interface IAccountRepository : IRepository<Account>
     {
         Task ChangePassword(ChangePasswordDTO changePasswordDTO, CancellationToken cancellationToken);
         Task Create(RegisterAccountDTO registerAccountDTO, CancellationToken cancellationToken);

@@ -1,4 +1,5 @@
 ﻿using AM.Domain.Core.AccountAgg.Entities;
+using AM.Infrastructure.DB.SqlServer.EFCore.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace AM.Infrastructure.DB.SqlServer.EFCore.Contexts
