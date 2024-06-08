@@ -1,3 +1,6 @@
+using CM.Domain.Core.CommentAgg.AppServices;
+using CM.Domain.Core.CommentAgg.DTOs;
+using DM.Infrastructure.DataAccess.Repos.EFCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SiteQuery_Ado.Contracts;
@@ -12,11 +15,13 @@ namespace ServiceHost.RazorPages.Pages
         public List<ArticleCategoryQueryModel> ArticleCategories;
         private readonly IArticleQuery _articleQuery;
         private readonly IArticleCategoryQuery _articleCategoryQuery;
+        private readonly ICommentAppService _commentAppService;
 
-        public ArticleModel(IArticleQuery articleQuery, IArticleCategoryQuery articleCategoryQuery)
+        public ArticleModel(IArticleQuery articleQuery, IArticleCategoryQuery articleCategoryQuery, ICommentAppService commentAppService)
         {
             _articleQuery = articleQuery;
             _articleCategoryQuery = articleCategoryQuery;
+            _commentAppService = commentAppService;
         }
 
         public async Task OnGet(string id, CancellationToken cancellationToken)
@@ -26,6 +31,12 @@ namespace ServiceHost.RazorPages.Pages
             ArticleCategories = await _articleCategoryQuery.GetArticleCategories(cancellationToken);
         }
 
-    
+        public async Task<IActionResult> OnPost(AddCommentDTO command, string articleSlug, CancellationToken cancellationToken)
+        {
+            command.Type = CommentTypes.Article;
+            var result =await  _commentAppService.Add(command, cancellationToken);
+            return RedirectToPage("/Article", new { Id = articleSlug });
+        }
+
     }
 }

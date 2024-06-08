@@ -57,6 +57,8 @@ namespace SiteQuery_Ado.Queries
             if (!string.IsNullOrWhiteSpace(keywords))
                 article.KeywordList = keywords.Split(",").ToList();
 
+            article.Comments = await GetCommentsByArticleId(article.Id, cancellationToken);
+
             return article;
         }
 
@@ -92,6 +94,74 @@ namespace SiteQuery_Ado.Queries
             }
 
             return Articles;
+        }
+
+        private async Task<List<CommentQueryModel>> GetCommentsByArticleId(long articleId, CancellationToken cancellationToken)
+        {
+            var Comments = new List<CommentQueryModel>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("GetCommentsByArticleId", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@articleId", SqlDbType.NVarChar));
+                    command.Parameters["@articleId"].Value = articleId;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            var comment = new CommentQueryModel();
+
+                            comment.Id = reader.GetInt64(reader.GetOrdinal("c.Id"));
+                            comment.Name = reader.GetString(reader.GetOrdinal("c.Name"));
+                            comment.Message = reader.GetString(reader.GetOrdinal("c.Message"));
+                            comment.CreationDate = reader.GetDateTime(reader.GetOrdinal("c.CreationDate")).ToFarsi();
+                            comment.Name = reader.GetString(reader.GetOrdinal("c.Name"));
+
+                            if (!Convert.IsDBNull(reader["c.ParentId"]))
+                            {
+                                comment.ParentId = reader.GetInt64(reader.GetOrdinal("c.ParentId"));
+                                comment.parentName = await GetCommentNameById(comment.Id, cancellationToken);
+                            }
+                               
+
+
+                            Comments.Add(comment);
+                        }
+                    }
+                }
+            }
+
+            return Comments;
+        }
+
+        private async Task<string> GetCommentNameById(long id, CancellationToken cancellationToken)
+        {
+            var name = "";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("GetCommentNameById", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.NVarChar));
+                    command.Parameters["@id"].Value = id;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            name = reader.GetString(reader.GetOrdinal("c.Name"));
+                        }
+                    }
+                }
+            }
+            return name;
         }
     }
 }

@@ -297,7 +297,10 @@ namespace SiteQuery_Ado.Queries
                             comment.Name = reader.GetString(reader.GetOrdinal("c.Name"));
 
                             if (!Convert.IsDBNull(reader["c.ParentId"]))
+                            {
                                 comment.ParentId = reader.GetInt64(reader.GetOrdinal("c.ParentId"));
+                                comment.parentName = await GetCommentNameById(comment.Id, cancellationToken);
+                            }
 
 
                             Comments.Add(comment);
@@ -307,6 +310,31 @@ namespace SiteQuery_Ado.Queries
             }
 
             return Comments;
+        }
+
+        private async Task<string> GetCommentNameById(long id, CancellationToken cancellationToken)
+        {
+            var name = "";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("GetCommentNameById", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@id", SqlDbType.NVarChar));
+                    command.Parameters["@id"].Value = id;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                           name = reader.GetString(reader.GetOrdinal("c.Name"));
+                        }
+                    }
+                }
+            }
+            return name;
         }
     }
 }

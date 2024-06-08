@@ -24,5 +24,6 @@ namespace SiteQuery_Ado.Models
         public long CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string CategorySlug { get; set; }
+        public List<CommentQueryModel> Comments { get; set; }
     }
 }
