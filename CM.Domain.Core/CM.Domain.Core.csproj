@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CommentAgg\Data\" />
+    <Folder Include="CommentAgg\AppServices\" />
+    <Folder Include="CommentAgg\DTOs\" />
+    <Folder Include="CommentAgg\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DomainFramework\Base_Framework.csproj" />
+  </ItemGroup>
+
 </Project>
