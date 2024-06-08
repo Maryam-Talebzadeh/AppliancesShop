@@ -6,6 +6,7 @@ using System.Configuration;
 using SiteQuery_Configuration;
 using Base_Framework.Configuration;
 using BM.Infrastructure.Configuration;
+using CM.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ InventoryManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfi
 SiteQueryBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
 BlogManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
 BaseFrameworkBootstrapper.Configure(builder.Services);
+CommentManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
 
 #endregion
 

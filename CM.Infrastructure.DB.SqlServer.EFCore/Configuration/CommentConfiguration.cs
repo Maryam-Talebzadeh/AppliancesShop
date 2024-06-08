@@ -12,6 +12,10 @@ namespace CM.Infrastructure.DB.SqlServer.EFCore.Configuration
             builder.Property(x => x.Email).HasMaxLength(500);
             builder.Property(x => x.Website).HasMaxLength(500);
             builder.Property(x => x.Message).HasMaxLength(1000);
+
+            builder.HasOne(c => c.Parent)
+            .WithMany(h => h.Children)
+            .HasForeignKey(c => c.ParentId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

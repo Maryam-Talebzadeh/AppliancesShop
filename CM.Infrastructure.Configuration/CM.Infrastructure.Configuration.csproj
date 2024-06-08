@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CM.Domain.AppServices\CM.Domain.AppServices.csproj" />
+    <ProjectReference Include="..\CM.Domain.Core\CM.Domain.Core.csproj" />
+    <ProjectReference Include="..\CM.Domain.Services\CM.Domain.Services.csproj" />
+    <ProjectReference Include="..\CM.Infrastructure.DataAccess.Repos.EFCore\CM.Infrastructure.DataAccess.Repos.EFCore.csproj" />
+    <ProjectReference Include="..\CM.Infrastructure.DB.SqlServer.EFCore\CM.Infrastructure.DB.SqlServer.EFCore.csproj" />
+  </ItemGroup>
+
+</Project>

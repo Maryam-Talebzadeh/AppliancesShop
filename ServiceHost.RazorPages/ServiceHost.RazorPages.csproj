@@ -156,6 +156,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BM.Infrastructure.Configuration\BM.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\CM.Domain.Core\CM.Domain.Core.csproj" />
+    <ProjectReference Include="..\CM.Infrastructure.Configuration\CM.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\DM.Infrastructure.Configurations\DM.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\IM.Domain.Core\IM.Domain.Core.csproj" />
     <ProjectReference Include="..\IM.Infrastructure.Configuration\IM.Infrastructure.Configuration.csproj" />
