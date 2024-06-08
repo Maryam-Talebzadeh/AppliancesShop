@@ -10,6 +10,6 @@ namespace CM.Domain.Core.CommentAgg.DTOs
         public string Website { get; set; }
         public long OwnerRecordId { get; set; }
         public int Type { get; set; }
-        public long ParentId { get; set; }
+        public long? ParentId { get; set; }
     }
 }

@@ -295,7 +295,10 @@ namespace SiteQuery_Ado.Queries
                             comment.Message = reader.GetString(reader.GetOrdinal("c.Message"));
                             comment.CreationDate = reader.GetDateTime(reader.GetOrdinal("c.CreationDate")).ToFarsi();
                             comment.Name = reader.GetString(reader.GetOrdinal("c.Name"));
-                            comment.ParentId= reader.GetInt64(reader.GetOrdinal("ParentId"));
+
+                            if (!Convert.IsDBNull(reader["c.ParentId"]))
+                                comment.ParentId = reader.GetInt64(reader.GetOrdinal("c.ParentId"));
+
 
                             Comments.Add(comment);
                         }
