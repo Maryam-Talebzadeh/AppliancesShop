@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CommentAgg\AppServices\" />
-    <Folder Include="CommentAgg\Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DomainFramework\Base_Framework.csproj" />
   </ItemGroup>
 
