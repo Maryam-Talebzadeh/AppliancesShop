@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AM.Domain.Core\AM.Domain.Core.csproj" />
+    <ProjectReference Include="..\DomainFramework\Base_Framework.csproj" />
+  </ItemGroup>
+
 </Project>

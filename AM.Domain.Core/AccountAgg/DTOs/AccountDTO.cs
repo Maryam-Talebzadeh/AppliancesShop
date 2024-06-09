@@ -12,5 +12,6 @@ namespace AM.Domain.Core.AccountAgg.DTOs
         public string Role { get; set; }
         public string ProfilePhoto { get; set; }
         public string CreationDate { get; set; }
+        public string Password { get; set; }
     }
 }

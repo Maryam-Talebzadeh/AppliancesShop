@@ -1,10 +1,10 @@
 ﻿using AM.Domain.Core.AccountAgg.DTOs;
 using AM.Domain.Core.AccountAgg.Entities;
-using AM.Domain.Core.Data;
 using AM.Infrastructure.DB.SqlServer.EFCore.Contexts;
 using Base_Framework.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Base_Framework.Domain.General;
+using AM.Domain.Core.AccountAgg.Data;
 
 namespace AM.Infrastructure.DataAccess.Repos.EFCore.AccountAgg
 {
@@ -51,8 +51,18 @@ namespace AM.Infrastructure.DataAccess.Repos.EFCore.AccountAgg
                 Fullname = x.Fullname,
                 Mobile = x.Mobile,
                 RoleId = x.RoleId,
-                Username = x.Username
+                Username = x.Username,
+                Password = x.Password
             }).FirstOrDefault(x => x.Username == username);
+        }
+
+        public async  Task<AccountDTO> GetBy(long id, CancellationToken cancellationToken)
+        {
+            return _context.Accounts.Select(x => new AccountDTO
+            {
+                Fullname =x.Fullname,
+                Mobile = x.Mobile
+            }).FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<EditAccountDTO> GetDetails(long id, CancellationToken cancellationToken)
@@ -63,7 +73,7 @@ namespace AM.Infrastructure.DataAccess.Repos.EFCore.AccountAgg
                 Fullname = x.Fullname,
                 Mobile = x.Mobile,
                 RoleId = x.RoleId,
-                Username = x.Username
+                Username = x.Username,
             }).FirstOrDefault(x => x.Id == id);
         }
 
