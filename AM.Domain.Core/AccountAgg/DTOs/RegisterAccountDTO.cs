@@ -1,4 +1,5 @@
-﻿using Base_Framework.Domain.Core;
+﻿using AM.Domain.Core.RoleAgg.DTOs;
+using Base_Framework.Domain.Core;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
@@ -22,5 +23,6 @@ namespace AM.Domain.Core.AccountAgg.DTOs
 
         public IFormFile ProfilePhoto { get; set; }
         public string ProfileName { get; set; }
+        public List<RoleDTO> Roles { get; set; }
     }
 }

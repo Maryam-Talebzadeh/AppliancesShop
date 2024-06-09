@@ -1,7 +1,5 @@
 ﻿@using AM.Domain.Core.AccountAgg.DTOs
 @model EditAccountDTO
-@{
-}
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -35,6 +33,18 @@
                     <label asp-for="Mobile" class="control-label">موبایل</label>
                     <input type="text" class="form-control" asp-for="Mobile">
                     <span asp-validation-for="Mobile" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="RoleId" class="control-label">نقش</label>
+                    <select class="form-control" asp-for="RoleId"
+                            asp-items='new SelectList(Model.Roles, "Id", "Name")'>
+                        <option value="0">گروه محصول</option>
+                    </select>
+                    <span asp-validation-for="RoleId" class="error"></span>
                 </div>
             </div>
         </div>

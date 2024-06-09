@@ -86,6 +86,7 @@ namespace AM.Infrastructure.DataAccess.Repos.EFCore.AccountAgg
                 Mobile = x.Mobile,
                 ProfilePhoto = x.ProfilePhoto,
                 RoleId = x.RoleId,
+                Role = x.Role.Name,
                 Username = x.Username,
                 CreationDate = x.CreationDate.ToFarsi()
             });
