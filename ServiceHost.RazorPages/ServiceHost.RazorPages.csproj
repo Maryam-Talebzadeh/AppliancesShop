@@ -154,6 +154,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AM.Infrastructure.Configuration\AM.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\BM.Infrastructure.Configuration\BM.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\CM.Domain.Core\CM.Domain.Core.csproj" />
     <ProjectReference Include="..\CM.Infrastructure.Configuration\CM.Infrastructure.Configuration.csproj" />

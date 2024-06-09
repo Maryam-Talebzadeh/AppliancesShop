@@ -1,5 +1,6 @@
 ﻿using Base_Framework.Domain.Core.Contracts;
 using Base_Framework.Domain.Services;
+using Base_Framework.Domain.Services.Auth;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Base_Framework.Configuration
@@ -8,8 +9,9 @@ namespace Base_Framework.Configuration
     {
         public static void Configure(IServiceCollection services)
         {
-            services.AddScoped<IFileUploader, FileUploader>();
-
+            services.AddTransient<IFileUploader, FileUploader>();
+            services.AddTransient<IAuthHelper, AuthHelper>();
+            services.AddSingleton<IPasswordHasher, PasswordHasher>();
         }
     }
 }

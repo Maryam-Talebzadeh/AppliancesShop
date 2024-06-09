@@ -1,9 +1,8 @@
 ﻿using Base_Framework.Domain.Core.Contracts;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
-
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace Base_Framework.Domain.Services.Auth

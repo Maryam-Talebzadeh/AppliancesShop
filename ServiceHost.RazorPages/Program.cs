@@ -7,11 +7,13 @@ using SiteQuery_Configuration;
 using Base_Framework.Configuration;
 using BM.Infrastructure.Configuration;
 using CM.Infrastructure.Configuration;
+using AM.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddHttpContextAccessor();
 
 #region ?Fill SiteSetting
 
@@ -28,6 +30,7 @@ SiteQueryBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.A
 BlogManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
 BaseFrameworkBootstrapper.Configure(builder.Services);
 CommentManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
+AccountManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfiguration.AppliancesConnectionString);
 
 #endregion
 
