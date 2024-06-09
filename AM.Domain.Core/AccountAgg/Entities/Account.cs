@@ -1,4 +1,5 @@
-﻿using Base_Framework.Domain.Core.Entities;
+﻿using AM.Domain.Core.RoleAgg.Entities;
+using Base_Framework.Domain.Core.Entities;
 
 namespace AM.Domain.Core.AccountAgg.Entities
 {
@@ -10,6 +11,7 @@ namespace AM.Domain.Core.AccountAgg.Entities
         public string Mobile { get; private set; }
         public long RoleId { get; private set; }
         public string ProfilePhoto { get; private set; }
+        public Role Role { get; set; }
 
         public Account(string fullname, string username, string password, string mobile,
             long roleId, string profilePhoto)
