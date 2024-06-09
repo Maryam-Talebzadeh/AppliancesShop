@@ -183,7 +183,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Infrastructure.DataAcces
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Infrastructure.DB.SqlServer.EFCore", "AM.Infrastructure.DB.SqlServer.EFCore\AM.Infrastructure.DB.SqlServer.EFCore.csproj", "{707399DB-E3D6-4DCB-BCC2-17590863D63A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AM.Infrastructure.Configuration", "AM.Infrastructure.Configuration\AM.Infrastructure.Configuration.csproj", "{FFF67DA8-52AA-4FDD-A4AE-B65B0BB09641}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Infrastructure.Configuration", "AM.Infrastructure.Configuration\AM.Infrastructure.Configuration.csproj", "{FFF67DA8-52AA-4FDD-A4AE-B65B0BB09641}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

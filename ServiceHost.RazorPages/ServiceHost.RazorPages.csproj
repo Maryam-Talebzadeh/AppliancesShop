@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Administration\Pages\Account\RoleAgg\Index.cshtml" />
     <Content Remove="Areas\Administration\Pages\Inventory\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Administration\Pages\Account\RoleAgg\Index.cshtml" />
     <None Include="wwwroot\AdminTheme\assets\bootstrap-inputmask\bootstrap-inputmask.min.js" />
     <None Include="wwwroot\AdminTheme\assets\bootstrap-wysihtml5\bootstrap-wysihtml5.js" />
     <None Include="wwwroot\AdminTheme\assets\bootstrap-wysihtml5\wysihtml5-0.3.0.js" />
@@ -189,7 +191,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Account\RoleAgg\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Inventory\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Administration\Pages\Account\RoleAgg\Index.cshtml" />
   </ItemGroup>
 
 </Project>
