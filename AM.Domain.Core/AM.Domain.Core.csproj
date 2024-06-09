@@ -15,8 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="RoleAgg\Data\" />
-    <Folder Include="RoleAgg\DTOs\" />
     <Folder Include="RoleAgg\AppServices\" />
     <Folder Include="RoleAgg\Services\" />
   </ItemGroup>
