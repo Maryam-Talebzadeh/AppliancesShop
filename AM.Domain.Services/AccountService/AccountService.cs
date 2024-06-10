@@ -3,6 +3,7 @@ using AM.Domain.Core.AccountAgg.DTOs;
 using AM.Domain.Core.AccountAgg.Services;
 using Base_Framework.Domain.Core.Contracts;
 using Base_Framework.Domain.Services;
+using Base_Framework.Infrastructure.DataAccess;
 
 namespace AM.Domain.Services.AccountService
 {
@@ -95,6 +96,9 @@ namespace AM.Domain.Services.AccountService
 
             if (_accountRepository.IsExist(x => x.Username == command.Username || x.Mobile == command.Mobile))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
+
+            if(command.RoleId == 0)
+                command.RoleId = int.Parse(Roles.SystemUser);
 
             command.Password = _passwordHasher.Hash(command.Password);
             string path = "";

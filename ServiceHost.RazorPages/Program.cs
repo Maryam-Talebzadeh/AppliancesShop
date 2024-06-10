@@ -2,13 +2,13 @@ using SM.Infrastructure.Configuration;
 using DM.Infrastructure.Configuration;
 using IM.Infrastructure.Configuration;
 using Base_Framework.Configs;
-using System.Configuration;
 using SiteQuery_Configuration;
 using Base_Framework.Configuration;
 using BM.Infrastructure.Configuration;
 using CM.Infrastructure.Configuration;
 using AM.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Base_Framework.Infrastructure.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +50,35 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                    o.LogoutPath = new PathString("/Account");
                    o.AccessDeniedPath = new PathString("/AccessDenied");
                });
+
+#endregion
+
+#region Authorization
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminArea",
+        builder => builder.RequireRole(new List<string> { Roles.Administrator, Roles.ContentUploader }));
+
+    options.AddPolicy("Shop",
+        builder => builder.RequireRole(new List<string> { Roles.Administrator }));
+
+    options.AddPolicy("Discount",
+        builder => builder.RequireRole(new List<string> { Roles.Administrator }));
+
+    options.AddPolicy("Account",
+        builder => builder.RequireRole(new List<string> { Roles.Administrator }));
+});
+
+builder.Services.AddRazorPages()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
+                    options.Conventions.AuthorizeAreaFolder("Administration", "/Shop", "Shop");
+                    options.Conventions.AuthorizeAreaFolder("Administration", "/Discounts", "Discount");
+                    options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
+                });
+
 
 #endregion
 

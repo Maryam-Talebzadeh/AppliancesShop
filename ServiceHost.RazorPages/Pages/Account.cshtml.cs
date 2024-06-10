@@ -44,7 +44,7 @@ namespace ServiceHost.RazorPages.Pages
 
         public async Task<IActionResult> OnPostRegister(RegisterAccountDTO command, CancellationToken cancellationToken)
         {
-            command.RoleId = int.Parse(Roles.SystemUser);
+         
             var result =await _accountAppService.Register(command, cancellationToken);
             if (result.IsSuccedded)
                 return RedirectToPage("/Account");
