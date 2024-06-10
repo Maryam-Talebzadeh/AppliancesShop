@@ -24,7 +24,8 @@ namespace BM.Domain.Services.ArticleCategoryAgg
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             var slug = command.Slug.Slugify();
-            command.PictureName = _fileUploader.Upload(command.Picture, slug);
+            var path = $"ArticleCategories/{slug}";
+            command.PictureName = _fileUploader.Upload(command.Picture, path);
 
            await _articleCategoryRepository.Create(command, cancellationToken);
             _articleCategoryRepository.Save();

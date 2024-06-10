@@ -77,7 +77,8 @@ namespace BM.Infrastructure.DataAccess.Repos.EFCore.ArticleCategoryAgg
                     Picture = x.Picture,
                     ShowOrder = x.ShowOrder,
                     CreationDate = x.CreationDate.ToFarsi(),
-                    ArticlesCount = x.Articles.Count()
+                    ArticlesCount = x.Articles.Count(),
+                    Slug = x.Slug
                 });
 
             if (!string.IsNullOrWhiteSpace(searchModel.Name))

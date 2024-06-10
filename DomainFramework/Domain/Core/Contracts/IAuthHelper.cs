@@ -3,7 +3,7 @@
     public interface IAuthHelper
     {
         Task SignOut(CancellationToken cancellationToken);
-        Task<bool> IsAuthenticated(CancellationToken cancellationToken);
+        bool IsAuthenticated();
         Task Signin(AuthDTO account, CancellationToken cancellationToken);
         Task<string> CurrentAccountRole(CancellationToken cancellationToken);
         Task<AuthDTO> CurrentAccountInfo(CancellationToken cancellationToken);

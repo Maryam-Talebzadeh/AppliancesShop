@@ -97,8 +97,18 @@ namespace AM.Domain.Services.AccountService
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             command.Password = _passwordHasher.Hash(command.Password);
-            var path = $"profilePhotos";
-            command.ProfileName = _fileUploader.Upload(command.ProfilePhoto, path);
+            string path = "";
+
+            if(command.ProfilePhoto != null)
+            {
+                path = $"ProfilePhotos";
+                command.ProfileName = _fileUploader.Upload(command.ProfilePhoto, path);
+            }
+            else
+            {
+                command.ProfileName = "DefaultAvatar.jpg";
+            }
+           
           await  _accountRepository.Create(command, cancellationToken);
             _accountRepository.Save();
             return operation.Succedded();

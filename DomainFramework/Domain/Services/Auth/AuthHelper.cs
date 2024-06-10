@@ -18,7 +18,7 @@ namespace Base_Framework.Domain.Services.Auth
 
         public async Task<long> CurrentAccountId(CancellationToken cancellationToken)
         {
-            return await IsAuthenticated(cancellationToken)
+            return IsAuthenticated()
                ? long.Parse(_contextAccessor.HttpContext.User.Claims.First(x => x.Type == "AccountId")?.Value)
                : 0;
         }
@@ -26,7 +26,7 @@ namespace Base_Framework.Domain.Services.Auth
         public async Task<AuthDTO> CurrentAccountInfo(CancellationToken cancellationToken)
         {
             var result = new AuthDTO();
-            if (!await IsAuthenticated(cancellationToken))
+            if (!IsAuthenticated())
                 return result;
 
             var claims = _contextAccessor.HttpContext.User.Claims.ToList();
@@ -39,7 +39,7 @@ namespace Base_Framework.Domain.Services.Auth
 
         public async Task<string> CurrentAccountMobile(CancellationToken cancellationToken)
         {
-            return await IsAuthenticated(cancellationToken)
+            return IsAuthenticated()
               ? _contextAccessor.HttpContext.User.Claims.First(x => x.Type == "Mobile")?.Value
                 : "";
         }
@@ -54,7 +54,7 @@ namespace Base_Framework.Domain.Services.Auth
             throw new NotImplementedException();
         }
 
-        public async Task<bool> IsAuthenticated(CancellationToken cancellationToken)
+        public bool IsAuthenticated()
         {
             return _contextAccessor.HttpContext.User.Identity.IsAuthenticated;
         }

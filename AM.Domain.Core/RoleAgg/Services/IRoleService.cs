@@ -7,7 +7,7 @@ namespace AM.Domain.Core.RoleAgg.Services
     {
         Task<OperationResult> Create(CreateRoleDTO command, CancellationToken cancellationToken);
         Task<OperationResult> Edit(EditRoleDTO command, CancellationToken cancellationToken);
-        Task<EditRoleDTO> GetDetails(int id, CancellationToken cancellationToken);
+        Task<EditRoleDTO> GetDetails(long id, CancellationToken cancellationToken);
         Task<List<RoleDTO>> GetAll(CancellationToken cancellationToken);
     }
 }

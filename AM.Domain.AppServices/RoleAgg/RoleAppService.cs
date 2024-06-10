@@ -29,7 +29,7 @@ namespace AM.Domain.AppServices.RoleAgg
             return await _roleService.GetAll(cancellationToken);
         }
 
-        public async Task<EditRoleDTO> GetDetails(int id, CancellationToken cancellationToken)
+        public async Task<EditRoleDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
             return await _roleService.GetDetails(id, cancellationToken);
         }

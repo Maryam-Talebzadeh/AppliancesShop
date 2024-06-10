@@ -179,6 +179,8 @@
     <Folder Include="wwwroot\AdminTheme\SlidePictures\" />
     <Folder Include="wwwroot\AdminTheme\ProductCategoryPictures\" />
     <Folder Include="wwwroot\AdminTheme\ProductPictures\" />
+    <Folder Include="wwwroot\Images\Articles\" />
+    <Folder Include="wwwroot\Images\ArticleCategories\" />
     <Folder Include="wwwroot\Theme\assets\img\banners\" />
     <Folder Include="wwwroot\Theme\assets\img\category\" />
     <Folder Include="wwwroot\Theme\assets\img\products\" />

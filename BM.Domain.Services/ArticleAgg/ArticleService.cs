@@ -48,7 +48,7 @@ namespace BM.Domain.Services.ArticleAgg
 
             var slug = command.Slug.Slugify();
             var categorySlug = await _articleCategoryRepository.GetSlugBy(command.CategoryId, cancellationToken);
-            var path = $"{categorySlug}/{slug}";
+            var path = $"Articles/{categorySlug}/{slug}";
             command.PictureName = _fileUploader.Upload(command.Picture, path);
 
             await _articleRepository.Edit(command, cancellationToken);

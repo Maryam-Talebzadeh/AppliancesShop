@@ -8,6 +8,7 @@ using Base_Framework.Configuration;
 using BM.Infrastructure.Configuration;
 using CM.Infrastructure.Configuration;
 using AM.Infrastructure.Configuration;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,24 @@ AccountManagementBootstrapper.Configure(builder.Services, siteSetting.SqlConfigu
 
 #endregion
 
+#region Authentication
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.Lax;
+});
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+               .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
+               {
+                   o.LoginPath = new PathString("/Account");
+                   o.LogoutPath = new PathString("/Account");
+                   o.AccessDeniedPath = new PathString("/AccessDenied");
+               });
+
+#endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,14 +63,16 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseCookiePolicy();
 
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapRazorPages();
-app.MapDefaultControllerRoute();
 
 app.Run();

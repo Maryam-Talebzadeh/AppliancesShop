@@ -36,7 +36,7 @@ namespace AM.Infrastructure.DataAccess.Repos.EFCore.RoleAgg
             }).ToList();
         }
 
-        public async Task<EditRoleDTO> GetDetails(int id, CancellationToken cancellationToken)
+        public async Task<EditRoleDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
             return _context.Roles.Select(r =>
            new EditRoleDTO()

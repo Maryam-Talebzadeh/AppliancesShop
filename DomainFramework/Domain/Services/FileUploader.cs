@@ -18,7 +18,7 @@ namespace Base_Framework.Domain.Services
         {
             if (file == null) return "";
 
-            var directoryPath = $"{_webHostEnvironment.WebRootPath}//ProductPictures//{path}";
+            var directoryPath = $"{_webHostEnvironment.WebRootPath}//Images//{path}";
 
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);

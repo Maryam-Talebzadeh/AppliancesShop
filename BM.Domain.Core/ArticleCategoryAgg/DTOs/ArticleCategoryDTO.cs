@@ -11,5 +11,6 @@ namespace BM.Domain.Core.ArticleCategoryAgg.DTOs
         public int ShowOrder { get; set; }
         public string CreationDate { get; set; }
         public long ArticlesCount { get; set; }
+        public string Slug { get; set; }
     }
 }

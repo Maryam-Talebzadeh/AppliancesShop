@@ -60,7 +60,9 @@ namespace BM.Infrastructure.DataAccess.Repos.EFCore.ArticleAgg
                 Picture = x.Picture,
                 PublishDate = x.PublishDate.ToFarsi(),
                 ShortDescription = x.ShortDescription.Substring(0, Math.Min(x.ShortDescription.Length, 50)) + " ...",
-                Title = x.Title
+                Title = x.Title,
+                Slug = x.Slug,
+                CategorySlug = x.Category.Slug
             });
 
             if (!string.IsNullOrWhiteSpace(searchModel.Title))

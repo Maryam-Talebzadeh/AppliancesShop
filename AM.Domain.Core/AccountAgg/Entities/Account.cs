@@ -8,9 +8,9 @@ namespace AM.Domain.Core.AccountAgg.Entities
         public string Fullname { get; private set; }
         public string Username { get; private set; }
         public string Password { get; private set; }
-        public string Mobile { get; private set; }
+        public string? Mobile { get; private set; }
         public long RoleId { get; private set; }
-        public string ProfilePhoto { get; private set; }
+        public string? ProfilePhoto { get; private set; }
         public Role Role { get; set; }
 
         public Account(string fullname, string username, string password, string mobile,

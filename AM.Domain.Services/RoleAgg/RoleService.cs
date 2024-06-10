@@ -52,7 +52,7 @@ namespace AM.Domain.Services.RoleAgg
             return await _roleRepository.GetAll(cancellationToken);
         }
 
-        public async Task<EditRoleDTO> GetDetails(int id, CancellationToken cancellationToken)
+        public async Task<EditRoleDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
             return await _roleRepository.GetDetails(id, cancellationToken);
         }
