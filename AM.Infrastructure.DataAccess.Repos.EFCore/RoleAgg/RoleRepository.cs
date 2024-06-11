@@ -16,14 +16,14 @@ namespace AM.Infrastructure.DataAccess.Repos.EFCore.RoleAgg
 
         public async Task Create(CreateRoleDTO command, CancellationToken cancellationToken)
         {
-            var role = new Role(command.Name);
+            var role = new Role(command.Name, new List<Permission>());
             _context.Roles.Add(role);
         }
 
         public async Task Edit(EditRoleDTO command, CancellationToken cancellationToken)
         {
             var role = Get(command.Id);
-            role.Edit(command.Name);
+            role.Edit(command.Name, new List<Permission>());
         }
 
         public async Task<List<RoleDTO>> GetAll(CancellationToken cancellationToken)
