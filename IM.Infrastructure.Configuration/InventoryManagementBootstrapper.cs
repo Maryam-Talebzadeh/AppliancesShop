@@ -7,6 +7,8 @@ using IM.Domain.Core.InventoryAgg.Services;
 using IM.Domain.Services.InventoryAgg;
 using IM.Domain.Core.InventoryAgg.AppServices;
 using IM.Domain.AppServices.InventoryAgg;
+using Base_Framework.Domain.Core.Contracts;
+using IM.Infrastructure.Configuration.Permissions;
 
 namespace IM.Infrastructure.Configuration
 {
@@ -25,6 +27,8 @@ namespace IM.Infrastructure.Configuration
             );
 
             #endregion
+
+            services.AddSingleton<IPermissionExposer, InventoryPermissionExposer>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Base_Framework.Domain.Core.Contracts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SM.Domain.AppServices.ProductAgg;
 using SM.Domain.AppServices.ProductCategoryAgg;
@@ -15,6 +16,7 @@ using SM.Domain.Core.SliderAgg.Services;
 using SM.Domain.Services.ProductAgg;
 using SM.Domain.Services.ProductCategoryAgg;
 using SM.Domain.Services.SlideAgg;
+using SM.Infrastructure.Configuration.Permissions;
 using SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg;
 using SM.Infrastructure.DataAccess.Repos.EFCore.ProductCategoryAgg;
 using SM.Infrastructure.DataAccess.Repos.EFCore.SliderAgg;
@@ -65,6 +67,8 @@ namespace SM.Infrastructure.Configuration
             );
 
             #endregion
+
+            services.AddSingleton<IPermissionExposer, ShopPermissionExposer>();
         }
 
 
