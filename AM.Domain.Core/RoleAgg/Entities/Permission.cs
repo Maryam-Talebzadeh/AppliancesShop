@@ -4,10 +4,10 @@ namespace AM.Domain.Core.RoleAgg.Entities
 {
     public class Permission
     {
-        public long Id { get; private set; }
+        public long Id { get;  set; }
         public int Code { get; private set; }
         public string Name { get; private set; }
-        public long RoleId { get; private set; }
+        public long RoleId { get;  set; }
         public Role Role { get; private set; }
 
         public Permission(int code)

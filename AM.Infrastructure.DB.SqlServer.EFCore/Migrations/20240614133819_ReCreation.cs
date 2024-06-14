@@ -79,15 +79,37 @@ namespace AM.Infrastructure.DB.SqlServer.EFCore.Migrations
                 columns: new[] { "Id", "CreationDate", "IsRemoved", "Name" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2024, 6, 14, 1, 37, 32, 342, DateTimeKind.Local).AddTicks(6618), false, "مدیرسیستم" },
-                    { 2L, new DateTime(2024, 6, 14, 1, 37, 32, 342, DateTimeKind.Local).AddTicks(6789), false, "کاربر عادی" },
-                    { 3L, new DateTime(2024, 6, 14, 1, 37, 32, 342, DateTimeKind.Local).AddTicks(6818), false, "محتوا گذار" }
+                    { 1L, new DateTime(2024, 6, 14, 6, 38, 15, 752, DateTimeKind.Local).AddTicks(2796), false, "مدیرسیستم" },
+                    { 2L, new DateTime(2024, 6, 14, 6, 38, 15, 752, DateTimeKind.Local).AddTicks(2880), false, "کاربر عادی" },
+                    { 3L, new DateTime(2024, 6, 14, 6, 38, 15, 752, DateTimeKind.Local).AddTicks(2894), false, "محتوا گذار" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Accounts",
                 columns: new[] { "Id", "CreationDate", "Fullname", "IsRemoved", "Mobile", "Password", "ProfilePhoto", "RoleId", "Username" },
-                values: new object[] { 1L, new DateTime(2024, 6, 14, 1, 37, 32, 330, DateTimeKind.Local).AddTicks(903), "Mary", false, "09386485663", "10000.lyz67IGPgBUonnD4LNGVTQ==.4tH6b2mcWg+vVPSEHhzaEX0aatIlFdqGDcI+NUA/VLA=", "DefaultAvatar.jpg", 1L, "Mary" });
+                values: new object[] { 1L, new DateTime(2024, 6, 14, 6, 38, 15, 751, DateTimeKind.Local).AddTicks(8372), "Mary", false, "09386485663", "10000.lyz67IGPgBUonnD4LNGVTQ==.4tH6b2mcWg+vVPSEHhzaEX0aatIlFdqGDcI+NUA/VLA=", "DefaultAvatar.jpg", 1L, "Mary" });
+
+            migrationBuilder.InsertData(
+                table: "RolePermissions",
+                columns: new[] { "Id", "Code", "RoleId" },
+                values: new object[,]
+                {
+                    { 1L, 52, 1L },
+                    { 2L, 53, 1L },
+                    { 3L, 54, 1L },
+                    { 4L, 55, 1L },
+                    { 6L, 56, 1L },
+                    { 7L, 51, 1L },
+                    { 8L, 12, 1L },
+                    { 9L, 13, 1L },
+                    { 10L, 10, 1L },
+                    { 11L, 11, 1L },
+                    { 12L, 22, 1L },
+                    { 13L, 23, 1L },
+                    { 14L, 20, 1L },
+                    { 15L, 21, 1L },
+                    { 18L, 50, 1L }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_RoleId",

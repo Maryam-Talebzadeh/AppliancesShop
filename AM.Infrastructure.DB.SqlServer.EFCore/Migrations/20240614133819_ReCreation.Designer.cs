@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AM.Infrastructure.DB.SqlServer.EFCore.Migrations
 {
     [DbContext(typeof(AccountContext))]
-    [Migration("20240614083736_ReCreation")]
+    [Migration("20240614133819_ReCreation")]
     partial class ReCreation
     {
         /// <inheritdoc />
@@ -77,7 +77,7 @@ namespace AM.Infrastructure.DB.SqlServer.EFCore.Migrations
                         new
                         {
                             Id = 1L,
-                            CreationDate = new DateTime(2024, 6, 14, 1, 37, 32, 330, DateTimeKind.Local).AddTicks(903),
+                            CreationDate = new DateTime(2024, 6, 14, 6, 38, 15, 751, DateTimeKind.Local).AddTicks(8372),
                             Fullname = "Mary",
                             IsRemoved = false,
                             Mobile = "09386485663",
@@ -115,21 +115,21 @@ namespace AM.Infrastructure.DB.SqlServer.EFCore.Migrations
                         new
                         {
                             Id = 1L,
-                            CreationDate = new DateTime(2024, 6, 14, 1, 37, 32, 342, DateTimeKind.Local).AddTicks(6618),
+                            CreationDate = new DateTime(2024, 6, 14, 6, 38, 15, 752, DateTimeKind.Local).AddTicks(2796),
                             IsRemoved = false,
                             Name = "مدیرسیستم"
                         },
                         new
                         {
                             Id = 2L,
-                            CreationDate = new DateTime(2024, 6, 14, 1, 37, 32, 342, DateTimeKind.Local).AddTicks(6789),
+                            CreationDate = new DateTime(2024, 6, 14, 6, 38, 15, 752, DateTimeKind.Local).AddTicks(2880),
                             IsRemoved = false,
                             Name = "کاربر عادی"
                         },
                         new
                         {
                             Id = 3L,
-                            CreationDate = new DateTime(2024, 6, 14, 1, 37, 32, 342, DateTimeKind.Local).AddTicks(6818),
+                            CreationDate = new DateTime(2024, 6, 14, 6, 38, 15, 752, DateTimeKind.Local).AddTicks(2894),
                             IsRemoved = false,
                             Name = "محتوا گذار"
                         });
@@ -172,6 +172,98 @@ namespace AM.Infrastructure.DB.SqlServer.EFCore.Migrations
                                 .HasForeignKey("RoleId");
 
                             b1.Navigation("Role");
+
+                            b1.HasData(
+                                new
+                                {
+                                    Id = 1L,
+                                    Code = 52,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 2L,
+                                    Code = 53,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 3L,
+                                    Code = 54,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 4L,
+                                    Code = 55,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 18L,
+                                    Code = 50,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 6L,
+                                    Code = 56,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 7L,
+                                    Code = 51,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 8L,
+                                    Code = 12,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 9L,
+                                    Code = 13,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 10L,
+                                    Code = 10,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 11L,
+                                    Code = 11,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 12L,
+                                    Code = 22,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 13L,
+                                    Code = 23,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 14L,
+                                    Code = 20,
+                                    RoleId = 1L
+                                },
+                                new
+                                {
+                                    Id = 15L,
+                                    Code = 21,
+                                    RoleId = 1L
+                                });
                         });
 
                     b.Navigation("Permissions");
