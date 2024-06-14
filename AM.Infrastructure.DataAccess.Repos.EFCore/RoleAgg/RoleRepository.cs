@@ -60,5 +60,10 @@ namespace AM.Infrastructure.DataAccess.Repos.EFCore.RoleAgg
             return permissions.Select(x => new PermissionDto(x.Code, x.Name)).ToList();
         }
 
+        public async Task<List<int>> GetPermissionsCodeBy(long roleId, CancellationToken cancellationToken)
+        {
+            var permissions = _context.Roles.Where(r => r.Id == roleId).Select(r => r.Permissions).AsNoTracking().FirstOrDefault();
+            return permissions.Select(p => p.Code).ToList();
+        }
     }
 }

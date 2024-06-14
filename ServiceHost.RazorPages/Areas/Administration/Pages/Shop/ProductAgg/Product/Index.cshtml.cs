@@ -1,9 +1,11 @@
+using Base_Framework.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SM.Domain.Core.ProductAgg.AppSevices;
 using SM.Domain.Core.ProductAgg.DTOs.Product;
 using SM.Domain.Core.ProductCategoryAgg.AppServices;
+using SM.Infrastructure.Configuration.Permissions;
 
 namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Product
 {
@@ -25,12 +27,14 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
             _productCategoryAppService = productCategoryAppService;
         }
 
+        [NeedsPermission(ShopPermissions.ListProducts)]
         public async Task OnGet(SearchProductDTO search, CancellationToken cancellationToken)
         {
             ProductCategories = new SelectList(_productCategoryAppService.GetAll(), "Id", "Name");
             Products = await _productAppService.Search(search, cancellationToken);
         }
 
+       
         public async Task<ActionResult> OnGetCreate(CancellationToken cancellationToken)
         {
             var command = new CreateProductDTO();
@@ -39,6 +43,7 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
             return Partial("./Create", command);
         }
 
+        [NeedsPermission(ShopPermissions.CreateProduct)]
         public async Task<ActionResult> OnPostCreate(CreateProductDTO command, CancellationToken cancellationToken)
         {
             if(!ModelState.IsValid)
@@ -59,6 +64,7 @@ namespace ServiceHost.RazorPages.Areas.Administration.Pages.Shop.ProductAgg.Prod
             return Partial("Edit", product);
         }
 
+        [NeedsPermission(ShopPermissions.EditProduct)]
         public async Task<ActionResult> OnPostEdit(EditProductDTO command, CancellationToken cancellationToken)
         {
             if (!ModelState.IsValid)

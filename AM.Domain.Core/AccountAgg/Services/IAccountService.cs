@@ -14,5 +14,6 @@ namespace AM.Domain.Core.AccountAgg.Services
         Task<List<AccountDTO>> Search(SearchAccountDTO searchModel, CancellationToken cancellationToken);
         Task<List<AccountDTO>> GetAccounts(CancellationToken cancellationToken);
         Task<AccountDTO> GetBy(string username, CancellationToken cancellationToken);
+        Task<List<int>> GetPermissionsCodeBy(long roleId, CancellationToken cancellationToken);
     }
 }

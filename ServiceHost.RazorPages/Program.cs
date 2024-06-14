@@ -9,6 +9,7 @@ using CM.Infrastructure.Configuration;
 using AM.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Base_Framework.Infrastructure.DataAccess;
+using ServiceHost.RazorPages.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -71,6 +72,7 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddRazorPages()
+    .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
                 .AddRazorPagesOptions(options =>
                 {
                     options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");

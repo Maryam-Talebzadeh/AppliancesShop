@@ -51,11 +51,6 @@ namespace Base_Framework.Domain.Services.Auth
             throw new NotImplementedException();
         }
 
-        public async Task<List<int>> GetPermissions(CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool IsAuthenticated()
         {
             return _contextAccessor.HttpContext.User.Identity.IsAuthenticated;
@@ -63,13 +58,15 @@ namespace Base_Framework.Domain.Services.Auth
 
         public async Task Signin(AuthDTO account, CancellationToken cancellationToken)
         {
+            var permissions = JsonConvert.SerializeObject(account.Permissions);
             var claims = new List<Claim>
             {
-                new Claim("AccountId", account.Id.ToString()),
+            new Claim("AccountId", account.Id.ToString()),
                 new Claim(ClaimTypes.Name, account.Fullname),
                 new Claim(ClaimTypes.Role, account.RoleId.ToString()),
-                new Claim("Username", account.Username), 
-                new Claim("Mobile", account.Mobile)
+                new Claim("Username", account.Username),
+                new Claim("Mobile", account.Mobile),
+                 new Claim("permissions", permissions)
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -87,6 +84,16 @@ namespace Base_Framework.Domain.Services.Auth
         public async Task SignOut(CancellationToken cancellationToken)
         {
             _contextAccessor.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+
+        public List<int> GetPermissions()
+        {
+            if (!IsAuthenticated())
+                return new List<int>();
+
+            var permissions = _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "permissions")
+                ?.Value;
+            return JsonConvert.DeserializeObject<List<int>>(permissions);
         }
     }
 }

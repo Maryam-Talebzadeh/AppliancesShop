@@ -10,5 +10,6 @@ namespace AM.Domain.Core.RoleAgg.Data
         Task Edit(EditRoleDTO command, CancellationToken cancellationToken);
         Task<EditRoleDTO> GetDetails(long id, CancellationToken cancellationToken);
         Task<List<RoleDTO>> GetAll(CancellationToken cancellationToken);
+        Task<List<int>> GetPermissionsCodeBy(long roleId,  CancellationToken cancellationToken);
     }
 }

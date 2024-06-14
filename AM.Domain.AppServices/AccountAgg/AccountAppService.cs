@@ -50,8 +50,9 @@ namespace AM.Domain.AppServices.AccountAgg
 
             if (result.IsSuccedded)
             {
+                var permissions = await _accountService.GetPermissionsCodeBy(account.RoleId, cancellationToken);
                 var authViewModel = new AuthDTO(account.Id, account.RoleId, account.Fullname
-                , account.Username, account.Mobile);
+                , account.Username, account.Mobile, permissions);
 
                await _authHelper.Signin(authViewModel, cancellationToken);
                 return result.Succedded();

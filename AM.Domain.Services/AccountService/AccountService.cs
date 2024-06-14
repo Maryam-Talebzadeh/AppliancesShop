@@ -1,6 +1,8 @@
 ﻿using AM.Domain.Core.AccountAgg.Data;
 using AM.Domain.Core.AccountAgg.DTOs;
 using AM.Domain.Core.AccountAgg.Services;
+using AM.Domain.Core.RoleAgg.Data;
+using AM.Domain.Core.RoleAgg.Services;
 using Base_Framework.Domain.Core.Contracts;
 using Base_Framework.Domain.Services;
 using Base_Framework.Infrastructure.DataAccess;
@@ -12,13 +14,15 @@ namespace AM.Domain.Services.AccountService
         private readonly IFileUploader _fileUploader;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IAccountRepository _accountRepository;
+        private readonly IRoleRepository _roleRepository;
 
         public AccountService(IAccountRepository accountRepository, IPasswordHasher passwordHasher,
-            IFileUploader fileUploader)
+            IFileUploader fileUploader, IRoleRepository roleRepository)
         {
             _accountRepository = accountRepository;
             _fileUploader = fileUploader;
             _passwordHasher = passwordHasher;
+            _roleRepository = roleRepository; 
         }
 
         public async Task<OperationResult> ChangePassword(ChangePasswordDTO command, CancellationToken cancellationToken)
@@ -73,6 +77,12 @@ namespace AM.Domain.Services.AccountService
         public async Task<EditAccountDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
             return await _accountRepository.GetDetails(id, cancellationToken);
+        }
+
+        public async  Task<List<int>> GetPermissionsCodeBy(long roleId, CancellationToken cancellationToken)
+        {
+            return await _roleRepository.GetPermissionsCodeBy(roleId, cancellationToken);
+
         }
 
         public async Task<OperationResult> Login(LoginAccountDTO command, CancellationToken cancellationToken)
