@@ -1,5 +1,6 @@
 ﻿using AM.Domain.Core.RoleAgg.Data;
 using AM.Domain.Core.RoleAgg.DTOs;
+using AM.Domain.Core.RoleAgg.Entities;
 using AM.Domain.Core.RoleAgg.Services;
 using Base_Framework.Domain.Services;
 
@@ -35,12 +36,12 @@ namespace AM.Domain.Services.RoleAgg
         {
             var operation = new OperationResult();
 
-            if ( _roleRepository.IsExist(r => r.Id == command.Id))
+            if (! _roleRepository.IsExist(r => r.Id == command.Id))
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
             if ( _roleRepository.IsExist(r => r.Name == command.Name && r.Id != command.Id))
                 return operation.Failed(ApplicationMessages.RecordNotFound);
-
+          
             await _roleRepository.Edit(command, cancellationToken);
            _roleRepository.Save();
 

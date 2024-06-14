@@ -10,7 +10,7 @@ namespace AM.Infrastructure.DB.SqlServer.EFCore.Configuration
         {
             builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
 
-            #region Seed Data
+            #region Own
 
             builder.OwnsMany(x => x.Permissions, navigationBuilder =>
             {
@@ -19,6 +19,22 @@ namespace AM.Infrastructure.DB.SqlServer.EFCore.Configuration
                 navigationBuilder.Ignore(x => x.Name);
                 navigationBuilder.WithOwner(x => x.Role);
             });
+
+            #endregion
+
+            #region SeedData
+
+            var role1 = new Role("مدیرسیستم", new List<Permission>());
+            role1.Id = 1;
+            builder.HasData(role1);
+
+            var role2 = new Role("کاربر عادی", new List<Permission>());
+            role2.Id = 2;
+            builder.HasData(role2);
+
+            var role3 = new Role("محتوا گذار", new List<Permission>());
+            role3.Id = 3;
+            builder.HasData(role3);
 
             #endregion
         }

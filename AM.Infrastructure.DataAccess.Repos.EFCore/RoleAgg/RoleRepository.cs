@@ -2,7 +2,10 @@
 using AM.Domain.Core.RoleAgg.DTOs;
 using AM.Domain.Core.RoleAgg.Entities;
 using AM.Infrastructure.DB.SqlServer.EFCore.Contexts;
+using Base_Framework.Domain.Core.Contracts;
 using Base_Framework.Infrastructure.DataAccess;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace AM.Infrastructure.DataAccess.Repos.EFCore.RoleAgg
 {
@@ -22,8 +25,10 @@ namespace AM.Infrastructure.DataAccess.Repos.EFCore.RoleAgg
 
         public async Task Edit(EditRoleDTO command, CancellationToken cancellationToken)
         {
+            var permissions = new List<Permission>();
+            command.Permissions.ForEach(Code => permissions.Add(new Permission(Code)));
             var role = Get(command.Id);
-            role.Edit(command.Name, new List<Permission>());
+            role.Edit(command.Name,permissions);
         }
 
         public async Task<List<RoleDTO>> GetAll(CancellationToken cancellationToken)
@@ -38,12 +43,22 @@ namespace AM.Infrastructure.DataAccess.Repos.EFCore.RoleAgg
 
         public async Task<EditRoleDTO> GetDetails(long id, CancellationToken cancellationToken)
         {
-            return _context.Roles.Select(r =>
-           new EditRoleDTO()
-           {
-               Id = r.Id,
-               Name = r.Name
-           }).FirstOrDefault(r => r.Id == id);
+            var role = _context.Roles.Select(x => new EditRoleDTO
+            {
+                Id = x.Id,
+                Name = x.Name,
+                MappedPermissions = MapPermissions(x.Permissions)
+            }).AsNoTracking()
+                 .FirstOrDefault(x => x.Id == id);
+
+            role.Permissions = role.MappedPermissions.Select(x => x.Code).ToList();
+            return role;
         }
+
+        private static List<PermissionDto> MapPermissions(IEnumerable<Permission> permissions)
+        {
+            return permissions.Select(x => new PermissionDto(x.Code, x.Name)).ToList();
+        }
+
     }
 }
