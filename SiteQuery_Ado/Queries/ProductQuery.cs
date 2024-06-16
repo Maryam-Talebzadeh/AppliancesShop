@@ -1,8 +1,10 @@
 ﻿using Base_Framework.Domain.General;
 using Microsoft.Data.SqlClient;
+using Newtonsoft.Json.Linq;
 using SiteQuery_Ado.Contracts;
 using SiteQuery_Ado.Models;
 using System.Data;
+using System.Threading;
 
 namespace SiteQuery_Ado.Queries
 {
@@ -335,6 +337,69 @@ namespace SiteQuery_Ado.Queries
                 }
             }
             return name;
+        }
+
+        public async Task<List<CartItemQueryModel>> CheckInventoryStatus(List<CartItemQueryModel> cartItems, CancellationToken cancellationToken)
+        {
+            var inventory = new List<InventoryQueryModel>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+
+                using (SqlCommand command = new SqlCommand("CheckInventoryStatus", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                 
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var inventoryItem = new InventoryQueryModel()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("inventory.Id")),
+                                ProductId = reader.GetInt32(reader.GetOrdinal("inventory.ProductId")),
+                                InStock = reader.GetBoolean(reader.GetOrdinal("inventory.InStock"))
+                        };                           
+
+                            inventory.Add(inventoryItem);
+                        }
+                    }
+                }
+            }
+
+            foreach (var cartItem in cartItems.Where(cartItem =>
+                 inventory.Any(x => x.ProductId == cartItem.Id && x.InStock)))
+            {
+                int currentCount = 0;
+                var itemInventory = inventory.Find(x => x.ProductId == cartItem.Id);
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("CalculateCurrentInventoryCount", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@inventoryId", SqlDbType.NVarChar));
+                        command.Parameters["@inventoryId"].Value = itemInventory.Id;
+
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                 currentCount  =  command.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+
+                cartItem.IsInStock = currentCount >= cartItem.Count;
+            }
+
+            return cartItems;
         }
     }
 }

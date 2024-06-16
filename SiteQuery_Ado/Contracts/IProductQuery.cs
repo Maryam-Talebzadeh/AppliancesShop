@@ -1,5 +1,4 @@
-﻿
-using SiteQuery_Ado.Models;
+﻿using SiteQuery_Ado.Models;
 
 namespace SiteQuery_Ado.Contracts
 {
@@ -9,5 +8,6 @@ namespace SiteQuery_Ado.Contracts
         public Task<List<ProductQueryModel>> GetLatestArrivals( CancellationToken cancellationToken);
         public Task<List<ProductQueryModel>> Search(string value, CancellationToken cancellationToken);
         Task<ProductPictureQueryModel> GetFirstPictureByProductId(long id, CancellationToken cancellationToken);
+        Task<List<CartItemQueryModel>> CheckInventoryStatus(List<CartItemQueryModel> cartItems, CancellationToken cancellationToken);
     }
 }

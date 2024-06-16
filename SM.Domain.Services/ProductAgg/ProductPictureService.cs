@@ -32,7 +32,7 @@ namespace SM.Domain.Services.ProductAgg
             #region Save picture
 
             string picName = NameGenarator.GenerateUniqeCode() + Path.GetExtension(command.Picture.FileName);
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", command.ProductId.ToString(), "ProductPictures", picName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "ProductPictures", picName);
             FileHandler.SaveImage(path, command.Picture);
 
             #endregion
@@ -61,7 +61,7 @@ namespace SM.Domain.Services.ProductAgg
 
             if (command.Picture != null)
             {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot",command.ProductId.ToString(), "ProductPictures");
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "ProductPictures");
 
                 #region Delete Old Image
 
