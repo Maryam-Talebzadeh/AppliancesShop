@@ -7,6 +7,7 @@ namespace Base_Framework.Infrastructure.DataAccess
         public const string Administrator = "1";
         public const string SystemUser = "2";
         public const string ContentUploader = "3";
+        public const string ColleagueUser = "4";
 
         public static string GetRoleBy(long id)
         {
@@ -18,6 +19,8 @@ namespace Base_Framework.Infrastructure.DataAccess
                     return "کاربر عادی";
                 case 3:
                     return "محتوا گذار";
+                case 4:
+                    return "کاربر همکار";
                 default:
                     return "";
             }

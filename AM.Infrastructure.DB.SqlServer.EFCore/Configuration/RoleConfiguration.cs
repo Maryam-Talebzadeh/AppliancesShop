@@ -26,6 +26,10 @@ namespace AM.Infrastructure.DB.SqlServer.EFCore.Configuration
             role3.Id = 3;
             builder.HasData(role3);
 
+            var role4 = new Role("کاربر همکار", new List<Permission>());
+            role4.Id = 4;
+            builder.HasData(role4);
+
             #endregion
 
             builder.OwnsMany(x => x.Permissions, navigationBuilder =>
