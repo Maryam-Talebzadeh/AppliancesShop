@@ -84,6 +84,7 @@ namespace SM.Infrastructure.Configuration
             #endregion
 
             services.AddSingleton<IPermissionExposer, ShopPermissionExposer>();
+            services.AddSingleton<ICartService, CartService>();
         }
 
 
