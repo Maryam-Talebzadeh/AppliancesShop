@@ -19,6 +19,26 @@ namespace IM.Infrastructure.DataAccess.Repos.EFCore.InventoryAgg
             _shopContext = shopContext;
         }
 
+        public async Task<StockStatusDTO> CheckStock(IsInStockDTO command, CancellationToken cancellationToken)
+        {
+            var inventory = _context.Inventory.FirstOrDefault(x => x.ProductId == command.ProductId);
+            if (inventory == null || inventory.CalculateCurrentCount() < command.Count)
+            {
+                var product = _shopContext.Products.Select(x => new { x.Id, x.Name })
+                    .FirstOrDefault(x => x.Id == command.ProductId);
+                return new StockStatusDTO
+                {
+                    IsStock = false,
+                    ProductName = product?.Name
+                };
+            }
+
+            return new StockStatusDTO
+            {
+                IsStock = true
+            };
+        }
+
         public async Task Create(CreateInventoryDTO command, CancellationToken cancellationToken)
         {
             var inventory = new Inventory(command.ProductId, command.UnitPrice);

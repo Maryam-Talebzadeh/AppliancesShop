@@ -15,6 +15,11 @@ namespace IM.Domain.Services.InventoryAgg
             _inventoryRepository = inventoryRepository;
         }
 
+        public async Task<StockStatusDTO> CheckStock(IsInStockDTO command, CancellationToken cancellationToken)
+        {
+            return await _inventoryRepository.CheckStock(command,cancellationToken);
+        }
+
         public async Task<OperationResult> Create(CreateInventoryDTO command, CancellationToken cancellationToken)
         {
             var operation = new OperationResult();

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Base_Framework.Infrastructure.DataAccess;
 using ServiceHost.RazorPages.Filters;
 using SiteManagement.Presentation.Api;
+using InventoryManagement.Presentation.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -74,20 +75,25 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddRazorPages()
-    .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
-                    options.Conventions.AuthorizeAreaFolder("Administration", "/Shop", "Shop");
-                    options.Conventions.AuthorizeAreaFolder("Administration", "/Discounts", "Discount");
-                    options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
-                })
-                 .AddApplicationPart(typeof(ProductController).Assembly);
+               .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
+               .AddRazorPagesOptions(options =>
+               {
+                   options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
+                   options.Conventions.AuthorizeAreaFolder("Administration", "/Shop", "Shop");
+                   options.Conventions.AuthorizeAreaFolder("Administration", "/Discounts", "Discount");
+                   options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
+               })
+               .AddApplicationPart(typeof(ProductController).Assembly)
+               .AddApplicationPart(typeof(InventoryController).Assembly);
 
 
 #endregion
 
-
+builder.Services.AddCors(options => options.AddPolicy("MyPolicy", builder =>
+               builder
+                   .AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod()));
 
 var app = builder.Build();
 
@@ -108,6 +114,8 @@ app.UseCookiePolicy();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseCors("MyPolicy");
 
 app.MapRazorPages();
 app.MapControllers();

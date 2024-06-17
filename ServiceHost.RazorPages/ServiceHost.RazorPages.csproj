@@ -161,6 +161,7 @@
     <ProjectReference Include="..\DM.Infrastructure.Configurations\DM.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\IM.Domain.Core\IM.Domain.Core.csproj" />
     <ProjectReference Include="..\IM.Infrastructure.Configuration\IM.Infrastructure.Configuration.csproj" />
+    <ProjectReference Include="..\InventoryManagement.Presentation.Api\InventoryManagement.Presentation.Api.csproj" />
     <ProjectReference Include="..\SiteManagement.Presentation.Api\SiteManagement.Presentation.Api.csproj" />
     <ProjectReference Include="..\SiteQuery_Ado\SiteQuery_Ado.csproj" />
     <ProjectReference Include="..\SiteQuery_Configuration\SiteQuery_Configuration.csproj" />
@@ -175,6 +176,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="Nancy" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>

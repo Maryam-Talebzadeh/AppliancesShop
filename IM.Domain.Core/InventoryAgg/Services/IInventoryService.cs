@@ -13,5 +13,6 @@ namespace IM.Domain.Core.InventoryAgg.Services
         Task<EditInventoryDTO> GetDetails(long id, CancellationToken cancellationToken);
         Task<List<InventoryDTO>> Search(SearchInventoryDTO searchModel, CancellationToken cancellationToken);
         Task<List<InventoryOperationDTO>> GetOperationLog(long inventoryId, CancellationToken cancellationToken);
+        Task<StockStatusDTO> CheckStock(IsInStockDTO command, CancellationToken cancellationToken);
     }
 }

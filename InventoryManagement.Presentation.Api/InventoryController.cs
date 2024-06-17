@@ -10,7 +10,7 @@ namespace InventoryManagement.Presentation.Api
     {
         private readonly IInventoryAppService _inventoryAppService;
 
-        public InventoryController( IInventoryAppService inventoryAppService)
+        public InventoryController(IInventoryAppService inventoryAppService)
         {
             _inventoryAppService = inventoryAppService;
         }
@@ -21,5 +21,10 @@ namespace InventoryManagement.Presentation.Api
             return await _inventoryAppService.GetOperationLog(id, cancellationToken);
         }
 
+        [HttpPost]
+        public async Task<StockStatusDTO> CheckStock(IsInStockDTO command, CancellationToken cancellationToken)
+        {
+            return await _inventoryAppService.CheckStock(command, cancellationToken);
+        }
     }
 }
