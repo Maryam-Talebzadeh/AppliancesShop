@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SM.Domain.Core.OrderAgg.Entities;
 using SM.Domain.Core.ProductAgg.Entities;
 using SM.Domain.Core.ProductCategoryAgg.Entities;
 using SM.Domain.Core.SliderAgg.Entities;
 using SM.Infrastructure.DB.SqlServer.EFCore.Configurations.ProductCategoryAgg;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SM.Infrastructure.DB.SqlServer.EFCore.Contexts
 {
@@ -17,6 +14,13 @@ namespace SM.Infrastructure.DB.SqlServer.EFCore.Contexts
         {
             
         }
+
+        #region OrderAgg
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
+        #endregion
 
         #region ProductCategoryAgg
 
