@@ -4,11 +4,12 @@ namespace SM.Domain.Core.OrderAgg.Data
 {
    public  interface IOrderRepository
     {
-        Task<long> PlaceOrder(CartDTO cart, CancellationToken cancellationToken);
+        Task<long> PlaceOrder(OrderDTO order, CancellationToken cancellationToken);
         Task<double> GetAmountBy(long id, CancellationToken cancellationToken);
         Task Cancel(long id, CancellationToken cancellationToken);
-        Task<string> PaymentSucceeded(long orderId, long refId, CancellationToken cancellationToken);
+        Task PaymentSucceeded(long orderId, long refId, string issueTrackingNo, CancellationToken cancellationToken);
         Task<List<OrderItemDTO>> GetItems(long orderId, CancellationToken cancellationToken);
         Task<List<OrderDTO>> Search(SearchOrderDTO searchModel, CancellationToken cancellationToken);
+        Task AddItem(OrderItemDTO item, CancellationToken cancellationToken);
     }
 }

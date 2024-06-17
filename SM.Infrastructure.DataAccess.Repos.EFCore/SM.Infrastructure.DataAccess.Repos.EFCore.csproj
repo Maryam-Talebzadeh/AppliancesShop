@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="OrderAgg\" />
+    <Reference Include="AM.Infrastructure.DB.SqlServer.EFCore">
+      <HintPath>..\AM.Infrastructure.DB.SqlServer.EFCore\bin\Debug\net8.0\AM.Infrastructure.DB.SqlServer.EFCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
