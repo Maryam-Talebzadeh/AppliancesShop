@@ -13,6 +13,7 @@ namespace SM.Domain.Core.OrderAgg.Entities
         public bool IsCanceled { get; private set; }
         public string IssueTrackingNo { get; private set; }
         public long RefId { get; private set; }
+        public List<OrderItem> Items { get; private set; }
 
         public Order(long accountId, int paymentMethod, double totalAmount, double discountAmount, double payAmount)
         {
@@ -24,6 +25,7 @@ namespace SM.Domain.Core.OrderAgg.Entities
             IsPaid = false;
             IsCanceled = false;
             RefId = 0;
+            Items = new List<OrderItem>();
         }
 
         public void PaymentSucceeded(long refId)
@@ -44,5 +46,9 @@ namespace SM.Domain.Core.OrderAgg.Entities
             IssueTrackingNo = number;
         }
 
+        public void AddItem(OrderItem item)
+        {
+            Items.Add(item);
+        }
     }
 }
