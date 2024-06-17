@@ -10,11 +10,13 @@ using AM.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Base_Framework.Infrastructure.DataAccess;
 using ServiceHost.RazorPages.Filters;
+using SiteManagement.Presentation.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddMvc();
 builder.Services.AddHttpContextAccessor();
 
 #region ?Fill SiteSetting
@@ -79,10 +81,13 @@ builder.Services.AddRazorPages()
                     options.Conventions.AuthorizeAreaFolder("Administration", "/Shop", "Shop");
                     options.Conventions.AuthorizeAreaFolder("Administration", "/Discounts", "Discount");
                     options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
-                });
+                })
+                 .AddApplicationPart(typeof(ProductController).Assembly);
 
 
 #endregion
+
+
 
 var app = builder.Build();
 
@@ -105,5 +110,6 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapControllers();
 
 app.Run();

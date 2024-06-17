@@ -185,6 +185,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Infrastructure.DB.SqlSer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Infrastructure.Configuration", "AM.Infrastructure.Configuration\AM.Infrastructure.Configuration.csproj", "{FFF67DA8-52AA-4FDD-A4AE-B65B0BB09641}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoints", "EndPoints", "{B61F0067-A110-4684-BC53-382A98804DCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteManagement.Presentation.Api", "SiteManagement.Presentation.Api\SiteManagement.Presentation.Api.csproj", "{15F17BEB-FDD7-40C2-8D50-D5C87ED72FA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -351,6 +355,10 @@ Global
 		{FFF67DA8-52AA-4FDD-A4AE-B65B0BB09641}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFF67DA8-52AA-4FDD-A4AE-B65B0BB09641}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFF67DA8-52AA-4FDD-A4AE-B65B0BB09641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15F17BEB-FDD7-40C2-8D50-D5C87ED72FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15F17BEB-FDD7-40C2-8D50-D5C87ED72FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15F17BEB-FDD7-40C2-8D50-D5C87ED72FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15F17BEB-FDD7-40C2-8D50-D5C87ED72FA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -438,6 +446,8 @@ Global
 		{0EAAC783-5E38-41F8-9B2D-7BA55C1553C8} = {E887468E-263C-4139-A4F5-64769A82C7A3}
 		{707399DB-E3D6-4DCB-BCC2-17590863D63A} = {DE11C979-FCA8-4E83-8FF5-C71F0A397DF8}
 		{FFF67DA8-52AA-4FDD-A4AE-B65B0BB09641} = {F13050DB-C856-4EF4-9575-7BB489FBB8A6}
+		{B61F0067-A110-4684-BC53-382A98804DCB} = {57AD62C7-0F5D-4AFE-BACE-5B3AC7CC4A86}
+		{15F17BEB-FDD7-40C2-8D50-D5C87ED72FA5} = {B61F0067-A110-4684-BC53-382A98804DCB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2E3B5803-84A7-47E6-A5E9-B1DCDF0A7C77}
