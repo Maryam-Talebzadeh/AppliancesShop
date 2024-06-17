@@ -3,8 +3,8 @@ namespace SiteQuery_Ado.Queries
 {
    public class InventoryQueryModel
     {
-        public int Id { get; set; }
-        public int ProductId { get; set; }
+        public long Id { get; set; }
+        public long ProductId { get; set; }
         public bool InStock { get; set; }
     }
 }

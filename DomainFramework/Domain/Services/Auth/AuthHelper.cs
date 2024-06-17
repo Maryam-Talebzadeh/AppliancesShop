@@ -48,7 +48,9 @@ namespace Base_Framework.Domain.Services.Auth
 
         public async Task<string> CurrentAccountRole(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (IsAuthenticated())
+                return _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value;
+            return null;
         }
 
         public bool IsAuthenticated()

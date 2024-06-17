@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Base_Framework.Domain.Core.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 using SiteQuery_Ado.Contracts;
 using SiteQuery_Ado.Queries;
 
@@ -14,6 +15,7 @@ namespace SiteQuery_Configuration
             services.AddScoped<IProductQuery>(provider => new ProductQuery(connectionString));
             services.AddScoped<IArticleQuery>(provider => new ArticleQuery(connectionString));
             services.AddScoped<IArticleCategoryQuery>(provider => new ArticleCategoryQuery(connectionString));
+            services.AddScoped<ICartCalculatorService>(provider => new CartCalculatorService(connectionString));
         }
     }
 }

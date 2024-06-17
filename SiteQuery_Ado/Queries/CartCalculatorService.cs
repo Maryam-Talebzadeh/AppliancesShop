@@ -9,16 +9,14 @@ namespace SiteQuery_Ado.Queries
 {
     public class CartCalculatorService : ICartCalculatorService
     {
-        private readonly IAuthHelper _authHelper;
         private readonly string _connectionString;
 
-        public CartCalculatorService(IAuthHelper authHelper, string connectionString)
+        public CartCalculatorService( string connectionString)
         {
-            _authHelper = authHelper;
             _connectionString = connectionString;
         }
 
-        public async Task<CartQueryModel> ComputeCart(List<CartItemQueryModel> cartItems, CancellationToken cancellationToken)
+        public async Task<CartQueryModel> ComputeCart(List<CartItemQueryModel> cartItems, CancellationToken cancellationToken, IAuthHelper authHelper)
         {
             var cart = new CartQueryModel();
             var colleagueDiscounts = new List<DiscountQueryModel>();
@@ -77,7 +75,7 @@ namespace SiteQuery_Ado.Queries
             }
 
 
-            var currentAccountRole = await _authHelper.CurrentAccountRole(cancellationToken);
+            var currentAccountRole = await authHelper.CurrentAccountRole(cancellationToken);
 
                 foreach (var cartItem in cartItems)
                 {
@@ -102,5 +100,5 @@ namespace SiteQuery_Ado.Queries
                 return cart;
             }
         }
-    }
+    
 }

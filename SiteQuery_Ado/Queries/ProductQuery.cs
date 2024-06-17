@@ -57,6 +57,7 @@ namespace SiteQuery_Ado.Queries
                             {
                                 product.IsInStock = reader.GetBoolean(reader.GetOrdinal("p.InStock"));
                                 var price = reader.GetDouble(reader.GetOrdinal("p.Price"));
+                                product.DoublePrice = reader.GetDouble(reader.GetOrdinal("p.Price"));
                                 product.Price = price.ToMoney();
                                 var discountRate = reader["p.DiscountRate"];
 
@@ -359,8 +360,8 @@ namespace SiteQuery_Ado.Queries
                         {
                             var inventoryItem = new InventoryQueryModel()
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("inventory.Id")),
-                                ProductId = reader.GetInt32(reader.GetOrdinal("inventory.ProductId")),
+                                Id = reader.GetInt64(reader.GetOrdinal("inventory.Id")),
+                                ProductId = reader.GetInt64(reader.GetOrdinal("inventory.ProductId")),
                                 InStock = reader.GetBoolean(reader.GetOrdinal("inventory.InStock"))
                         };                           
 
@@ -382,17 +383,21 @@ namespace SiteQuery_Ado.Queries
                     using (SqlCommand command = new SqlCommand("CalculateCurrentInventoryCount", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@inventoryId", SqlDbType.NVarChar));
-                        command.Parameters["@inventoryId"].Value = itemInventory.Id;
+                        command.Parameters.AddWithValue("@inventoryId", itemInventory.Id);
 
+                        SqlParameter plusParam = new SqlParameter("@plus", SqlDbType.Int);
+                        plusParam.Direction = ParameterDirection.Output;
+                        command.Parameters.Add(plusParam);
 
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                 currentCount  =  command.ExecuteNonQuery();
-                            }
-                        }
+                        SqlParameter minusParam = new SqlParameter("@minus", SqlDbType.Int);
+                        minusParam.Direction = ParameterDirection.Output;
+                        command.Parameters.Add(minusParam);
+
+                        command.ExecuteNonQuery();
+
+                        int plusCount = (int)plusParam.Value;
+                        int minusCount = (int)minusParam.Value;
+                        currentCount = plusCount - minusCount;
                     }
                 }
 

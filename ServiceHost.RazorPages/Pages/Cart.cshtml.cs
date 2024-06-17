@@ -42,7 +42,7 @@ namespace ServiceHost.RazorPages.Pages
             return RedirectToPage("/Cart");
         }
 
-        public async  Task<IActionResult> OnGetGoToCheckOut(CancellationToken cancellationToken)
+        public async Task<IActionResult> OnGetGoToCheckOut(CancellationToken cancellationToken)
         {
             var serializer = new JavaScriptSerializer();
             var value = Request.Cookies[CookieName];
@@ -53,11 +53,6 @@ namespace ServiceHost.RazorPages.Pages
             }
 
             CartItems = await _productQuery.CheckInventoryStatus(cartItems, cancellationToken);
-
-            //if (CartItems.Any(x => !x.IsInStock))
-            //    return RedirectToPage("/Cart");
-            //return RedirectToPage("/Checkout");
-
             return RedirectToPage(CartItems.Any(x => !x.IsInStock) ? "/Cart" : "/Checkout");
         }
     }

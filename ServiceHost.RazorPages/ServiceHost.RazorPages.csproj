@@ -8,11 +8,9 @@
 
   <ItemGroup>
     <Content Remove="Areas\Administration\Pages\Inventory\Index.cshtml" />
-    <Content Remove="Pages\Cart.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Pages\Cart.cshtml" />
     <None Include="wwwroot\AdminTheme\assets\bootstrap-inputmask\bootstrap-inputmask.min.js" />
     <None Include="wwwroot\AdminTheme\assets\bootstrap-wysihtml5\bootstrap-wysihtml5.js" />
     <None Include="wwwroot\AdminTheme\assets\bootstrap-wysihtml5\wysihtml5-0.3.0.js" />
@@ -195,11 +193,6 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Areas\Administration\Pages\Inventory\Index.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\Cart.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Cart.cshtml" />
   </ItemGroup>
 
 </Project>
