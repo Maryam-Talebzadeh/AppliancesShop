@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="OrderAgg\AppServices\" />
-    <Folder Include="OrderAgg\Services\" />
   </ItemGroup>
 
 </Project>

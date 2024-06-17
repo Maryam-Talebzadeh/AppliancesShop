@@ -4,6 +4,7 @@ namespace SM.Domain.Core.OrderAgg.DTOs.Order
 {
    public class CartDTO
     {
+        public long AccountId { get; set; }
         public double TotalAmount { get; set; }
         public double DiscountAmount { get; set; }
         public double PayAmount { get; set; }

@@ -1,8 +1,10 @@
-﻿using SM.Domain.Core.OrderAgg.DTOs.Order;
+﻿using Base_Framework.Domain.Core.Contracts;
+using SM.Domain.Core.OrderAgg.DTOs.Order;
+using SM.Domain.Core.OrderAgg.Entities;
 
 namespace SM.Domain.Core.OrderAgg.Data
 {
-   public  interface IOrderRepository
+   public  interface IOrderRepository : IRepository<Order>
     {
         Task<long> PlaceOrder(OrderDTO order, CancellationToken cancellationToken);
         Task<double> GetAmountBy(long id, CancellationToken cancellationToken);
