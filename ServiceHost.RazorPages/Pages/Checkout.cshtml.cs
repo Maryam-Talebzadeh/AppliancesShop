@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Nancy.Json;
 using SiteQuery_Ado.Contracts;
 using SiteQuery_Ado.Models;
-using SM.Domain.Core.ProductAgg.DTOs.Cart;
 
 namespace ServiceHost.RazorPages.Pages
 {
