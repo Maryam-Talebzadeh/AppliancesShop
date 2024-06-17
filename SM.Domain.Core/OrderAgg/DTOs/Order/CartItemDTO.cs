@@ -1,8 +1,8 @@
 ﻿
 
-namespace SM.Domain.Core.ProductAgg.DTOs.Cart
+namespace SM.Domain.Core.OrderAgg.DTOs.Order
 {
-   public class CartItem
+   public class CartItemDTO
     {
         public long Id { get; set; }
         public string Name { get; set; }
@@ -15,7 +15,7 @@ namespace SM.Domain.Core.ProductAgg.DTOs.Cart
         public double DiscountAmount { get; set; }
         public double ItemPayAmount { get; set; }
 
-        public CartItem()
+        public CartItemDTO()
         {
             TotalItemPrice = UnitPrice * Count;
         }
