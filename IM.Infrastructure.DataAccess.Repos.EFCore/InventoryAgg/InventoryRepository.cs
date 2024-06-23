@@ -1,4 +1,5 @@
-﻿using Base_Framework.Domain.General;
+﻿using AM.Infrastructure.DB.SqlServer.EFCore.Contexts;
+using Base_Framework.Domain.General;
 using Base_Framework.Infrastructure.DataAccess;
 using IM.Domain.Core.InventoryAgg.Data;
 using IM.Domain.Core.InventoryAgg.DTOs;
@@ -12,6 +13,7 @@ namespace IM.Infrastructure.DataAccess.Repos.EFCore.InventoryAgg
     {
         private readonly InventoryContext _context;
         private readonly ShopContext _shopContext;
+        private readonly AccountContext _accountContext;
 
         public InventoryRepository(InventoryContext context, ShopContext shopContext) : base(context)
         {
@@ -65,6 +67,7 @@ namespace IM.Infrastructure.DataAccess.Repos.EFCore.InventoryAgg
 
         public async Task<List<InventoryOperationDTO>> GetOperationLog(long inventoryId, CancellationToken cancellationToken)
         {
+            var accounts = _accountContext.Accounts.Select(x => new { x.Id, x.Fullname }).ToList();
             var inventory = _context.Inventory.FirstOrDefault(x => x.Id == inventoryId);
             var operations = inventory.Operations.Select(x => new InventoryOperationDTO
             {
@@ -78,6 +81,11 @@ namespace IM.Infrastructure.DataAccess.Repos.EFCore.InventoryAgg
                 Operator = "مدیر سیستم", // Temporary
                 OrderId = x.OrderId
             }).OrderByDescending(x => x.Id).ToList();
+
+            foreach (var operation in operations)
+            {
+                operation.Operator = accounts.FirstOrDefault(x => x.Id == operation.OperatorId)?.Fullname;
+            }
 
             return operations;
         }

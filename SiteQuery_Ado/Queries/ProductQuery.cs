@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Newtonsoft.Json.Linq;
 using SiteQuery_Ado.Contracts;
 using SiteQuery_Ado.Models;
+using SM.Domain.Core.OrderAgg.DTOs.Order;
 using System.Data;
 using System.Threading;
 
@@ -340,7 +341,7 @@ namespace SiteQuery_Ado.Queries
             return name;
         }
 
-        public async Task<List<CartItemQueryModel>> CheckInventoryStatus(List<CartItemQueryModel> cartItems, CancellationToken cancellationToken)
+        public async Task<List<CartItemDTO>> CheckInventoryStatus(List<CartItemDTO> cartItems, CancellationToken cancellationToken)
         {
             var inventory = new List<InventoryQueryModel>();
 

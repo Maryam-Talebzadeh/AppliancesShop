@@ -1,4 +1,5 @@
-﻿using Base_Framework.Domain.Services;
+﻿using Base_Framework.Domain.Core.Contracts;
+using Base_Framework.Domain.Services;
 using IM.Domain.Core.InventoryAgg.AppServices;
 using IM.Domain.Core.InventoryAgg.DTOs;
 using IM.Domain.Core.InventoryAgg.Services;
@@ -8,10 +9,12 @@ namespace IM.Domain.AppServices.InventoryAgg
     public class InventoryAppService : IInventoryAppService
     {
         private readonly IInventoryService _inventoryService;
+        private readonly IAuthHelper _authHelper;
 
-        public InventoryAppService(IInventoryService inventoryService)
+        public InventoryAppService(IInventoryService inventoryService, IAuthHelper authHelper)
         {
             _inventoryService = inventoryService;
+            _authHelper = authHelper;
         }
 
         public async Task<StockStatusDTO> CheckStock(IsInStockDTO command, CancellationToken cancellationToken)
@@ -46,11 +49,17 @@ namespace IM.Domain.AppServices.InventoryAgg
 
         public async Task<OperationResult>  Reduce(ReduceInventoryDTO command, CancellationToken cancellationToken)
         {
+            command.OrderId = await _authHelper.CurrentAccountId(cancellationToken);
             return await _inventoryService.Reduce(command, cancellationToken);
         }
 
         public async Task<OperationResult> Reduce(List<ReduceInventoryDTO> command, CancellationToken cancellationToken)
         {
+            foreach(var item in command)
+            {
+                item.OrderId = await _authHelper.CurrentAccountId(cancellationToken);
+            }
+
             return await _inventoryService.Reduce(command, cancellationToken);
         }
 

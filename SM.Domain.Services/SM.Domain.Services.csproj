@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DomainFramework\Base_Framework.csproj" />
+    <ProjectReference Include="..\SiteManagement.Infrastructure.InventoryAcl\SiteManagement.Infrastructure.InventoryAcl.csproj" />
     <ProjectReference Include="..\SM.Domain.Core\SM.Domain.Core.csproj" />
   </ItemGroup>
 

@@ -59,6 +59,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 #region Authorization
 
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.Lax;
+});
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminArea",

@@ -1,5 +1,7 @@
 ﻿using Base_Framework.Domain.General;
 using Microsoft.Extensions.Configuration;
+using SiteManagement.Infrastructure.InventoryAcl;
+using SM.Domain.Core._0_Services;
 using SM.Domain.Core.OrderAgg.Data;
 using SM.Domain.Core.OrderAgg.DTOs.Order;
 using SM.Domain.Core.OrderAgg.Entities;
@@ -10,14 +12,15 @@ namespace SM.Domain.Services.OrderAgg
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly ISiteInventoryAcl _SiteInventoryAcl;
 
         private readonly IConfiguration _configuration;
 
-        public OrderService(IOrderRepository orderRepository, IConfiguration configuration)
+        public OrderService(IOrderRepository orderRepository, IConfiguration configuration, ISiteInventoryAcl SiteInventoryAcl)
         {
             _orderRepository = orderRepository;
             _configuration = configuration;
-
+            _SiteInventoryAcl = SiteInventoryAcl;
         }
 
         public async Task Cancel(long id, CancellationToken cancellationToken)
@@ -40,9 +43,16 @@ namespace SM.Domain.Services.OrderAgg
         {
             var symbol = _configuration.GetValue<string>("Symbol");
             var issueTrackingNo = CodeGenerator.Generate(symbol);
-            //reduce order items from Inventory
+          
 
             await _orderRepository.PaymentSucceeded(orderId, refId, issueTrackingNo, cancellationToken);
+            var orderItems = await _orderRepository.GetItems(orderId, cancellationToken);
+
+            if ( await _SiteInventoryAcl.ReduceFromInventory(orderItems, cancellationToken))
+            {
+                return "";
+            }
+
             _orderRepository.Save();
             return issueTrackingNo;
         }
@@ -50,19 +60,20 @@ namespace SM.Domain.Services.OrderAgg
         public async Task<long> PlaceOrder(CartDTO cart, CancellationToken cancellationToken)
         {
             var order = new OrderDTO()
-            {
+            {               
                 AccountId = cart.AccountId,
                 PaymentMethodId = cart.PaymentMethod,
                 DiscountAmount = cart.DiscountAmount,
                 PayAmount = cart.PayAmount
             };
 
-            await _orderRepository.PlaceOrder(order, cancellationToken);
+          var orderId =  await _orderRepository.PlaceOrder(order, cancellationToken);
 
             foreach (var cartItem in cart.Items)
             {
                 var orderItem = new OrderItemDTO()
                 { 
+                    OrderId = orderId,
                     ProductId = cartItem.Id,
                     Count = cartItem.Count,
                     UnitPrice = cartItem.UnitPrice,
@@ -73,7 +84,7 @@ namespace SM.Domain.Services.OrderAgg
             }
 
             _orderRepository.Save();
-            return order.Id;
+            return orderId;
         }
 
         public async Task<List<OrderDTO>> Search(SearchOrderDTO searchModel, CancellationToken cancellationToken)

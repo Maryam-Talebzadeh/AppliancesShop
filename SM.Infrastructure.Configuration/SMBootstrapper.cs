@@ -1,10 +1,12 @@
 ﻿using Base_Framework.Domain.Core.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SiteManagement.Infrastructure.InventoryAcl;
 using SM.Domain.AppServices.OrderAgg;
 using SM.Domain.AppServices.ProductAgg;
 using SM.Domain.AppServices.ProductCategoryAgg;
 using SM.Domain.AppServices.SliderAgg;
+using SM.Domain.Core._0_Services;
 using SM.Domain.Core.OrderAgg.AppServices;
 using SM.Domain.Core.OrderAgg.Data;
 using SM.Domain.Core.OrderAgg.Services;
@@ -85,6 +87,7 @@ namespace SM.Infrastructure.Configuration
 
             services.AddSingleton<IPermissionExposer, ShopPermissionExposer>();
             services.AddSingleton<ICartService, CartService>();
+            services.AddScoped<ISiteInventoryAcl, SiteInventoryAcl>();
         }
 
 
