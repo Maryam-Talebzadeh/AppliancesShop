@@ -1,5 +1,4 @@
-﻿using AM.Infrastructure.DB.SqlServer.EFCore.Contexts;
-using Base_Framework.Domain.General;
+﻿using Base_Framework.Domain.General;
 using Base_Framework.Infrastructure.DataAccess;
 using SM.Domain.Core.OrderAgg.Data;
 using SM.Domain.Core.OrderAgg.DTOs.Order;
@@ -11,12 +10,9 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.OrderAgg
     public class OrderRepository : BaseRepository_EFCore<Order>,  IOrderRepository
     {
         private readonly ShopContext _context;
-        private readonly AccountContext _accountContext;
 
-        public OrderRepository(ShopContext context, AccountContext accountContext) : base(context)
+        public OrderRepository(ShopContext context) : base(context)
         {
-            _context = context;
-            _accountContext = accountContext;
         }
 
         public async Task AddItem(OrderItemDTO item, CancellationToken cancellationToken)
@@ -85,7 +81,6 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.OrderAgg
 
         public async Task<List<OrderDTO>> Search(SearchOrderDTO searchModel, CancellationToken cancellationToken)
         {
-            var accounts = _accountContext.Accounts.Select(x => new { x.Id, x.Fullname }).ToList();
             var query = _context.Orders.Select(x => new OrderDTO
             {
                 Id = x.Id,
@@ -106,10 +101,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.OrderAgg
             if (searchModel.AccountId > 0) query = query.Where(x => x.AccountId == searchModel.AccountId);
 
             var orders = query.OrderByDescending(x => x.Id).ToList();
-            foreach (var order in orders)
-            {
-                order.AccountFullName = accounts.FirstOrDefault(x => x.Id == order.AccountId)?.Fullname;
-            }
+           
 
             return orders;
         }

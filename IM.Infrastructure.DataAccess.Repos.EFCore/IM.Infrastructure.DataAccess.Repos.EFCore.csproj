@@ -13,13 +13,4 @@
     <ProjectReference Include="..\SM.Infrastructure.DB.SqlServer.EFCore\SM.Infrastructure.DB.SqlServer.EFCore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="AM.Domain.Core">
-      <HintPath>..\AM.Infrastructure.DB.SqlServer.EFCore\bin\Debug\net8.0\AM.Domain.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="AM.Infrastructure.DB.SqlServer.EFCore">
-      <HintPath>..\AM.Infrastructure.DB.SqlServer.EFCore\bin\Debug\net8.0\AM.Infrastructure.DB.SqlServer.EFCore.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
