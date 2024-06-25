@@ -195,6 +195,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Present
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiteManagement.Infrastructure.InventoryAcl", "SiteManagement.Infrastructure.InventoryAcl\SiteManagement.Infrastructure.InventoryAcl.csproj", "{F8381E91-CF3A-4215-94AE-1D733F4FB796}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteManagement.Infrastructure.AccountAcl", "SiteManagement.Infrastructure.AccountAcl\SiteManagement.Infrastructure.AccountAcl.csproj", "{DB729CF4-C45F-4AA1-BF05-476C1A7267CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -373,6 +375,10 @@ Global
 		{F8381E91-CF3A-4215-94AE-1D733F4FB796}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8381E91-CF3A-4215-94AE-1D733F4FB796}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8381E91-CF3A-4215-94AE-1D733F4FB796}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB729CF4-C45F-4AA1-BF05-476C1A7267CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB729CF4-C45F-4AA1-BF05-476C1A7267CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB729CF4-C45F-4AA1-BF05-476C1A7267CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB729CF4-C45F-4AA1-BF05-476C1A7267CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -465,6 +471,7 @@ Global
 		{4E96D5AF-9CBB-47E1-AE72-0B688ADC9319} = {10DBCD99-1023-4EFD-8980-BBC85A8D909D}
 		{6A27FA60-E87C-4A3F-B1F4-571F16C6A474} = {4E96D5AF-9CBB-47E1-AE72-0B688ADC9319}
 		{F8381E91-CF3A-4215-94AE-1D733F4FB796} = {54DF24B7-F9DD-40CF-97BF-F23A88C92142}
+		{DB729CF4-C45F-4AA1-BF05-476C1A7267CE} = {54DF24B7-F9DD-40CF-97BF-F23A88C92142}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2E3B5803-84A7-47E6-A5E9-B1DCDF0A7C77}
