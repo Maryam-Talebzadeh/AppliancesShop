@@ -193,7 +193,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoints", "EndPoints", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Presentation.Api", "InventoryManagement.Presentation.Api\InventoryManagement.Presentation.Api.csproj", "{6A27FA60-E87C-4A3F-B1F4-571F16C6A474}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteManagement.Infrastructure.InventoryAcl", "SiteManagement.Infrastructure.InventoryAcl\SiteManagement.Infrastructure.InventoryAcl.csproj", "{F8381E91-CF3A-4215-94AE-1D733F4FB796}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiteManagement.Infrastructure.InventoryAcl", "SiteManagement.Infrastructure.InventoryAcl\SiteManagement.Infrastructure.InventoryAcl.csproj", "{F8381E91-CF3A-4215-94AE-1D733F4FB796}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
