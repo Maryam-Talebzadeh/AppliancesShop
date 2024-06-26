@@ -5,9 +5,9 @@
         Task SignOut(CancellationToken cancellationToken);
         bool IsAuthenticated();
         Task Signin(AuthDTO account, CancellationToken cancellationToken);
-        Task<string> CurrentAccountRole(CancellationToken cancellationToken);
+       string CurrentAccountRole();
         Task<AuthDTO> CurrentAccountInfo(CancellationToken cancellationToken);
-        Task<long> CurrentAccountId(CancellationToken cancellationToken);
+        long CurrentAccountId();
         Task<string> CurrentAccountMobile(CancellationToken cancellationToken);
         List<int> GetPermissions();
     }

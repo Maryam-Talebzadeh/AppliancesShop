@@ -49,7 +49,7 @@ namespace IM.Domain.AppServices.InventoryAgg
 
         public async Task<OperationResult>  Reduce(ReduceInventoryDTO command, CancellationToken cancellationToken)
         {
-            command.OrderId = await _authHelper.CurrentAccountId(cancellationToken);
+            command.OrderId =  _authHelper.CurrentAccountId();
             return await _inventoryService.Reduce(command, cancellationToken);
         }
 
@@ -57,7 +57,7 @@ namespace IM.Domain.AppServices.InventoryAgg
         {
             foreach(var item in command)
             {
-                item.OrderId = await _authHelper.CurrentAccountId(cancellationToken);
+                item.OrderId =  _authHelper.CurrentAccountId();
             }
 
             return await _inventoryService.Reduce(command, cancellationToken);

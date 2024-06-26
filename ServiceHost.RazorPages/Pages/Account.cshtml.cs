@@ -8,11 +8,11 @@ namespace ServiceHost.RazorPages.Pages
 {
     public class AccountModel : PageModel
     {
-        [TempData]
-        public string LoginMessage { get; set; }
+        public string Message { get; set; }
+        public string SuccessRegisterMessage { get; set; }
 
-        [TempData]
-        public string RegisterMessage { get; set; }
+        [BindProperty]
+        public RegisterAccountDTO RegisterModel { get; set; }
 
 
         private readonly IAccountAppService _accountAppService;
@@ -29,11 +29,12 @@ namespace ServiceHost.RazorPages.Pages
         public async Task<IActionResult> OnPostLogin(LoginAccountDTO command, CancellationToken cancellationToken)
         {
             var result =await _accountAppService.Login(command, cancellationToken);
-            if (result.IsSuccedded)
-                return RedirectToPage("/Index");
+            Message = result.Message;
 
-            LoginMessage = result.Message;
-            return RedirectToPage("/Account");
+            if (result.IsSuccedded)
+                return RedirectToPage("/Index", new { message = Message });
+
+            return Page();
         }
 
         public async Task<IActionResult> OnGetLogout(CancellationToken cancellationToken)
@@ -42,14 +43,22 @@ namespace ServiceHost.RazorPages.Pages
             return RedirectToPage("/Index");
         }
 
-        public async Task<IActionResult> OnPostRegister(RegisterAccountDTO command, CancellationToken cancellationToken)
+        public async Task<IActionResult> OnPostRegister(CancellationToken cancellationToken)
         {
-         
-            var result =await _accountAppService.Register(command, cancellationToken);
+
+            if (!ModelState.IsValid)
+                return Page();
+
+            var result = await _accountAppService.Register(RegisterModel, cancellationToken);
             if (result.IsSuccedded)
-                return RedirectToPage("/Account");
-            RegisterMessage = result.Message;
-            return RedirectToPage("/Account");
+            {
+                SuccessRegisterMessage = result.Message;
+                return Page();
+            }
+            Message = result.Message;
+            return Page();
+
+           
         }
     }
 }

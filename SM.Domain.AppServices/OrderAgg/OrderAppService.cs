@@ -42,7 +42,7 @@ namespace SM.Domain.AppServices.OrderAgg
 
         public async Task<long> PlaceOrder(CartDTO cart, CancellationToken cancellationToken)
         {
-            cart.AccountId =await _authHelper.CurrentAccountId(cancellationToken);
+            cart.AccountId = _authHelper.CurrentAccountId();
             return await _orderService.PlaceOrder(cart, cancellationToken);
         }
 

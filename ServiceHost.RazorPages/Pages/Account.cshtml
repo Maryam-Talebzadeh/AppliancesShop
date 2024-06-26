@@ -1,7 +1,51 @@
 ﻿@page
+@inject Base_Framework.Domain.Core.Contracts.IAuthHelper _authHelper;
 @model ServiceHost.RazorPages.Pages.AccountModel
 @{
     ViewData["Title"] = "ورود و ثبت نام";
+}
+
+@if (Model.Message != null)
+{
+    @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(function () {
+
+            Swal.fire({
+                title: "لطفا دوباره امتحان کنید.",
+                showConfirmButton: false,
+                timer: 2500,
+                text: "@Html.Raw(Model.Message)",
+                    icon: "error"
+                });
+            });
+        </script>
+
+
+    }
+
+}
+
+@if (Model.SuccessRegisterMessage != null)
+{
+
+    @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function () {
+
+            Swal.fire({
+                title: "لطفا وارد شوید.",
+                showConfirmButton: false,
+                timer: 2500,
+                text: "ثبت نام با موفقیت انجام شد. لطفا وارد شوید.",
+                icon: "success"
+            });
+        });
+    </script>
+    }
 }
 
 <div class="breadcrumb-area section-space--half">
@@ -30,29 +74,19 @@
                     <div class="page-content-wrapper">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
-                                @if (Model.LoginMessage != null)
-                                {
-                                    <div class="alert alert-danger">@Model.LoginMessage</div>
-                                }
-                                <form method="post" asp-page-handler="Login">
+
+                                <form method="post" asp-page-handler="Login" asp-route-id="@_authHelper.CurrentAccountId()">
                                     <div class="login-form">
                                         <h4 class="login-title">ورود</h4>
                                         <div class="row">
                                             <div class="col-md-12 col-12">
                                                 <label>نام کاربری</label>
-                                                <input type="text" name="username" placeholder="نام کاربری">
+                                                <input type="text" name="UserName" placeholder="نام کاربری">
                                             </div>
                                             <div class="col-12">
                                                 <label>کلمه رمز</label>
-                                                <input type="password" name="password" placeholder="کلمه رمز">
+                                                <input type="password" name="Password" placeholder="کلمه رمز">
                                             </div>
-
-                                            @*<div class="col-sm-6">
-                                                    <div class="check-box d-inline-block ml-0 ml-md-2">
-                                                        <input type="checkbox" id="remember_me">
-                                                        <label for="remember_me">Remember me</label>
-                                                    </div>
-                                                </div>*@
 
                                             <div class="col-sm-6 text-left text-sm-right">
                                                 <a href="#" class="forget-pass-link">رمز را فراموش کرده اید؟</a>
@@ -68,33 +102,30 @@
                                 </form>
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-                                @if (Model.RegisterMessage != null)
-                                {
-                                    <div class="alert alert-danger">@Model.RegisterMessage</div>
-                                }
+
                                 <form method="post" asp-page-handler="Register">
                                     <div class="login-form">
                                         <h4 class="login-title">ثبت نام</h4>
                                         <div class="row">
                                             <div class="col-md-6 col-12 mb-20">
                                                 <label>نام کامل</label>
-                                                <input type="text" name="fullname" placeholder="نام کامل">
+                                                <input type="text" asp-for="RegisterModel.Fullname" placeholder="نام کامل">
+                                                <span class="text-danger" asp-validation-for="RegisterModel.Fullname"></span>
                                             </div>
                                             <div class="col-md-6 col-12 mb-20">
                                                 <label>نام کاربری</label>
-                                                <input type="text" name="username" placeholder="نام کاربری">
+                                                <input type="text" asp-for="RegisterModel.Username" placeholder="نام کاربری">
+                                                <span class="text-danger" asp-validation-for="RegisterModel.Username"></span>
                                             </div>
                                             <div class="col-md-12 mb-20">
                                                 <label>موبایل</label>
-                                                <input type="number" name="mobile" placeholder="موبایل">
+                                                <input type="number" asp-for="RegisterModel.Mobile" placeholder="موبایل">
+                                                <span class="text-danger" asp-validation-for="RegisterModel.Password"></span>
                                             </div>
                                             <div class="col-md-6 mb-20">
                                                 <label>کلمه رمز</label>
-                                                <input type="password" name="password" placeholder="کلمه رمز">
-                                            </div>
-                                            <div class="col-md-6 mb-20">
-                                                <label>تایید کلمه رمز</label>
-                                                <input type="password" name="rePassword" placeholder="تایید کلمه رمز">
+                                                <input type="password" asp-for="RegisterModel.Password" placeholder="کلمه رمز">
+                                                <span class="text-danger" asp-validation-for="RegisterModel.Password"></span>
                                             </div>
                                             <div class="col-12">
                                                 <button class="register-button mt-0">ثبت نام</button>
@@ -110,4 +141,3 @@
         </div>
     </div>
 </div>
-

@@ -1,7 +1,9 @@
 ﻿@inject Base_Framework.Domain.Core.Contracts.IAuthHelper AuthHelper
 @using SiteQuery_Ado.Models
 @model MenuModel
-
+@{
+    string RoleId = AuthHelper.CurrentAccountRole();
+}
 
 
 <div class="header-area header-sticky">
@@ -55,6 +57,19 @@
                                 {
                                     <li>
                                         <a asp-page="/Account">وورد / ثبت نام</a>
+                                    </li>
+                                }
+
+                                @if (AuthHelper.IsAuthenticated() && (RoleId == "1" || RoleId == "3"))
+                                {
+                                    <li>
+                                        <a href="/Administration/Index">پنل ادمین</a>
+                                    </li>
+                                }
+                                @if (AuthHelper.IsAuthenticated() && RoleId == "2" || RoleId == "4")
+                                {
+                                    <li>
+                                        <a href="/UserPanel/Index/@AuthHelper.CurrentAccountId()">پنل کاربری</a>
                                     </li>
                                 }
                             </ul>

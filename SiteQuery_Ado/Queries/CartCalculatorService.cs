@@ -75,7 +75,7 @@ namespace SiteQuery_Ado.Queries
             }
 
 
-            var currentAccountRole = await authHelper.CurrentAccountRole(cancellationToken);
+            var currentAccountRole =  authHelper.CurrentAccountRole();
 
                 foreach (var cartItem in cartItems)
                 {

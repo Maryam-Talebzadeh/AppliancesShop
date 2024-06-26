@@ -5,6 +5,7 @@ namespace ServiceHost.RazorPages.Pages
 {
     public class IndexModel : PageModel
     {
+        public string Message { get; set; }
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger)
@@ -12,9 +13,9 @@ namespace ServiceHost.RazorPages.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public void OnGet(string? message)
         {
-
+            Message = message;
         }
     }
 }

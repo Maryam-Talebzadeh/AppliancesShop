@@ -17,7 +17,7 @@ namespace Base_Framework.Domain.Services.Auth
             _contextAccessor = contextAccessor;
         }
 
-        public async Task<long> CurrentAccountId(CancellationToken cancellationToken)
+        public long CurrentAccountId()
         {
             return IsAuthenticated()
                ? long.Parse(_contextAccessor.HttpContext.User.Claims.First(x => x.Type == "AccountId")?.Value)
@@ -46,7 +46,7 @@ namespace Base_Framework.Domain.Services.Auth
                 : "";
         }
 
-        public async Task<string> CurrentAccountRole(CancellationToken cancellationToken)
+        public string CurrentAccountRole()
         {
             if (IsAuthenticated())
                 return _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value;
