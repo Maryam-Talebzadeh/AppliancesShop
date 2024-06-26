@@ -13,6 +13,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.OrderAgg
 
         public OrderRepository(ShopContext context) : base(context)
         {
+            _context = context;
         }
 
         public async Task AddItem(OrderItemDTO item, CancellationToken cancellationToken)

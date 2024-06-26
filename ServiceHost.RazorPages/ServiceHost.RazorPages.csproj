@@ -165,6 +165,7 @@
     <ProjectReference Include="..\SiteManagement.Presentation.Api\SiteManagement.Presentation.Api.csproj" />
     <ProjectReference Include="..\SiteQuery_Ado\SiteQuery_Ado.csproj" />
     <ProjectReference Include="..\SiteQuery_Configuration\SiteQuery_Configuration.csproj" />
+    <ProjectReference Include="..\SiteQuery_EfCore\SiteQuery_EfCore.csproj" />
     <ProjectReference Include="..\SM.Infrastructure.Configuration\SM.Infrastructure.Configuration.csproj" />
   </ItemGroup>
 

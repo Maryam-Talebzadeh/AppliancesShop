@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SiteQuery_Ado\SiteQuery_Ado.csproj" />
+    <ProjectReference Include="..\SiteQuery_EfCore\SiteQuery_EfCore.csproj" />
   </ItemGroup>
 
 </Project>
