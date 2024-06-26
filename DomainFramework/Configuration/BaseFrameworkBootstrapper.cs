@@ -14,6 +14,7 @@ namespace Base_Framework.Configuration
             services.AddTransient<IAuthHelper, AuthHelper>();
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
             services.AddSingleton<IZarinPalFactory, ZarinPalFactory>();
+            services.AddSingleton<ISmsService, SmsService>(); 
         }
     }
 }

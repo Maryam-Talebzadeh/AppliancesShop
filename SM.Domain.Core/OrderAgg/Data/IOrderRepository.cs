@@ -13,5 +13,6 @@ namespace SM.Domain.Core.OrderAgg.Data
         Task<List<OrderItemDTO>> GetItems(long orderId, CancellationToken cancellationToken);
         Task<List<OrderDTO>> Search(SearchOrderDTO searchModel, CancellationToken cancellationToken);
         Task AddItem(OrderItemDTO item, CancellationToken cancellationToken);
+        Task<OrderDTO> GetBy(long id, CancellationToken cancellationToken);
     }
 }

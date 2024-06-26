@@ -1,4 +1,5 @@
-﻿using Base_Framework.Domain.General;
+﻿using Base_Framework.Domain.Core.Contracts;
+using Base_Framework.Domain.General;
 using Microsoft.Extensions.Configuration;
 using SiteManagement.Infrastructure.InventoryAcl;
 using SM.Domain.Core._0_Services;
@@ -13,14 +14,18 @@ namespace SM.Domain.Services.OrderAgg
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ISiteInventoryAcl _SiteInventoryAcl;
+        private readonly ISiteAccountAcl _siteAccountAcl;
+        private readonly ISmsService _smsService;
 
         private readonly IConfiguration _configuration;
 
-        public OrderService(IOrderRepository orderRepository, IConfiguration configuration, ISiteInventoryAcl SiteInventoryAcl)
+        public OrderService(IOrderRepository orderRepository, IConfiguration configuration, ISiteInventoryAcl SiteInventoryAcl, ISiteAccountAcl siteAccountAcl, ISmsService smsService)
         {
             _orderRepository = orderRepository;
             _configuration = configuration;
             _SiteInventoryAcl = SiteInventoryAcl;
+            _siteAccountAcl = siteAccountAcl;
+            _smsService = smsService;
         }
 
         public async Task Cancel(long id, CancellationToken cancellationToken)
@@ -52,6 +57,13 @@ namespace SM.Domain.Services.OrderAgg
             {
                 return "";
             }
+
+            var order = await _orderRepository.GetBy(orderId, cancellationToken);
+
+            var (name, mobile) = await _siteAccountAcl.GetAccountBy(order.AccountId, cancellationToken);
+
+           await _smsService.Send(mobile,
+                $"{name} گرامی سفارش شما با شماره پیگیری {issueTrackingNo} با موفقیت پرداخت شد و ارسال خواهد شد.", cancellationToken);
 
             _orderRepository.Save();
             return issueTrackingNo;

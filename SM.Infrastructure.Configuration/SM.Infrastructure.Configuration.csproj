@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SiteManagement.Infrastructure.AccountAcl\SiteManagement.Infrastructure.AccountAcl.csproj" />
     <ProjectReference Include="..\SiteManagement.Infrastructure.InventoryAcl\SiteManagement.Infrastructure.InventoryAcl.csproj" />
     <ProjectReference Include="..\SM.Domain.AppServices\SM.Domain.AppServices.csproj" />
     <ProjectReference Include="..\SM.Domain.Core\SM.Domain.Core.csproj" />

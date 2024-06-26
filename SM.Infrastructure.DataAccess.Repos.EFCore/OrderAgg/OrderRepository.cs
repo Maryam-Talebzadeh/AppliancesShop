@@ -38,6 +38,24 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.OrderAgg
             return 0;
         }
 
+        public async Task<OrderDTO> GetBy(long id, CancellationToken cancellationToken)
+        {
+            return _context.Orders.Select(x => new OrderDTO
+            {
+                Id = x.Id,
+                AccountId = x.AccountId,
+                DiscountAmount = x.DiscountAmount,
+                IsCanceled = x.IsCanceled,
+                IsPaid = x.IsPaid,
+                IssueTrackingNo = x.IssueTrackingNo,
+                PayAmount = x.PayAmount,
+                PaymentMethodId = x.PaymentMethod,
+                RefId = x.RefId,
+                TotalAmount = x.TotalAmount,
+                CreationDate = x.CreationDate.ToFarsi()
+            }).FirstOrDefault(x => x.Id == id);
+        }
+
         public async Task<List<OrderItemDTO>> GetItems(long orderId, CancellationToken cancellationToken)
         {
             var products = _context.Products.Select(x => new { x.Id, x.Name }).ToList();
@@ -105,5 +123,7 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.OrderAgg
 
             return orders;
         }
+
+
     }
 }
