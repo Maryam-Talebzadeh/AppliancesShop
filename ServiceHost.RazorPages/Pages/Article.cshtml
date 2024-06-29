@@ -6,6 +6,28 @@
     ViewData["metaDescription"] = Model.Article.MetaDescription;
 }
 
+@if (Model.Message != null)
+{
+    @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(function () {
+
+            Swal.fire({
+                title: "کامنت شما پس از تایید ادمین نمایش داده میشود.",
+                showConfirmButton: false,
+                timer: 2500,
+                icon: "success"
+            });
+        });
+    </script>
+
+
+    }
+
+}
+
 <div class="breadcrumb-area section-space--half">
     <div class="container wide">
         <div class="row">
@@ -51,7 +73,7 @@
 
                                         <div class="single-blog-post-media">
                                             <div class="image">
-                                                <img src="~/Images/Articles/@Model.Article.CategorySlug/@Model.Article.Slug/@Model.Article.Picture" class="img-fluid" alt="@Model.Article.PictureAlt" title="@Model.Article.Title">
+                                                <img src="~/Images/@Model.Article.CategorySlug/@Model.Article.Slug/@Model.Article.Picture" class="img-fluid" alt="@Model.Article.PictureAlt" title="@Model.Article.Title">
                                             </div>
                                         </div>
 
@@ -169,6 +191,7 @@
                                                             </button>
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" asp-for="Id"/>
                                                 </form>
                                             </div>
                                         </div>
@@ -201,7 +224,7 @@
                                                 <div class="single-block d-flex">
                                                     <div class="image">
                                                         <a asp-page="./Article" asp-route-id="@article.Slug">
-                                                            <img src="~/ProductPictures/@article.Picture"
+                                                            <img src="~/Images/@article.CategorySlug/@article.Slug/@article.Picture"
                                                                  class="img-fluid" alt="@article.PictureAlt"
                                                                  title="@article.PictureTitle">
                                                         </a>

@@ -64,7 +64,7 @@ namespace SiteQuery_Ado.Queries
 
                                 if (!Convert.IsDBNull(reader["p.DiscountRate"]))
                                 {
-                                    product.DiscountRate = reader.GetInt32(reader.GetOrdinal("p.PictureTitle"));
+                                    product.DiscountRate = reader.GetInt32(reader.GetOrdinal("p.DiscountRate"));
                                     product.HasDiscount = product.DiscountRate > 0;
                                     var discountAmount = Math.Round((double)(price * product.DiscountRate) / 100);
                                     product.PriceWithDiscount = (price - discountAmount).ToMoney();
@@ -125,7 +125,7 @@ namespace SiteQuery_Ado.Queries
 
                                 if (!Convert.IsDBNull(reader["p.DiscountRate"]))
                                 {
-                                    product.DiscountRate = reader.GetInt32(reader.GetOrdinal("p.PictureTitle"));
+                                    product.DiscountRate = reader.GetInt32(reader.GetOrdinal("p.DiscountRate"));
                                     product.HasDiscount = product.DiscountRate > 0;
                                     var discountAmount = Math.Round((double)(price * product.DiscountRate) / 100);
                                     product.PriceWithDiscount = (price - discountAmount).ToMoney();

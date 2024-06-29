@@ -24,7 +24,7 @@ namespace Base_Framework.Domain.Services.Auth
                : 0;
         }
 
-        public async Task<AuthDTO> CurrentAccountInfo(CancellationToken cancellationToken)
+        public  AuthDTO CurrentAccountInfo()
         {
             var result = new AuthDTO();
             if (!IsAuthenticated())

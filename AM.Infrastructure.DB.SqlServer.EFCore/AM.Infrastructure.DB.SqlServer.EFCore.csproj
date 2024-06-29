@@ -17,10 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AM.Domain.Core\AM.Domain.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\IM.Infrastructure.Configuration\IM.Infrastructure.Configuration.csproj" />
+    <ProjectReference Include="..\SM.Infrastructure.Configuration\SM.Infrastructure.Configuration.csproj" />
   </ItemGroup>
 
 </Project>

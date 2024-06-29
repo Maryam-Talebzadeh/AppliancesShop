@@ -80,7 +80,8 @@ namespace SiteQuery_Ado.Queries
 
                             article.Id = reader.GetInt64(reader.GetOrdinal("ar.Id"));
                             article.Title = reader.GetString(reader.GetOrdinal("ar.Title"));                          
-                            article.Slug = reader.GetString(reader.GetOrdinal("ar.Slug"));                          
+                            article.Slug = reader.GetString(reader.GetOrdinal("ar.Slug"));
+                            article.CategorySlug = reader.GetString(reader.GetOrdinal("ar.CategorySlug"));
                             article.Picture = reader.GetString(reader.GetOrdinal("ar.Picture"));
                             article.PictureTitle = reader.GetString(reader.GetOrdinal("ar.PictureTitle"));
                             article.PictureAlt = reader.GetString(reader.GetOrdinal("ar.PictureAlt"));

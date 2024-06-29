@@ -6,7 +6,7 @@
         bool IsAuthenticated();
         Task Signin(AuthDTO account, CancellationToken cancellationToken);
        string CurrentAccountRole();
-        Task<AuthDTO> CurrentAccountInfo(CancellationToken cancellationToken);
+        AuthDTO CurrentAccountInfo();
         long CurrentAccountId();
         Task<string> CurrentAccountMobile(CancellationToken cancellationToken);
         List<int> GetPermissions();

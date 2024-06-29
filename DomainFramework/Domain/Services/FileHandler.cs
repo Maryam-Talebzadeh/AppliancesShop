@@ -6,10 +6,7 @@ namespace Base_Framework.Domain.Services
     {
         public static void SaveImage(string filePath, IFormFile picture)
         {
-            if(!Directory.Exists(filePath))
-            {
-                Directory.CreateDirectory(filePath);
-            }
+           
 
             using (FileStream stream = new FileStream(filePath, FileMode.Create))
             {

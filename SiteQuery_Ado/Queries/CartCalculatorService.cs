@@ -65,8 +65,7 @@ namespace SiteQuery_Ado.Queries
                                 DiscountRate = reader.GetInt32(reader.GetOrdinal("cd.DiscountRate")),
                                 ProductId = reader.GetInt64(reader.GetOrdinal("cd.ProductId"))
                             };
-
-                            colleagueDiscounts.Add(discount);
+                            customerDiscounts.Add(discount);
                         }
 
 

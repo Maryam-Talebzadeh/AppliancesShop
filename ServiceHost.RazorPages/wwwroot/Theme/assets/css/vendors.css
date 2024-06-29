@@ -513,6 +513,21 @@ mark {
     height: auto
 }
 
+.img-fluid-b
+{
+    height:400px;
+    width:250px;
+}
+
+.img-fluid-c {
+    height: 180px;
+    width: 250px;
+}
+
+.mag-des {
+    height: 180px;
+}
+
 .img-thumbnail {
     padding: .25rem;
     background-color: #fff;

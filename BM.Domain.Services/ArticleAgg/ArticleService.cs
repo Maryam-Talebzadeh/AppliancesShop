@@ -26,9 +26,9 @@ namespace BM.Domain.Services.ArticleAgg
             if ( _articleRepository.IsExist(x => x.Title == command.Title))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
-            var slug = command.Slug.Slugify();
+           command.Slug = command.Slug.Slugify();
             var categorySlug = await _articleCategoryRepository.GetSlugBy(command.CategoryId, cancellationToken);
-            var path = $"{categorySlug}/{slug}";
+            var path = $"{categorySlug}/{command.Slug}";
             command.PictureName = _fileUploader.Upload(command.Picture, path);
 
            await _articleRepository.Create(command, cancellationToken);
@@ -48,7 +48,7 @@ namespace BM.Domain.Services.ArticleAgg
 
             var slug = command.Slug.Slugify();
             var categorySlug = await _articleCategoryRepository.GetSlugBy(command.CategoryId, cancellationToken);
-            var path = $"Articles/{categorySlug}/{slug}";
+            var path = $"{categorySlug}/{slug}";
             command.PictureName = _fileUploader.Upload(command.Picture, path);
 
             await _articleRepository.Edit(command, cancellationToken);

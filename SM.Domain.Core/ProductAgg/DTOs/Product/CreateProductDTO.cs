@@ -20,8 +20,6 @@ namespace SM.Domain.Core.ProductAgg.DTOs.Product
         public string Description { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        [MaxFileSize(3 * 24, ErrorMessage = ValidationMessages.MaxFileSize)]
-        [FileExtentionLimitation(new string[] { ".jpeg", ".jpg", ".png" }, ErrorMessage = ValidationMessages.InvalidFileFormat)]
         public IFormFile Picture { get; set; }
         public string PictureAlt { get; set; }
         public string PictureTitle { get; set; }
@@ -37,6 +35,6 @@ namespace SM.Domain.Core.ProductAgg.DTOs.Product
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         public string MetaDescription { get; set; }
-        public List<ProductCategoryViewModel> Categories { get; set; }
+        public List<ProductCategoryViewModel>? Categories { get; set; }
     }
 }

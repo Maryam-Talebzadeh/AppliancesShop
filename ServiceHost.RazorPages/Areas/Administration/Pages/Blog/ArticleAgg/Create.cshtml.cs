@@ -1,7 +1,6 @@
 using BM.Domain.Core.ArticleAgg.AppServices;
 using BM.Domain.Core.ArticleAgg.DTOs;
 using BM.Domain.Core.ArticleCategoryAgg.AppServices;
-using BM.Infrastructure.DB.SqlServer.EFCore.Migrations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;

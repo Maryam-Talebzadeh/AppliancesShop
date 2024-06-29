@@ -19,6 +19,7 @@
     <None Include="wwwroot\AdminTheme\assets\bootstrap3-editable\moment.min.js" />
     <None Include="wwwroot\AdminTheme\assets\chartjs\chart.min.js" />
     <None Include="wwwroot\AdminTheme\assets\chartjs\chartjs.init.js" />
+    <None Include="wwwroot\AdminTheme\assets\chat\moment-2.2.1.js" />
     <None Include="wwwroot\AdminTheme\assets\codemirror\codemirror.js" />
     <None Include="wwwroot\AdminTheme\assets\codemirror\custom.codemirror.js" />
     <None Include="wwwroot\AdminTheme\assets\codemirror\formatting.js" />
@@ -35,10 +36,20 @@
     <None Include="wwwroot\AdminTheme\assets\datatables\datatables.js" />
     <None Include="wwwroot\AdminTheme\assets\datatables\jquery.dataTables.js" />
     <None Include="wwwroot\AdminTheme\assets\datatables\jquery.dataTables.min.js" />
+    <None Include="wwwroot\AdminTheme\assets\dropzone\dropzone.min.js" />
     <None Include="wwwroot\AdminTheme\assets\easypie-chart\easypiechart.min.js" />
     <None Include="wwwroot\AdminTheme\assets\easypie-chart\example.js" />
     <None Include="wwwroot\AdminTheme\assets\easypie-chart\jquery.easypiechart.min.js" />
     <None Include="wwwroot\AdminTheme\assets\fastclick\fastclick.js" />
+    <None Include="wwwroot\AdminTheme\assets\flot-chart\jquery.flot.crosshair.js" />
+    <None Include="wwwroot\AdminTheme\assets\flot-chart\jquery.flot.init.js" />
+    <None Include="wwwroot\AdminTheme\assets\flot-chart\jquery.flot.js" />
+    <None Include="wwwroot\AdminTheme\assets\flot-chart\jquery.flot.pie.js" />
+    <None Include="wwwroot\AdminTheme\assets\flot-chart\jquery.flot.resize.js" />
+    <None Include="wwwroot\AdminTheme\assets\flot-chart\jquery.flot.selection.js" />
+    <None Include="wwwroot\AdminTheme\assets\flot-chart\jquery.flot.stack.js" />
+    <None Include="wwwroot\AdminTheme\assets\flot-chart\jquery.flot.time.js" />
+    <None Include="wwwroot\AdminTheme\assets\flot-chart\jquery.flot.tooltip.min.js" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\fonts\fontawesome-webfont.svg" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\fonts\fontawesome-webfont.woff2" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\less\animated.less" />
@@ -53,6 +64,7 @@
     <None Include="wwwroot\AdminTheme\assets\font-awesome\less\path.less" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\less\rotated-flipped.less" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\less\screen-reader.less" />
+    <None Include="wwwroot\AdminTheme\assets\font-awesome\less\spinning.less" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\less\stacked.less" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\less\variables.less" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\scss\font-awesome.scss" />
@@ -67,8 +79,12 @@
     <None Include="wwwroot\AdminTheme\assets\font-awesome\scss\_path.scss" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\scss\_rotated-flipped.scss" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\scss\_screen-reader.scss" />
+    <None Include="wwwroot\AdminTheme\assets\font-awesome\scss\_spinning.scss" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\scss\_stacked.scss" />
     <None Include="wwwroot\AdminTheme\assets\font-awesome\scss\_variables.scss" />
+    <None Include="wwwroot\AdminTheme\assets\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\AdminTheme\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\AdminTheme\assets\fonts\Material-Design-Iconic-Font.svg" />
     <None Include="wwwroot\AdminTheme\assets\form-wizard\bootstrap-validator.min.js" />
     <None Include="wwwroot\AdminTheme\assets\form-wizard\jquery.steps.min.js" />
     <None Include="wwwroot\AdminTheme\assets\form-wizard\wizard-init.js" />
@@ -77,11 +93,14 @@
     <None Include="wwwroot\AdminTheme\assets\fullcalendar\fullcalendar.js" />
     <None Include="wwwroot\AdminTheme\assets\fullcalendar\fullcalendar.min.js" />
     <None Include="wwwroot\AdminTheme\assets\fullcalendar\moment.min.js" />
+    <None Include="wwwroot\AdminTheme\assets\gallery\isotope.js" />
     <None Include="wwwroot\AdminTheme\assets\gmaps\gmaps-plugin.js" />
     <None Include="wwwroot\AdminTheme\assets\gmaps\gmaps.js" />
     <None Include="wwwroot\AdminTheme\assets\images\big\Thumbs.db" />
     <None Include="wwwroot\AdminTheme\assets\images\small\Thumbs.db" />
     <None Include="wwwroot\AdminTheme\assets\images\users\Thumbs.db" />
+    <None Include="wwwroot\AdminTheme\assets\ion-rangeslider\ion.rangeSlider.min.js" />
+    <None Include="wwwroot\AdminTheme\assets\ion-rangeslider\ui-sliders.js" />
     <None Include="wwwroot\AdminTheme\assets\ionicon\fonts\ionicons.svg" />
     <None Include="wwwroot\AdminTheme\assets\jquery-blockui\jquery.blockUI.js" />
     <None Include="wwwroot\AdminTheme\assets\jquery-datatables-editable\dataTables.bootstrap.js" />
@@ -112,6 +131,7 @@
     <None Include="wwwroot\AdminTheme\assets\js\npm.js" />
     <None Include="wwwroot\AdminTheme\assets\js\persian-date.min.js" />
     <None Include="wwwroot\AdminTheme\assets\js\persian-datepicker.min.js" />
+    <None Include="wwwroot\AdminTheme\assets\js\site.js" />
     <None Include="wwwroot\AdminTheme\assets\js\skycons.min.js" />
     <None Include="wwwroot\AdminTheme\assets\js\waves.js" />
     <None Include="wwwroot\AdminTheme\assets\js\wow.min.js" />
@@ -151,6 +171,17 @@
     <None Include="wwwroot\AdminTheme\fonts\IranianSans.svg" />
     <None Include="wwwroot\AdminTheme\fonts\IranianSans.woff2" />
     <None Include="wwwroot\AdminTheme\fonts\Material-Design-Iconic-Font.svg" />
+    <None Include="wwwroot\AdminTheme\images\big\Thumbs.db" />
+    <None Include="wwwroot\AdminTheme\images\small\Thumbs.db" />
+    <None Include="wwwroot\AdminTheme\images\users\Thumbs.db" />
+    <None Include="wwwroot\Theme\assets\fonts\fontawesome-webfont3e6e.svg" />
+    <None Include="wwwroot\Theme\assets\fonts\fontawesome-webfont3e6e.woff2" />
+    <None Include="wwwroot\Theme\assets\fonts\ionicons28b5.svg" />
+    <None Include="wwwroot\Theme\assets\js\active.js" />
+    <None Include="wwwroot\Theme\assets\js\ajax-mail.js" />
+    <None Include="wwwroot\Theme\assets\js\custom.js" />
+    <None Include="wwwroot\Theme\assets\js\plugins.js" />
+    <None Include="wwwroot\Theme\assets\js\vendors.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -186,9 +217,6 @@
     <Folder Include="wwwroot\AdminTheme\ProductPictures\" />
     <Folder Include="wwwroot\Images\Articles\" />
     <Folder Include="wwwroot\Images\ArticleCategories\" />
-    <Folder Include="wwwroot\Theme\assets\img\banners\" />
-    <Folder Include="wwwroot\Theme\assets\img\category\" />
-    <Folder Include="wwwroot\Theme\assets\img\products\" />
   </ItemGroup>
 
   <ItemGroup>

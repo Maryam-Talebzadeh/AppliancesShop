@@ -69,19 +69,6 @@ namespace SiteQuery_Ado.Queries
                     var categoryProducts = new List<ProductQueryModel>();
                     using (SqlCommand command = new SqlCommand("GetProductsByCategoryId", connection))
                     {
-                        //GetProductsByCategoryId StoredProcedure in db:
-                        //                        @CategoryId INT
-                        //AS
-                        //BEGIN
-                        //SELECT pc.Id AS 'pc.Id', pc.Name AS 'p.CategoryName', p.Id AS 'p.Id',  p.Name AS 'p.Name', picture.Picture AS 'p.Picture', Picture.PictureAlt AS 'p.PictureAlt', Picture.PictureTitle AS 'p.PictureTitle', inventory.UnitPrice As 'p.Price', cd.DiscountRate As 'p.DiscountRate'
-                        //FROM dbo.ProductCategories pc
-                        //INNER JOIN dbo.Products p ON pc.Id = p.CategoryId
-                        //INNER JOIN dbo.ProductPictures picture on picture.ProductId = p.Id
-                        //Left JOIN dbo.Inventory inventory on inventory.ProductId = p.Id
-                        //Left JOIN(Select cd.DiscountRate, cd.ProductId from dbo.CustomerDiscounts cd where cd.StartDate<GETDATE() and cd.EndDate > GETDATE()) cd on cd.ProductId = p.Id
-                        //Where pc.Id = @CategoryId
-                        //End
-
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.Add(new SqlParameter("@CategoryId", SqlDbType.Int));
                         command.Parameters["@CategoryId"].Value = category.Id;
@@ -92,7 +79,6 @@ namespace SiteQuery_Ado.Queries
                             {
                                 var product = new ProductQueryModel()
                                 {
-
                                     Category = reader.GetString(reader.GetOrdinal("p.CategoryName")),
                                     Id = reader.GetInt64(reader.GetOrdinal("p.Id")),
                                     Name = reader.GetString(reader.GetOrdinal("p.Name")),
@@ -103,11 +89,10 @@ namespace SiteQuery_Ado.Queries
                                 {
                                     var price = reader.GetDouble(reader.GetOrdinal("p.Price"));
                                     product.Price = price.ToMoney();
-                                    var discountRate = reader["p.DiscountRate"];
 
                                     if (!Convert.IsDBNull(reader["p.DiscountRate"]))
                                     {
-                                        product.DiscountRate = reader.GetInt32(reader.GetOrdinal("p.PictureTitle"));
+                                        product.DiscountRate = reader.GetInt32(reader.GetOrdinal("p.DiscountRate"));
                                         product.HasDiscount = product.DiscountRate > 0;
                                         var discountAmount = Math.Round((double)(price * product.DiscountRate) / 100);
                                         product.PriceWithDiscount = (price - discountAmount).ToMoney();
@@ -130,6 +115,7 @@ namespace SiteQuery_Ado.Queries
             }
 
             return productCategories;
+
         }
 
         public async Task<ProductCategoryQueryModel> GetProductCategoryBy(string slug, CancellationToken cancellationToken)
@@ -227,7 +213,7 @@ namespace SiteQuery_Ado.Queries
 
                                 if (!Convert.IsDBNull(reader["p.DiscountRate"]))
                                 {
-                                    product.DiscountRate = reader.GetInt32(reader.GetOrdinal("p.PictureTitle"));
+                                    product.DiscountRate = reader.GetInt32(reader.GetOrdinal("p.DiscountRate"));
                                     product.HasDiscount = product.DiscountRate > 0;
                                     var discountAmount = Math.Round((double)(price * product.DiscountRate) / 100);
                                     product.PriceWithDiscount = (price - discountAmount).ToMoney();

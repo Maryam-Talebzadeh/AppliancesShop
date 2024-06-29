@@ -27,7 +27,7 @@ namespace Base_Framework.Domain.Services
             var filePath = $"{directoryPath}//{fileName}";
             using var output = File.Create(filePath);
             file.CopyTo(output);
-            return $"{path}/{fileName}";
+            return $"{fileName}";
         }
     }
 }

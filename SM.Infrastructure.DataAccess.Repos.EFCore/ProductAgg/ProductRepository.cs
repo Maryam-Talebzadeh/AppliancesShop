@@ -104,7 +104,9 @@ namespace SM.Infrastructure.DataAccess.Repos.EFCore.ProductAgg
                    CategoryId = x.CategoryId,
                    Code = x.Code,
                    IsInStock = x.Inventory,
-                   CategorySlug = x.Category.Slug
+                   CategorySlug = x.Category.Slug,
+                   Picture = x.Pictures.First().Picture,
+                   
                });
 
             if (!string.IsNullOrWhiteSpace(searchModel.Name))

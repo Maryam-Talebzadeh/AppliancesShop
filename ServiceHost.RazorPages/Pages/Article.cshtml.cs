@@ -16,6 +16,9 @@ namespace ServiceHost.RazorPages.Pages
         private readonly IArticleQuery _articleQuery;
         private readonly IArticleCategoryQuery _articleCategoryQuery;
         private readonly ICommentAppService _commentAppService;
+        public string Message { get; set; }
+        [BindProperty]
+        public string Id { get; set; }
 
         public ArticleModel(IArticleQuery articleQuery, IArticleCategoryQuery articleCategoryQuery, ICommentAppService commentAppService)
         {
@@ -24,8 +27,9 @@ namespace ServiceHost.RazorPages.Pages
             _commentAppService = commentAppService;
         }
 
-        public async Task OnGet(string id, CancellationToken cancellationToken)
+        public async Task OnGet(string id,CancellationToken cancellationToken)
         {
+            Id = id;
             Article = await _articleQuery.GetArticleDetails(id, cancellationToken);
             LatestArticles = await _articleQuery.LatestArticles(cancellationToken);
             ArticleCategories = await _articleCategoryQuery.GetArticleCategories(cancellationToken);
@@ -35,7 +39,11 @@ namespace ServiceHost.RazorPages.Pages
         {
             command.Type = CommentTypes.Article;
             var result =await  _commentAppService.Add(command, cancellationToken);
-            return RedirectToPage("/Article", new { Id = articleSlug });
+            Article = await _articleQuery.GetArticleDetails(Id, cancellationToken);
+            LatestArticles = await _articleQuery.LatestArticles(cancellationToken);
+            ArticleCategories = await _articleCategoryQuery.GetArticleCategories(cancellationToken);
+            Message = result.Message;
+            return Page();
         }
 
     }
