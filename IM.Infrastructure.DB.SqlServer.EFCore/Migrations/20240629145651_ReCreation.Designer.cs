@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IM.Infrastructure.DB.SqlServer.EFCore.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20240626211839_ReCreation")]
+    [Migration("20240629145651_ReCreation")]
     partial class ReCreation
     {
         /// <inheritdoc />

@@ -74,7 +74,7 @@ namespace AM.Infrastructure.DB.SqlServer.EFCore.Migrations
                         new
                         {
                             Id = 1L,
-                            CreationDate = new DateTime(2024, 6, 27, 10, 20, 13, 634, DateTimeKind.Local).AddTicks(6848),
+                            CreationDate = new DateTime(2024, 6, 29, 7, 26, 13, 593, DateTimeKind.Local).AddTicks(2672),
                             Fullname = "Mary",
                             IsRemoved = false,
                             Mobile = "09386485663",
@@ -112,28 +112,28 @@ namespace AM.Infrastructure.DB.SqlServer.EFCore.Migrations
                         new
                         {
                             Id = 1L,
-                            CreationDate = new DateTime(2024, 6, 27, 10, 20, 13, 634, DateTimeKind.Local).AddTicks(9877),
+                            CreationDate = new DateTime(2024, 6, 29, 7, 26, 13, 593, DateTimeKind.Local).AddTicks(9517),
                             IsRemoved = false,
                             Name = "مدیرسیستم"
                         },
                         new
                         {
                             Id = 2L,
-                            CreationDate = new DateTime(2024, 6, 27, 10, 20, 13, 634, DateTimeKind.Local).AddTicks(9938),
+                            CreationDate = new DateTime(2024, 6, 29, 7, 26, 13, 593, DateTimeKind.Local).AddTicks(9645),
                             IsRemoved = false,
                             Name = "کاربر عادی"
                         },
                         new
                         {
                             Id = 3L,
-                            CreationDate = new DateTime(2024, 6, 27, 10, 20, 13, 634, DateTimeKind.Local).AddTicks(9949),
+                            CreationDate = new DateTime(2024, 6, 29, 7, 26, 13, 593, DateTimeKind.Local).AddTicks(9664),
                             IsRemoved = false,
                             Name = "محتوا گذار"
                         },
                         new
                         {
                             Id = 4L,
-                            CreationDate = new DateTime(2024, 6, 27, 10, 20, 13, 634, DateTimeKind.Local).AddTicks(9958),
+                            CreationDate = new DateTime(2024, 6, 29, 7, 26, 13, 593, DateTimeKind.Local).AddTicks(9679),
                             IsRemoved = false,
                             Name = "کاربر همکار"
                         });

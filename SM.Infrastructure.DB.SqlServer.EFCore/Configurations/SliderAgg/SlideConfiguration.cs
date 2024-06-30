@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SM.Domain.Core.SliderAgg.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SM.Infrastructure.DB.SqlServer.EFCore.Configurations.SliderAgg
 {
@@ -21,6 +16,18 @@ namespace SM.Infrastructure.DB.SqlServer.EFCore.Configurations.SliderAgg
             #region Relations
 
             builder.HasOne(s => s.Picture).WithOne(p => p.Slide).HasForeignKey<Slide>(s => s.PictureId);
+
+            #endregion
+
+            #region SeedData
+
+            var slide1 = new Slide(1, "دنبال قشنگ کردن خونتی؟", "ما با 40 درصد تخفیف کمکت میکنیم", "تا جمعه وقت داری با 40 درصد تخفیف خونتو قشنگ تر کنی", "اینجا کلیک کن", "#Products");
+            slide1.Id = 1;
+            builder.HasData(slide1);
+
+            var slide2 = new Slide(2, "میخوای کادو بخری؟", "با 30 درصد تخفیف کادو بخر", "ما واسه یه سری لوازم دکوری تخفیف 30 درصد زدیم. از دستش نده", "کلیک کن", "#Products");
+            slide2.Id = 2;
+            builder.HasData(slide2);
 
             #endregion
 

@@ -81,6 +81,41 @@ namespace DM.Infrastructure.DB.SqlServer.EFCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CustomerDiscounts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreationDate = new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(721),
+                            DiscountRate = 40,
+                            EndDate = new DateTime(2024, 7, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(668),
+                            IsRemoved = false,
+                            ProductId = 4L,
+                            Reason = "جشنواره",
+                            StartDate = new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(482)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreationDate = new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(940),
+                            DiscountRate = 25,
+                            EndDate = new DateTime(2024, 7, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(919),
+                            IsRemoved = false,
+                            ProductId = 3L,
+                            Reason = "جشنواره",
+                            StartDate = new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(904)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreationDate = new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(1008),
+                            DiscountRate = 10,
+                            EndDate = new DateTime(2024, 7, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(992),
+                            IsRemoved = false,
+                            ProductId = 1L,
+                            Reason = "جشنواره",
+                            StartDate = new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(979)
+                        });
                 });
 #pragma warning restore 612, 618
         }

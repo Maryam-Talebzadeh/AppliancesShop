@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace DM.Infrastructure.DB.SqlServer.EFCore.Migrations
 {
     /// <inheritdoc />
@@ -44,6 +46,16 @@ namespace DM.Infrastructure.DB.SqlServer.EFCore.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CustomerDiscounts", x => x.Id);
+                });
+
+            migrationBuilder.InsertData(
+                table: "CustomerDiscounts",
+                columns: new[] { "Id", "CreationDate", "DiscountRate", "EndDate", "IsRemoved", "ProductId", "Reason", "StartDate" },
+                values: new object[,]
+                {
+                    { 1L, new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(721), 40, new DateTime(2024, 7, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(668), false, 4L, "جشنواره", new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(482) },
+                    { 2L, new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(940), 25, new DateTime(2024, 7, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(919), false, 3L, "جشنواره", new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(904) },
+                    { 3L, new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(1008), 10, new DateTime(2024, 7, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(992), false, 1L, "جشنواره", new DateTime(2024, 6, 29, 7, 53, 33, 302, DateTimeKind.Local).AddTicks(979) }
                 });
         }
 

@@ -112,7 +112,7 @@ namespace SiteQuery_Ado.Queries
                                 Category = reader.GetString(reader.GetOrdinal("p.CategoryName")),
                                 Id = reader.GetInt64(reader.GetOrdinal("p.Id")),
                                 Name = reader.GetString(reader.GetOrdinal("p.Name")),
-                              
+                              Slug = reader.GetString(reader.GetOrdinal("p.Slug")),
                                 CategorySlug = reader.GetString(reader.GetOrdinal("p.CategorySlug"))
 
                             };

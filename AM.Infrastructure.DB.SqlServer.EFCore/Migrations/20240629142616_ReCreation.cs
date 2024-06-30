@@ -79,16 +79,38 @@ namespace AM.Infrastructure.DB.SqlServer.EFCore.Migrations
                 columns: new[] { "Id", "CreationDate", "IsRemoved", "Name" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2024, 6, 26, 15, 11, 14, 338, DateTimeKind.Local).AddTicks(1308), false, "مدیرسیستم" },
-                    { 2L, new DateTime(2024, 6, 26, 15, 11, 14, 338, DateTimeKind.Local).AddTicks(1429), false, "کاربر عادی" },
-                    { 3L, new DateTime(2024, 6, 26, 15, 11, 14, 338, DateTimeKind.Local).AddTicks(1448), false, "محتوا گذار" },
-                    { 4L, new DateTime(2024, 6, 26, 15, 11, 14, 338, DateTimeKind.Local).AddTicks(1465), false, "کاربر همکار" }
+                    { 1L, new DateTime(2024, 6, 29, 7, 26, 13, 593, DateTimeKind.Local).AddTicks(9517), false, "مدیرسیستم" },
+                    { 2L, new DateTime(2024, 6, 29, 7, 26, 13, 593, DateTimeKind.Local).AddTicks(9645), false, "کاربر عادی" },
+                    { 3L, new DateTime(2024, 6, 29, 7, 26, 13, 593, DateTimeKind.Local).AddTicks(9664), false, "محتوا گذار" },
+                    { 4L, new DateTime(2024, 6, 29, 7, 26, 13, 593, DateTimeKind.Local).AddTicks(9679), false, "کاربر همکار" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Accounts",
                 columns: new[] { "Id", "CreationDate", "Fullname", "IsRemoved", "Mobile", "Password", "ProfilePhoto", "RoleId", "Username" },
-                values: new object[] { 1L, new DateTime(2024, 6, 26, 15, 11, 14, 337, DateTimeKind.Local).AddTicks(3649), "Mary", false, "09386485663", "10000.lyz67IGPgBUonnD4LNGVTQ==.4tH6b2mcWg+vVPSEHhzaEX0aatIlFdqGDcI+NUA/VLA=", "DefaultAvatar.jpg", 1L, "Mary" });
+                values: new object[] { 1L, new DateTime(2024, 6, 29, 7, 26, 13, 593, DateTimeKind.Local).AddTicks(2672), "Mary", false, "09386485663", "10000.lyz67IGPgBUonnD4LNGVTQ==.4tH6b2mcWg+vVPSEHhzaEX0aatIlFdqGDcI+NUA/VLA=", "DefaultAvatar.jpg", 1L, "Mary" });
+
+            migrationBuilder.InsertData(
+                table: "RolePermissions",
+                columns: new[] { "Id", "Code", "RoleId" },
+                values: new object[,]
+                {
+                    { 1L, 52, 1L },
+                    { 2L, 53, 1L },
+                    { 3L, 54, 1L },
+                    { 4L, 55, 1L },
+                    { 6L, 56, 1L },
+                    { 7L, 51, 1L },
+                    { 8L, 12, 1L },
+                    { 9L, 13, 1L },
+                    { 10L, 10, 1L },
+                    { 11L, 11, 1L },
+                    { 12L, 22, 1L },
+                    { 13L, 23, 1L },
+                    { 14L, 20, 1L },
+                    { 15L, 21, 1L },
+                    { 18L, 50, 1L }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_RoleId",
