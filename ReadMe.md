@@ -20,8 +20,8 @@ each adhering to the principles of the Onion Architecture.
     > payment IDs, order discounts, and order amounts, is handled by the
     > store system.
 
+      **Discount System**:
 
-    **Discount System**:
 -   One of the project modules is the DiscountManagement. This subsystem
     > enables adding discounts to products within specific time
     > intervals and at specific prices.
@@ -39,9 +39,8 @@ each adhering to the principles of the Onion Architecture.
 >                 Discounts applied through this panel are visible on
 > collaborators' final invoices.
 
+      **Inventory Management System**:
 
-
-    **Inventory Management System**:
 -   The inventory subsystem tracks inventory statistics, product prices,
     > and product inflow/outflow.
 
@@ -53,29 +52,27 @@ each adhering to the principles of the Onion Architecture.
 
 -   Inventory history (inflow/outflow) is also tracked.
 
+      **Blogging System**:
 
-
-    **Blogging System**:
 -   The blogging subsystem allows adding and managing new articles.
 
 -   The article body supports rich text using the TinyMCE service.
 
+      **Site Queries**:
 
-    **Site Queries**:
 -   Following the **CQRS** pattern, this layer interacts with the
     > database for read-only queries that don't require specific
     > services.
 
 -   Ado.NET is used for improved performance.
 
+      **Anti Corruption Layer ** **(ACL)**:
 
-    **Anti Corruption Layer ** **(ACL)**:
 -   The ACL pattern is employed to manage communication between layers
     > and prevents Tightly Coupled Dependency.
 
+      **Authorization**:
 
-
-    **Authorization**:
 -   Role-based access control is implemented, granting specific
     > permissions to each role.
 
