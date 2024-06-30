@@ -3,6 +3,10 @@
 This project is an enterprise-like system composed of various layers,
 each adhering to the principles of the Onion Architecture.
 
+Deplyed on :
+[[https://appliances-shop.liara.run/]{.underline}](https://appliances-shop.liara.run/)
+
+
  
 
 **Shop System**:
@@ -19,6 +23,7 @@ each adhering to the principles of the Onion Architecture.
 -   Order management, including payment status, order tracking numbers,
     > payment IDs, order discounts, and order amounts, is handled by the
     > store system.
+
 
 
 **Discount System**:
